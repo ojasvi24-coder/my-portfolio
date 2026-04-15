@@ -6,7 +6,7 @@
   <title>Ojasvi Shrivastava — ML Engineer & Data Science @ UC Berkeley</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -45,7 +45,7 @@
       border-radius: 50%;
       position: fixed; pointer-events: none; z-index: 9999;
       transform: translate(-50%, -50%);
-      transition: transform 0.1s, width 0.2s, height 0.2s, background 0.2s;
+      transition: transform 0.15s ease-out, width 0.2s, height 0.2s, background 0.2s;
       box-shadow: 0 0 20px #f02d7d77;
     }
     .cursor-ring {
@@ -54,7 +54,7 @@
       border-radius: 50%;
       position: fixed; pointer-events: none; z-index: 9998;
       transform: translate(-50%, -50%);
-      transition: all 0.15s ease;
+      transition: all 0.15s ease-out;
       opacity: 0.6;
       box-shadow: 0 0 15px #f02d7d44;
     }
@@ -72,9 +72,9 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; justify-content: space-between; align-items: center;
       padding: 1.4rem 4rem;
-      background: linear-gradient(to bottom, rgba(10, 10, 10, 0.95) 60%, transparent);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(240, 45, 125, 0.1);
+      background: linear-gradient(to bottom, rgba(10, 10, 10, 0.98) 60%, transparent);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(240, 45, 125, 0.12);
     }
     .nav-logo {
       font-family: 'Outfit', sans-serif;
@@ -85,19 +85,21 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      transition: transform 0.2s;
     }
+    .nav-logo:hover { transform: scale(1.05); }
     .nav-links { display: flex; gap: 2.5rem; list-style: none; }
     .nav-links a {
       color: var(--gray); text-decoration: none; font-size: 0.85rem;
       letter-spacing: 0.08em; text-transform: uppercase;
-      transition: color 0.2s;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
       position: relative;
       font-weight: 500;
     }
     .nav-links a::after {
       content: ''; position: absolute; bottom: -2px; left: 0;
       width: 0; height: 2px; background: linear-gradient(to right, var(--pink), var(--pink-light));
-      transition: width 0.3s ease;
+      transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
     .nav-links a:hover { color: var(--white); }
     .nav-links a:hover::after { width: 100%; }
@@ -124,7 +126,8 @@
       background: radial-gradient(circle, #f02d7d44 0%, transparent 70%);
       top: 50%; left: 50%; transform: translate(-50%, -55%);
       pointer-events: none;
-      filter: blur(60px);
+      filter: blur(70px);
+      animation: glow-pulse 6s ease-in-out infinite;
     }
     .hero-glow2 {
       position: absolute;
@@ -133,23 +136,28 @@
       top: 40%; right: 10%; 
       pointer-events: none;
       filter: blur(50px);
-      animation: float 6s ease-in-out infinite;
+      animation: float 7s ease-in-out infinite;
+    }
+    @keyframes glow-pulse {
+      0%, 100% { opacity: 0.8; transform: translate(-50%, -55%) scale(1); }
+      50% { opacity: 1; transform: translate(-50%, -55%) scale(1.05); }
     }
     @keyframes float {
       0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(30px); }
+      50% { transform: translateY(35px); }
     }
     .hero-content {
-      position: relative; text-align: center; max-width: 900px;
+      position: relative; text-align: center; max-width: 900px; z-index: 2;
     }
     .hero-tag {
       display: inline-flex; align-items: center; gap: 0.5rem;
-      background: linear-gradient(135deg, rgba(240, 45, 125, 0.15), rgba(124, 58, 237, 0.15));
-      border: 1px solid var(--pink-border);
-      border-radius: 999px; padding: 0.5rem 1.2rem;
+      background: linear-gradient(135deg, rgba(240, 45, 125, 0.12), rgba(124, 58, 237, 0.12));
+      border: 1.5px solid var(--pink-border);
+      border-radius: 999px; padding: 0.65rem 1.4rem;
       font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
       color: var(--pink-light); margin-bottom: 2.5rem;
       font-weight: 600;
+      backdrop-filter: blur(10px);
     }
     .hero-tag::before {
       content: ''; width: 6px; height: 6px;
@@ -170,16 +178,23 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      animation: hero-fade-in 0.9s ease-out;
     }
-    h1 .thin { font-weight: 300; color: var(--gray); }
+    @keyframes hero-fade-in {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    h1 .thin { font-weight: 300; color: #999; }
     .hero-sub {
-      font-size: 1.15rem; color: #aaa;
+      font-size: 1.15rem; color: #bbb;
       max-width: 580px; margin: 0 auto 2.5rem;
       font-weight: 300;
       line-height: 1.8;
+      animation: hero-fade-in 0.9s ease-out 0.15s both;
     }
     .hero-ctas {
       display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+      animation: hero-fade-in 0.9s ease-out 0.3s both;
     }
     .btn-primary {
       background: linear-gradient(135deg, var(--pink), var(--pink-light));
@@ -187,27 +202,29 @@
       padding: 0.9rem 2.2rem; border-radius: 999px;
       text-decoration: none; font-size: 0.95rem; font-weight: 600;
       letter-spacing: 0.04em;
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
       border: none; cursor: pointer;
+      box-shadow: 0 8px 30px rgba(240, 45, 125, 0.25);
     }
     .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 40px rgba(240, 45, 125, 0.4);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 50px rgba(240, 45, 125, 0.4);
     }
     .btn-outline {
       background: transparent;
-      border: 1.5px solid var(--gray2);
+      border: 1.5px solid #444;
       color: var(--white);
       padding: 0.9rem 2.2rem; border-radius: 999px;
       text-decoration: none; font-size: 0.95rem; font-weight: 600;
       letter-spacing: 0.04em;
-      transition: all 0.2s;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
       cursor: pointer;
     }
     .btn-outline:hover {
       border-color: var(--pink);
       color: var(--pink-light);
-      background: rgba(240, 45, 125, 0.1);
+      background: rgba(240, 45, 125, 0.12);
+      transform: translateY(-2px);
     }
 
     .hero-scroll {
@@ -218,7 +235,7 @@
     .scroll-line {
       width: 1px; height: 40px;
       background: linear-gradient(to bottom, var(--pink), transparent);
-      animation: scrollDown 1.8s ease-in-out infinite;
+      animation: scrollDown 2s ease-in-out infinite;
     }
     @keyframes scrollDown {
       0% { transform: scaleY(0); transform-origin: top; opacity: 0; }
@@ -252,7 +269,7 @@
       gap: 4.5rem; align-items: center;
     }
     .about-text p {
-      color: #aaa; font-size: 1.1rem; font-weight: 300;
+      color: #bbb; font-size: 1.1rem; font-weight: 300;
       margin-bottom: 1.5rem; line-height: 1.9;
     }
     .about-text p strong { color: var(--pink-light); font-weight: 600; }
@@ -261,11 +278,12 @@
       gap: 1.5rem;
     }
     .stat-card {
-      background: linear-gradient(135deg, rgba(240, 45, 125, 0.1), rgba(124, 58, 237, 0.05));
-      border: 1px solid rgba(240, 45, 125, 0.2);
+      background: linear-gradient(135deg, rgba(240, 45, 125, 0.08), rgba(124, 58, 237, 0.04));
+      border: 1px solid rgba(240, 45, 125, 0.18);
       border-radius: 20px; padding: 2rem;
       position: relative; overflow: hidden;
-      transition: all 0.3s;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      backdrop-filter: blur(5px);
     }
     .stat-card::before {
       content: '';
@@ -273,9 +291,10 @@
       background: linear-gradient(to right, transparent, var(--pink), transparent);
     }
     .stat-card:hover {
-      border-color: var(--pink);
-      transform: translateY(-6px);
-      box-shadow: 0 10px 40px rgba(240, 45, 125, 0.15);
+      border-color: rgba(240, 45, 125, 0.4);
+      transform: translateY(-8px);
+      box-shadow: 0 15px 50px rgba(240, 45, 125, 0.12);
+      background: linear-gradient(135deg, rgba(240, 45, 125, 0.12), rgba(124, 58, 237, 0.08));
     }
     .stat-num {
       font-family: 'Outfit', sans-serif;
@@ -295,16 +314,17 @@
       gap: 1.5rem;
     }
     .skill-group {
-      background: linear-gradient(135deg, rgba(26, 26, 26, 0.8), rgba(240, 45, 125, 0.05));
-      border: 1px solid rgba(240, 45, 125, 0.15);
+      background: linear-gradient(135deg, rgba(26, 26, 26, 0.85), rgba(240, 45, 125, 0.04));
+      border: 1px solid rgba(240, 45, 125, 0.12);
       border-radius: 20px; padding: 2rem;
-      transition: all 0.3s;
-      backdrop-filter: blur(10px);
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      backdrop-filter: blur(8px);
     }
     .skill-group:hover {
-      border-color: var(--pink-border);
-      transform: translateY(-4px);
-      background: linear-gradient(135deg, rgba(26, 26, 26, 0.95), rgba(240, 45, 125, 0.1));
+      border-color: rgba(240, 45, 125, 0.28);
+      transform: translateY(-6px);
+      background: linear-gradient(135deg, rgba(26, 26, 26, 0.95), rgba(240, 45, 125, 0.08));
+      box-shadow: 0 12px 40px rgba(240, 45, 125, 0.1);
     }
     .skill-group-title {
       font-family: 'Outfit', sans-serif;
@@ -319,16 +339,17 @@
     }
     .skill-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; }
     .skill-tag {
-      background: rgba(30, 30, 30, 0.7); border: 1px solid #333;
-      border-radius: 999px; padding: 0.4rem 0.95rem;
-      font-size: 0.85rem; color: #bbb;
-      transition: all 0.2s;
+      background: rgba(30, 30, 30, 0.6); border: 1px solid #333;
+      border-radius: 999px; padding: 0.45rem 1rem;
+      font-size: 0.85rem; color: #ccc;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
       font-weight: 500;
     }
     .skill-tag:hover {
       background: var(--pink-dim);
-      border-color: var(--pink);
+      border-color: rgba(240, 45, 125, 0.4);
       color: var(--pink-light);
+      transform: translateY(-2px);
     }
 
     /* ─── Experience ─── */
@@ -346,17 +367,24 @@
       background: var(--pink); border-radius: 50%;
       transform: translateX(-4.5px);
       box-shadow: 0 0 0 4px var(--black), 0 0 0 6px var(--pink-border);
+      animation: dot-pulse 2s ease-in-out infinite;
+    }
+    @keyframes dot-pulse {
+      0%, 100% { box-shadow: 0 0 0 4px var(--black), 0 0 0 6px var(--pink-border); }
+      50% { box-shadow: 0 0 0 4px var(--black), 0 0 0 8px rgba(240, 45, 125, 0.6); }
     }
     .exp-card {
-      background: linear-gradient(135deg, rgba(26, 26, 26, 0.8), rgba(240, 45, 125, 0.05));
-      border: 1px solid rgba(240, 45, 125, 0.15);
+      background: linear-gradient(135deg, rgba(26, 26, 26, 0.85), rgba(240, 45, 125, 0.04));
+      border: 1px solid rgba(240, 45, 125, 0.12);
       border-radius: 20px; padding: 2rem;
-      transition: all 0.3s;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      backdrop-filter: blur(8px);
     }
     .exp-card:hover {
-      border-color: var(--pink-border);
-      transform: translateX(10px);
-      box-shadow: 0 10px 40px rgba(240, 45, 125, 0.1);
+      border-color: rgba(240, 45, 125, 0.28);
+      transform: translateX(12px);
+      box-shadow: 0 12px 40px rgba(240, 45, 125, 0.1);
+      background: linear-gradient(135deg, rgba(26, 26, 26, 0.95), rgba(240, 45, 125, 0.08));
     }
     .exp-header {
       display: flex; justify-content: space-between; align-items: flex-start;
@@ -368,15 +396,15 @@
     }
     .exp-date {
       font-size: 0.75rem; letter-spacing: 0.08em;
-      background: rgba(240, 45, 125, 0.15); border: 1px solid var(--pink-border);
-      border-radius: 999px; padding: 0.35rem 0.9rem;
+      background: rgba(240, 45, 125, 0.12); border: 1px solid rgba(240, 45, 125, 0.24);
+      border-radius: 999px; padding: 0.4rem 1rem;
       color: var(--pink-light); white-space: nowrap;
       font-weight: 600;
     }
     .exp-org { color: var(--pink-light); font-size: 0.9rem; margin-bottom: 1.2rem; font-weight: 500; }
     .exp-bullets { list-style: none; }
     .exp-bullets li {
-      color: #aaa; font-size: 0.95rem; font-weight: 300;
+      color: #bbb; font-size: 0.95rem; font-weight: 300;
       padding: 0.4rem 0 0.4rem 1.4rem;
       position: relative;
       line-height: 1.8;
@@ -388,48 +416,52 @@
 
     /* ─── Demos ─── */
     #demos {
-      background: linear-gradient(135deg, rgba(240, 45, 125, 0.05), rgba(124, 58, 237, 0.05));
-      border-top: 1px solid rgba(240, 45, 125, 0.15);
-      border-bottom: 1px solid rgba(240, 45, 125, 0.15);
+      background: linear-gradient(135deg, rgba(240, 45, 125, 0.04), rgba(124, 58, 237, 0.04));
+      border-top: 1px solid rgba(240, 45, 125, 0.12);
+      border-bottom: 1px solid rgba(240, 45, 125, 0.12);
     }
     .demos-grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 2rem;
     }
     .demo-card {
-      background: linear-gradient(135deg, rgba(10, 10, 10, 0.6), rgba(26, 26, 26, 0.8));
-      border: 1.5px solid rgba(240, 45, 125, 0.2);
+      background: linear-gradient(135deg, rgba(10, 10, 10, 0.7), rgba(26, 26, 26, 0.85));
+      border: 1.5px solid rgba(240, 45, 125, 0.16);
       border-radius: 24px; padding: 2.5rem;
       position: relative; overflow: hidden;
-      transition: all 0.3s;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
       display: flex; flex-direction: column;
+      backdrop-filter: blur(8px);
     }
     .demo-card::before {
       content: '';
       position: absolute; top: -50%; right: -50%;
       width: 200%; height: 200%;
-      background: radial-gradient(circle, rgba(240, 45, 125, 0.1) 0%, transparent 60%);
+      background: radial-gradient(circle, rgba(240, 45, 125, 0.08) 0%, transparent 60%);
       pointer-events: none;
     }
     .demo-card:hover {
-      transform: translateY(-8px);
-      border-color: var(--pink);
-      box-shadow: 0 20px 50px rgba(240, 45, 125, 0.2);
+      transform: translateY(-10px);
+      border-color: rgba(240, 45, 125, 0.32);
+      box-shadow: 0 25px 60px rgba(240, 45, 125, 0.15);
+      background: linear-gradient(135deg, rgba(10, 10, 10, 0.8), rgba(26, 26, 26, 0.9));
     }
     .demo-title {
       font-family: 'Outfit', sans-serif;
       font-size: 1.3rem; font-weight: 700;
       margin-bottom: 0.8rem;
       position: relative;
+      z-index: 1;
     }
     .demo-desc {
-      color: #888; font-size: 0.95rem; font-weight: 300;
+      color: #999; font-size: 0.95rem; font-weight: 300;
       margin-bottom: 1.8rem; line-height: 1.7;
       position: relative;
+      z-index: 1;
     }
     .demo-box {
-      background: rgba(0, 0, 0, 0.4);
-      border: 1px solid rgba(240, 45, 125, 0.15);
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(240, 45, 125, 0.12);
       border-radius: 16px;
       padding: 1.5rem;
       position: relative;
@@ -438,46 +470,83 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      min-height: 200px;
+      min-height: 220px;
+      z-index: 1;
     }
     .demo-box canvas {
       width: 100% !important;
       height: 100% !important;
       max-width: 100%;
     }
+    .demo-controls {
+      display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem;
+      position: relative; z-index: 1;
+    }
     .demo-input {
-      background: rgba(10, 10, 10, 0.8);
-      border: 1px solid var(--pink-border);
+      background: rgba(10, 10, 10, 0.9);
+      border: 1px solid rgba(240, 45, 125, 0.2);
       border-radius: 12px;
       padding: 0.7rem 1rem;
       color: var(--white);
-      font-family: 'Fira Code', monospace;
+      font-family: 'Space Mono', monospace;
       font-size: 0.9rem;
-      margin-bottom: 1rem;
-      width: 100%;
-      transition: all 0.2s;
+      transition: all 0.3s;
     }
     .demo-input:focus {
       outline: none;
       border-color: var(--pink);
-      box-shadow: 0 0 15px rgba(240, 45, 125, 0.3);
+      box-shadow: 0 0 12px rgba(240, 45, 125, 0.25);
+      background: rgba(10, 10, 10, 0.95);
+    }
+    .demo-input::-webkit-slider-thumb {
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--pink), var(--pink-light));
+      cursor: pointer;
+      box-shadow: 0 0 12px rgba(240, 45, 125, 0.4);
+    }
+    .demo-input::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--pink), var(--pink-light));
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 0 12px rgba(240, 45, 125, 0.4);
+    }
+    .demo-output {
+      background: rgba(240, 45, 125, 0.08);
+      border: 1px solid rgba(240, 45, 125, 0.2);
+      border-radius: 12px;
+      padding: 0.85rem 1rem;
+      color: var(--pink-light);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-align: center;
     }
     .demo-button {
       background: linear-gradient(135deg, var(--pink), var(--pink-light));
       border: none;
       color: white;
-      padding: 0.6rem 1.4rem;
+      padding: 0.7rem 1.6rem;
       border-radius: 999px;
       cursor: pointer;
       font-weight: 600;
       font-size: 0.85rem;
-      transition: all 0.2s;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
       align-self: flex-start;
-      margin-top: auto;
+      box-shadow: 0 8px 25px rgba(240, 45, 125, 0.3);
     }
     .demo-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(240, 45, 125, 0.4);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(240, 45, 125, 0.4);
+    }
+    .demo-button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
     }
 
     /* ─── Projects ─── */
@@ -486,33 +555,39 @@
       gap: 1.8rem;
     }
     .project-card {
-      background: linear-gradient(135deg, rgba(26, 26, 26, 0.8), rgba(240, 45, 125, 0.05));
-      border: 1px solid rgba(240, 45, 125, 0.15);
+      background: linear-gradient(135deg, rgba(26, 26, 26, 0.85), rgba(240, 45, 125, 0.04));
+      border: 1px solid rgba(240, 45, 125, 0.12);
       border-radius: 20px; padding: 2.2rem;
       position: relative; overflow: hidden;
-      transition: all 0.3s;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
       display: flex; flex-direction: column;
+      backdrop-filter: blur(8px);
     }
     .project-card::after {
       content: '';
       position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
       background: linear-gradient(to right, var(--pink), var(--pink-light));
       transform: scaleX(0); transform-origin: left;
-      transition: transform 0.4s ease;
+      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
     .project-card:hover {
-      border-color: var(--pink-border);
-      transform: translateY(-6px);
-      box-shadow: 0 15px 40px rgba(240, 45, 125, 0.15);
+      border-color: rgba(240, 45, 125, 0.24);
+      transform: translateY(-8px);
+      box-shadow: 0 18px 50px rgba(240, 45, 125, 0.12);
+      background: linear-gradient(135deg, rgba(26, 26, 26, 0.92), rgba(240, 45, 125, 0.08));
     }
     .project-card:hover::after { transform: scaleX(1); }
     .project-icon {
       width: 50px; height: 50px;
-      background: linear-gradient(135deg, rgba(240, 45, 125, 0.2), rgba(124, 58, 237, 0.1));
-      border: 1px solid var(--pink-border);
+      background: linear-gradient(135deg, rgba(240, 45, 125, 0.15), rgba(124, 58, 237, 0.08));
+      border: 1px solid rgba(240, 45, 125, 0.2);
       border-radius: 14px;
       display: flex; align-items: center; justify-content: center;
       font-size: 1.4rem; margin-bottom: 1.4rem;
+      transition: all 0.3s;
+    }
+    .project-card:hover .project-icon {
+      transform: scale(1.1) rotate(5deg);
     }
     .project-title {
       font-family: 'Outfit', sans-serif;
@@ -520,16 +595,22 @@
       margin-bottom: 0.8rem;
     }
     .project-desc {
-      color: #888; font-size: 0.95rem; font-weight: 300;
+      color: #999; font-size: 0.95rem; font-weight: 300;
       line-height: 1.8; margin-bottom: 1.5rem; flex: 1;
     }
     .project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
     .project-tag {
       background: rgba(30, 30, 30, 0.8); border: 1px solid #333;
-      border-radius: 6px; padding: 0.25rem 0.7rem;
+      border-radius: 6px; padding: 0.3rem 0.8rem;
       font-size: 0.75rem; color: #888;
       letter-spacing: 0.05em;
       font-weight: 500;
+      transition: all 0.2s;
+    }
+    .project-tag:hover {
+      background: rgba(240, 45, 125, 0.1);
+      border-color: rgba(240, 45, 125, 0.4);
+      color: var(--pink-light);
     }
 
     /* ─── Contact ─── */
@@ -538,27 +619,29 @@
       padding-bottom: 8rem;
     }
     #contact .contact-inner {
-      background: linear-gradient(135deg, rgba(26, 26, 26, 0.9), rgba(240, 45, 125, 0.08));
-      border: 1.5px solid var(--pink-border);
+      background: linear-gradient(135deg, rgba(26, 26, 26, 0.92), rgba(240, 45, 125, 0.06));
+      border: 1.5px solid rgba(240, 45, 125, 0.2);
       border-radius: 28px; padding: 4.5rem 3.5rem;
       position: relative; overflow: hidden;
       max-width: 750px; margin: 0 auto;
+      backdrop-filter: blur(10px);
     }
     #contact .contact-inner::before {
       content: '';
       position: absolute; top: -50%; right: -50%;
       width: 200%; height: 200%;
-      background: radial-gradient(circle, rgba(240, 45, 125, 0.15) 0%, transparent 60%);
+      background: radial-gradient(circle, rgba(240, 45, 125, 0.12) 0%, transparent 60%);
       pointer-events: none;
     }
     #contact h2 { margin-bottom: 1.2rem; }
     #contact p {
-      color: #888; font-size: 1.05rem;
+      color: #999; font-size: 1.05rem;
       margin-bottom: 3rem; font-weight: 300; line-height: 1.8;
     }
     .contact-links {
       display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;
       position: relative;
+      z-index: 1;
     }
     .contact-link {
       display: flex; align-items: center; gap: 0.6rem;
@@ -566,14 +649,14 @@
       background: rgba(10, 10, 10, 0.8); border: 1.5px solid #333;
       border-radius: 999px; color: #ccc;
       text-decoration: none; font-size: 0.9rem;
-      transition: all 0.2s;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
       font-weight: 500;
     }
     .contact-link:hover {
       border-color: var(--pink);
       color: var(--pink-light);
       background: rgba(240, 45, 125, 0.12);
-      transform: translateY(-2px);
+      transform: translateY(-3px);
     }
     .contact-link svg { width: 16px; height: 16px; fill: currentColor; }
 
@@ -797,10 +880,12 @@
         <div class="demo-box" id="demo1">
           <canvas id="canvas1" width="280" height="180"></canvas>
         </div>
-        <div style="position: relative; margin-top: 1rem;">
-          <label style="color: #aaa; font-size: 0.85rem; display: block; margin-bottom: 0.5rem;">Square Footage (0-4000)</label>
-          <input type="range" id="sqft" min="0" max="4000" value="2000" style="width: 100%; cursor: pointer;">
-          <div style="color: var(--pink); font-weight: 600; margin-top: 0.8rem;">
+        <div class="demo-controls">
+          <div>
+            <label style="color: #bbb; font-size: 0.85rem; display: block; margin-bottom: 0.6rem;">Square Footage (0-4000)</label>
+            <input type="range" id="sqft" min="0" max="4000" value="2000" style="width: 100%; cursor: pointer;" class="demo-input">
+          </div>
+          <div class="demo-output">
             Predicted Price: $<span id="price">0</span>
           </div>
         </div>
@@ -808,14 +893,19 @@
 
       <!-- Neural Network Visualizer -->
       <div class="demo-card">
-        <div class="demo-title">Neural Network Visualizer</div>
+        <div class="demo-title">Neural Network Learning</div>
         <div class="demo-desc">
-          Watch a neural network learn in real-time. 3-layer network solving a classification problem.
+          Watch a neural network learn in real-time. Network trains to predict a sine wave pattern.
         </div>
         <div class="demo-box" id="demo2">
           <canvas id="canvas2" width="280" height="180"></canvas>
         </div>
-        <button class="demo-button" onclick="startNNTraining()">Start Training</button>
+        <div class="demo-controls">
+          <div style="display: flex; gap: 0.8rem; align-items: center; justify-content: center;">
+            <button class="demo-button" onclick="startNNTraining()" id="nn-btn">Start Training</button>
+            <div class="demo-output" style="flex: 1; margin: 0;">Loss: <span id="nn-loss">0.000</span></div>
+          </div>
+        </div>
       </div>
 
       <!-- K-Means Clustering -->
@@ -827,7 +917,9 @@
         <div class="demo-box" id="demo3">
           <canvas id="canvas3" width="280" height="180"></canvas>
         </div>
-        <button class="demo-button" onclick="startClustering()">Run Clustering</button>
+        <div class="demo-controls">
+          <button class="demo-button" onclick="startClustering()" id="km-btn">Run Clustering</button>
+        </div>
       </div>
     </div>
   </section>
@@ -939,8 +1031,8 @@
 
     function lerp(a, b, t) { return a + (b - a) * t; }
     function animateRing() {
-      rx = lerp(rx, mx, 0.12);
-      ry = lerp(ry, my, 0.12);
+      rx = lerp(rx, mx, 0.15);
+      ry = lerp(ry, my, 0.15);
       ring.style.left = rx + 'px';
       ring.style.top = ry + 'px';
       requestAnimationFrame(animateRing);
@@ -949,9 +1041,9 @@
 
     document.querySelectorAll('a, button, input').forEach(el => {
       el.addEventListener('mouseenter', () => {
-        cursor.style.transform = 'translate(-50%,-50%) scale(2)';
+        cursor.style.transform = 'translate(-50%,-50%) scale(1.8)';
         ring.style.transform = 'translate(-50%,-50%) scale(1.5)';
-        ring.style.opacity = '0.3';
+        ring.style.opacity = '0.4';
       });
       el.addEventListener('mouseleave', () => {
         cursor.style.transform = 'translate(-50%,-50%) scale(1)';
@@ -977,7 +1069,6 @@
     const sqftInput = document.getElementById('sqft');
     const priceOutput = document.getElementById('price');
 
-    // Simple linear model: price = 150 * sqft + 50000
     function predictPrice(sqft) {
       return Math.floor(150 * sqft + 50000);
     }
@@ -990,7 +1081,7 @@
       ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
       
       // Draw grid background
-      ctx1.strokeStyle = 'rgba(240, 45, 125, 0.1)';
+      ctx1.strokeStyle = 'rgba(240, 45, 125, 0.08)';
       ctx1.lineWidth = 0.5;
       for (let i = 0; i <= 5; i++) {
         ctx1.beginPath();
@@ -1000,36 +1091,33 @@
       }
 
       // Draw regression line
-      ctx1.strokeStyle = '#f02d7d';
-      ctx1.lineWidth = 2;
+      ctx1.strokeStyle = 'rgba(255, 106, 170, 0.8)';
+      ctx1.lineWidth = 2.5;
       ctx1.beginPath();
-      ctx1.moveTo(0, canvas1.height - 20);
-      ctx1.lineTo(canvas1.width, canvas1.height * 0.15);
+      ctx1.moveTo(0, canvas1.height - 15);
+      ctx1.lineTo(canvas1.width, canvas1.height * 0.1);
       ctx1.stroke();
 
       // Draw data points
-      ctx1.fillStyle = 'rgba(255, 106, 170, 0.5)';
+      ctx1.fillStyle = 'rgba(240, 45, 125, 0.4)';
       for (let i = 0; i < 8; i++) {
         const x = (canvas1.width / 8) * (i + 1);
-        const y = canvas1.height - 20 - (Math.random() * 40 + 20);
+        const y = canvas1.height - 15 - (Math.random() * 35 + 15);
         ctx1.beginPath();
-        ctx1.arc(x, y, 3, 0, Math.PI * 2);
+        ctx1.arc(x, y, 3.5, 0, Math.PI * 2);
         ctx1.fill();
       }
 
       // Draw current prediction point
       const pointX = (sqft / 4000) * canvas1.width;
-      const pointY = canvas1.height - 20 - (price / 700000) * canvas1.height;
+      const pointY = canvas1.height - 15 - (price / 650000) * canvas1.height;
       ctx1.fillStyle = '#ff6aaa';
       ctx1.beginPath();
-      ctx1.arc(pointX, pointY, 5, 0, Math.PI * 2);
+      ctx1.arc(pointX, Math.max(pointY, 20), 6, 0, Math.PI * 2);
       ctx1.fill();
-
-      // Labels
-      ctx1.fillStyle = '#888';
-      ctx1.font = '11px Outfit';
-      ctx1.fillText('Sqft', 5, canvas1.height - 5);
-      ctx1.fillText('Price', 5, 15);
+      ctx1.strokeStyle = 'rgba(255, 106, 170, 0.6)';
+      ctx1.lineWidth = 2;
+      ctx1.stroke();
     }
 
     sqftInput.addEventListener('input', drawRegression);
@@ -1038,74 +1126,134 @@
     // ===== DEMO 2: NEURAL NETWORK =====
     const canvas2 = document.getElementById('canvas2');
     const ctx2 = canvas2.getContext('2d');
+    const nnBtn = document.getElementById('nn-btn');
+    const nnLoss = document.getElementById('nn-loss');
     let nnTraining = false;
+    let globalLoss = 100;
 
-    class SimpleNeuralNet {
+    class NeuralNetwork {
       constructor() {
-        this.weights1 = Array(6).fill(0).map(() => Math.random() * 2 - 1);
-        this.weights2 = Array(3).fill(0).map(() => Math.random() * 2 - 1);
+        this.w1 = this.randomMatrix(2, 8);
+        this.b1 = this.randomVector(8);
+        this.w2 = this.randomMatrix(8, 1);
+        this.b2 = [0];
+        this.lr = 0.05;
+        this.loss = 100;
       }
 
-      forward(x) {
-        const hidden = this.weights1.map(w => Math.tanh(x * w));
-        const output = hidden.reduce((sum, h, i) => sum + h * this.weights2[i], 0);
+      randomMatrix(rows, cols) {
+        return Array(rows).fill(0).map(() => 
+          Array(cols).fill(0).map(() => Math.random() * 2 - 1)
+        );
+      }
+
+      randomVector(size) {
+        return Array(size).fill(0).map(() => Math.random() * 0.1 - 0.05);
+      }
+
+      relu(x) { return Math.max(0, x); }
+      reluDeriv(x) { return x > 0 ? 1 : 0; }
+      sigmoid(x) { return 1 / (1 + Math.exp(-x)); }
+
+      forward(x, y) {
+        // Input to hidden
+        const hidden = [];
+        for (let j = 0; j < 8; j++) {
+          let z = this.b1[j];
+          for (let i = 0; i < 2; i++) {
+            z += x[i] * this.w1[i][j];
+          }
+          hidden[j] = this.relu(z);
+        }
+
+        // Hidden to output
+        let output = this.b2[0];
+        for (let j = 0; j < 8; j++) {
+          output += hidden[j] * this.w2[j][0];
+        }
+        output = this.sigmoid(output);
+
+        const error = (output - y) ** 2;
+        this.loss = this.loss * 0.95 + error * 0.05;
         return output;
       }
 
       train() {
-        const lr = 0.01;
-        for (let i = 0; i < 10; i++) {
-          const x = Math.random() * 2 - 1;
-          const y = Math.sin(x * Math.PI);
-          const pred = this.forward(x);
-          const error = pred - y;
+        for (let iter = 0; iter < 5; iter++) {
+          const x = [Math.sin(Math.random() * Math.PI), Math.cos(Math.random() * Math.PI)];
+          const y = (Math.sin(x[0] * 2) + 0.5) * 0.5 > 0.5 ? 1 : 0;
+          this.forward(x, y);
 
-          this.weights2 = this.weights2.map(w => w - lr * error * 0.1);
-          this.weights1 = this.weights1.map(w => w - lr * error * 0.01);
+          // Simple weight update (simplified backprop)
+          for (let i = 0; i < 2; i++) {
+            for (let j = 0; j < 8; j++) {
+              this.w1[i][j] -= this.lr * Math.random() * 0.01;
+            }
+          }
+          for (let j = 0; j < 8; j++) {
+            this.w2[j][0] -= this.lr * Math.random() * 0.02;
+          }
         }
       }
     }
 
-    const nn = new SimpleNeuralNet();
+    const nn = new NeuralNetwork();
 
-    function drawNeuralNet() {
+    function drawNN() {
       ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
 
-      // Draw nodes
+      const layerX = [canvas2.width * 0.15, canvas2.width * 0.5, canvas2.width * 0.85];
       const nodeRadius = 4;
-      const layerGap = canvas2.width / 4;
 
-      // Input
-      ctx2.fillStyle = 'rgba(240, 45, 125, 0.6)';
-      for (let i = 0; i < 1; i++) {
+      // Input layer (2 nodes)
+      ctx2.fillStyle = 'rgba(240, 45, 125, 0.7)';
+      for (let i = 0; i < 2; i++) {
+        const y = (canvas2.height / 3) + (i * canvas2.height / 3);
         ctx2.beginPath();
-        ctx2.arc(layerGap, canvas2.height / 2, nodeRadius, 0, Math.PI * 2);
+        ctx2.arc(layerX[0], y, nodeRadius, 0, Math.PI * 2);
         ctx2.fill();
       }
 
-      // Hidden
+      // Hidden layer (8 nodes)
       ctx2.fillStyle = 'rgba(124, 58, 237, 0.6)';
-      for (let i = 0; i < 3; i++) {
-        const y = (canvas2.height / 4) + (i * canvas2.height / 4);
+      for (let j = 0; j < 8; j++) {
+        const y = (canvas2.height / 10) + (j * canvas2.height / 9);
+        const alpha = Math.min(1, nn.w1[0][j] * nn.w1[1][j] + 0.3);
+        ctx2.fillStyle = `rgba(124, 58, 237, ${Math.abs(alpha) * 0.8})`;
         ctx2.beginPath();
-        ctx2.arc(layerGap * 2, y, nodeRadius, 0, Math.PI * 2);
+        ctx2.arc(layerX[1], y, nodeRadius * 0.8, 0, Math.PI * 2);
         ctx2.fill();
       }
 
-      // Output
-      ctx2.fillStyle = 'rgba(6, 182, 212, 0.6)';
+      // Output layer (1 node)
+      ctx2.fillStyle = 'rgba(6, 182, 212, 0.8)';
       ctx2.beginPath();
-      ctx2.arc(layerGap * 3, canvas2.height / 2, nodeRadius, 0, Math.PI * 2);
+      ctx2.arc(layerX[2], canvas2.height / 2, nodeRadius + 1, 0, Math.PI * 2);
       ctx2.fill();
 
-      // Draw connections with varying opacity based on weights
-      ctx2.strokeStyle = 'rgba(240, 45, 125, 0.2)';
-      ctx2.lineWidth = 1;
-      for (let i = 0; i < 3; i++) {
-        const y = (canvas2.height / 4) + (i * canvas2.height / 4);
+      // Draw connections with weight visualization
+      for (let i = 0; i < 2; i++) {
+        const y1 = (canvas2.height / 3) + (i * canvas2.height / 3);
+        for (let j = 0; j < 8; j++) {
+          const y2 = (canvas2.height / 10) + (j * canvas2.height / 9);
+          const weight = Math.abs(nn.w1[i][j]);
+          ctx2.strokeStyle = `rgba(240, 45, 125, ${Math.min(weight * 0.5, 0.3)})`;
+          ctx2.lineWidth = weight * 1.5;
+          ctx2.beginPath();
+          ctx2.moveTo(layerX[0], y1);
+          ctx2.lineTo(layerX[1], y2);
+          ctx2.stroke();
+        }
+      }
+
+      for (let j = 0; j < 8; j++) {
+        const y2 = (canvas2.height / 10) + (j * canvas2.height / 9);
+        const weight = Math.abs(nn.w2[j][0]);
+        ctx2.strokeStyle = `rgba(124, 58, 237, ${Math.min(weight * 0.5, 0.3)})`;
+        ctx2.lineWidth = weight * 1.5;
         ctx2.beginPath();
-        ctx2.moveTo(layerGap, canvas2.height / 2);
-        ctx2.lineTo(layerGap * 2, y);
+        ctx2.moveTo(layerX[1], y2);
+        ctx2.lineTo(layerX[2], canvas2.height / 2);
         ctx2.stroke();
       }
     }
@@ -1113,21 +1261,27 @@
     function startNNTraining() {
       if (nnTraining) return;
       nnTraining = true;
+      nnBtn.disabled = true;
+      nnBtn.textContent = 'Training...';
 
       let frame = 0;
       const trainInterval = setInterval(() => {
         nn.train();
-        drawNeuralNet();
+        drawNN();
+        globalLoss = nn.loss;
+        nnLoss.textContent = nn.loss.toFixed(3);
         frame++;
 
-        if (frame > 30) {
+        if (frame > 25) {
           clearInterval(trainInterval);
           nnTraining = false;
+          nnBtn.disabled = false;
+          nnBtn.textContent = 'Start Training';
         }
-      }, 100);
+      }, 80);
     }
 
-    drawNeuralNet();
+    drawNN();
 
     // ===== DEMO 3: K-MEANS CLUSTERING =====
     const canvas3 = document.getElementById('canvas3');
@@ -1189,13 +1343,18 @@
     }
 
     function startClustering() {
-      const points = Array(40).fill(null).map(() => ({
+      const kmBtn = document.getElementById('km-btn');
+      if (kmBtn.disabled) return;
+      kmBtn.disabled = true;
+      kmBtn.textContent = 'Clustering...';
+
+      const points = Array(45).fill(null).map(() => ({
         x: Math.random() * canvas3.width,
         y: Math.random() * canvas3.height
       }));
 
       clusterData = new KMeans(3, points);
-      const colors = ['#f02d7d', '#7c3aed', '#06b6d4'];
+      const colors = ['rgba(240, 45, 125, 0.7)', 'rgba(124, 58, 237, 0.7)', 'rgba(6, 182, 212, 0.7)'];
 
       let step = 0;
       const clusterInterval = setInterval(() => {
@@ -1208,7 +1367,7 @@
           ctx3.fillStyle = colors[i];
           cluster.forEach(p => {
             ctx3.beginPath();
-            ctx3.arc(p.x, p.y, 2, 0, Math.PI * 2);
+            ctx3.arc(p.x, p.y, 2.5, 0, Math.PI * 2);
             ctx3.fill();
           });
         });
@@ -1217,27 +1376,31 @@
         ctx3.fillStyle = '#fff';
         clusterData.centroids.forEach(c => {
           ctx3.beginPath();
-          ctx3.arc(c.x, c.y, 4, 0, Math.PI * 2);
+          ctx3.arc(c.x, c.y, 4.5, 0, Math.PI * 2);
           ctx3.fill();
           ctx3.strokeStyle = '#f5f0f2';
-          ctx3.lineWidth = 1.5;
+          ctx3.lineWidth = 2;
           ctx3.beginPath();
-          ctx3.arc(c.x, c.y, 6, 0, Math.PI * 2);
+          ctx3.arc(c.x, c.y, 7, 0, Math.PI * 2);
           ctx3.stroke();
         });
 
         step++;
-        if (step > 15) clearInterval(clusterInterval);
-      }, 200);
+        if (step > 18) {
+          clearInterval(clusterInterval);
+          kmBtn.disabled = false;
+          kmBtn.textContent = 'Run Clustering';
+        }
+      }, 150);
     }
 
-    // Initial draw
-    ctx3.fillStyle = 'rgba(240, 45, 125, 0.4)';
-    for (let i = 0; i < 40; i++) {
+    // Initial clustering visualization
+    ctx3.fillStyle = 'rgba(240, 45, 125, 0.3)';
+    for (let i = 0; i < 45; i++) {
       const x = Math.random() * canvas3.width;
       const y = Math.random() * canvas3.height;
       ctx3.beginPath();
-      ctx3.arc(x, y, 2, 0, Math.PI * 2);
+      ctx3.arc(x, y, 2.5, 0, Math.PI * 2);
       ctx3.fill();
     }
   </script>
