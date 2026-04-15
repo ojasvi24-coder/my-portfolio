@@ -1,121 +1,145 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { useState } from "react";
+import { motion } from "framer-motion";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [sqft, setSqft] = useState(1000);
+  const [bedrooms, setBedrooms] = useState(2);
+
+  const priceFromSqft = sqft * 300;
+  const priceFromBedrooms = bedrooms * 50000;
+  const predictedPrice = Math.round(priceFromSqft + priceFromBedrooms);
+
+  const data = [
+    { name: "Sqft", value: priceFromSqft },
+    { name: "Bedrooms", value: priceFromBedrooms },
+  ];
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
+    <div className="min-h-screen bg-white text-gray-900">
+      {/* Hero */}
+      <section className="pt-32 pb-24 text-center max-w-5xl mx-auto px-6">
+        <motion.h1
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-5xl md:text-6xl font-bold mb-6"
         >
-          Count is {count}
-        </button>
-      </section>
+          I build intelligent systems from messy data
+        </motion.h1>
 
-      <div className="ticks"></div>
+        <p className="text-lg md:text-xl text-gray-600 mb-8">
+          Data Science @ UC Berkeley • Machine Learning • Software Engineering
+        </p>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
+        <div className="flex justify-center gap-4">
+          <a
+            href="#demo"
+            className="px-6 py-3 bg-black text-white rounded-xl shadow hover:opacity-90 transition"
+          >
+            Try Demo
+          </a>
+
+          <a
+            href="mailto:ojasvi24@berkeley.edu"
+            className="px-6 py-3 border rounded-xl hover:bg-gray-100 transition"
+          >
+            Contact
+          </a>
         </div>
       </section>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+      {/* Demo Section */}
+      <section id="demo" className="max-w-5xl mx-auto mb-24 px-6">
+        <h2 className="text-3xl font-semibold mb-6">
+          Interactive ML Demo + Explainability
+        </h2>
+
+        <div className="bg-white shadow-xl rounded-2xl p-8 mb-10">
+          <div className="space-y-6">
+            <div>
+              <label className="block mb-2 font-medium">
+                Square Footage: {sqft}
+              </label>
+              <input
+                type="range"
+                min="500"
+                max="4000"
+                value={sqft}
+                onChange={(e) => setSqft(Number(e.target.value))}
+                className="w-full"
+              />
+            </div>
+
+            <div>
+              <label className="block mb-2 font-medium">
+                Bedrooms: {bedrooms}
+              </label>
+              <input
+                type="range"
+                min="1"
+                max="6"
+                value={bedrooms}
+                onChange={(e) => setBedrooms(Number(e.target.value))}
+                className="w-full"
+              />
+            </div>
+
+            <div className="text-center mt-6">
+              <p className="text-gray-500">Predicted Price</p>
+              <p className="text-4xl font-bold">
+                ${predictedPrice.toLocaleString()}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Explainability */}
+        <div className="bg-white shadow-xl rounded-2xl p-8">
+          <h3 className="text-xl font-semibold mb-4">
+            Model Explainability
+          </h3>
+
+          <p className="text-gray-600 mb-6">
+            This chart shows how each feature contributes to the final
+            prediction.
+          </p>
+
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={data}>
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Bar dataKey="value" />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+
+          <div className="mt-6 text-sm text-gray-700">
+            <p>
+              • Square footage contributes ${priceFromSqft.toLocaleString()}
+            </p>
+            <p>
+              • Bedrooms contribute ${priceFromBedrooms.toLocaleString()}
+            </p>
+            <p className="mt-2">
+              This mimics how linear regression assigns weights to features.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="text-center text-gray-400 pb-10">
+        © {new Date().getFullYear()} Ojasvi Shrivastava
+      </footer>
+    </div>
+  );
 }
-
-export default App
