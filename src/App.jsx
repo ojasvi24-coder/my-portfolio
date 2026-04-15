@@ -13,6 +13,7 @@ export default function App() {
   const [sqft, setSqft] = useState(1000);
   const [bedrooms, setBedrooms] = useState(2);
 
+  // Mock ML logic
   const priceFromSqft = sqft * 300;
   const priceFromBedrooms = bedrooms * 50000;
   const predictedPrice = Math.round(priceFromSqft + priceFromBedrooms);
@@ -24,7 +25,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-white text-gray-900">
-      {/* Hero */}
+      {/* HERO */}
       <section className="pt-32 pb-24 text-center max-w-5xl mx-auto px-6">
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
@@ -48,20 +49,21 @@ export default function App() {
 
           <a
             href="mailto:ojasvi24@berkeley.edu"
-            className="px-6 py-3 border rounded-xl hover:bg-gray-100 transition"
+            className="px-6 py-3 border border-gray-300 rounded-xl hover:bg-gray-100 transition"
           >
             Contact
           </a>
         </div>
       </section>
 
-      {/* Demo Section */}
+      {/* DEMO */}
       <section id="demo" className="max-w-5xl mx-auto mb-24 px-6">
         <h2 className="text-3xl font-semibold mb-6">
           Interactive ML Demo + Explainability
         </h2>
 
-        <div className="bg-white shadow-xl rounded-2xl p-8 mb-10">
+        {/* INPUT CARD */}
+        <div className="bg-white shadow-xl rounded-2xl p-8 mb-10 border">
           <div className="space-y-6">
             <div>
               <label className="block mb-2 font-medium">
@@ -100,15 +102,14 @@ export default function App() {
           </div>
         </div>
 
-        {/* Explainability */}
-        <div className="bg-white shadow-xl rounded-2xl p-8">
+        {/* EXPLAINABILITY */}
+        <div className="bg-white shadow-xl rounded-2xl p-8 border">
           <h3 className="text-xl font-semibold mb-4">
             Model Explainability
           </h3>
 
           <p className="text-gray-600 mb-6">
-            This chart shows how each feature contributes to the final
-            prediction.
+            This chart shows how each feature contributes to the prediction.
           </p>
 
           <div className="h-64">
@@ -122,12 +123,14 @@ export default function App() {
             </ResponsiveContainer>
           </div>
 
-          <div className="mt-6 text-sm text-gray-700">
+          <div className="mt-6 text-sm text-gray-700 space-y-1">
             <p>
-              • Square footage contributes ${priceFromSqft.toLocaleString()}
+              • Square footage contributes $
+              {priceFromSqft.toLocaleString()}
             </p>
             <p>
-              • Bedrooms contribute ${priceFromBedrooms.toLocaleString()}
+              • Bedrooms contribute $
+              {priceFromBedrooms.toLocaleString()}
             </p>
             <p className="mt-2">
               This mimics how linear regression assigns weights to features.
@@ -136,7 +139,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* Footer */}
+      {/* FOOTER */}
       <footer className="text-center text-gray-400 pb-10">
         © {new Date().getFullYear()} Ojasvi Shrivastava
       </footer>
