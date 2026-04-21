@@ -709,6 +709,43 @@
       color: var(--pink-light);
     }
 
+    /* ─── Project action links (GitHub / Live) ─── */
+    .project-links {
+      display: flex; flex-wrap: wrap; gap: 0.6rem;
+      margin-top: 1.3rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid rgba(240, 45, 125, 0.1);
+    }
+    .project-link {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      padding: 0.5rem 1rem;
+      background: rgba(10, 10, 10, 0.6);
+      border: 1px solid rgba(240, 45, 125, 0.2);
+      border-radius: 999px;
+      color: #ddd; text-decoration: none;
+      font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.04em;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .project-link:hover {
+      border-color: var(--pink);
+      color: var(--pink-light);
+      background: rgba(240, 45, 125, 0.14);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(240, 45, 125, 0.15);
+    }
+    .project-link svg { width: 14px; height: 14px; fill: currentColor; }
+    .project-link-live {
+      background: linear-gradient(135deg, rgba(240, 45, 125, 0.18), rgba(124, 58, 237, 0.12));
+      border-color: rgba(240, 45, 125, 0.38);
+      color: var(--pink-light);
+    }
+    .project-link-live:hover {
+      background: linear-gradient(135deg, var(--pink), var(--pink-light));
+      border-color: var(--pink);
+      color: white;
+    }
+
     /* ─── Project card link wrapper (added) ─── */
     .project-card-link {
       text-decoration: none;
@@ -945,15 +982,31 @@
         <div class="timeline-dot"></div>
         <div class="exp-card">
           <div class="exp-header">
+            <div class="exp-title">Full-Stack Engineer — Independent Product</div>
+            <div class="exp-date">Late 2025 — Present</div>
+          </div>
+          <div class="exp-org">FinSight · finsight-tau-livid.vercel.app</div>
+          <ul class="exp-bullets">
+            <li>Designed, built, and shipped FinSight — a live full-stack wealth-building platform — from concept to production using Next.js, TypeScript, Tailwind CSS, and Recharts.</li>
+            <li>Engineered an AI-driven recommendation layer that generates 50+ personalized financial insights per user and powers a 30-year interactive wealth-projection simulator across multiple investment strategies.</li>
+            <li>Authored and published an 8-article financial literacy curriculum (80+ minutes of content) spanning risk assessment, tax-efficient investing, and algorithmic saving strategies.</li>
+            <li>Owned the full product lifecycle independently: architecture, data modeling, UI/UX, deployment on Vercel, and iteration based on user feedback — shipping a polished product without a team.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="exp-card">
+          <div class="exp-header">
             <div class="exp-title">Machine Learning Engineer</div>
             <div class="exp-date">Spring 2026 — Present</div>
           </div>
           <div class="exp-org">GIStice League — UC Berkeley Open Project</div>
           <ul class="exp-bullets">
-            <li>Built an end-to-end spatial ML pipeline analyzing 10k+ census and location records to identify food access disparities.</li>
-            <li>Trained regression and clustering models; improved accuracy by 18% through feature engineering and normalization.</li>
-            <li>Visualized geospatial results with Matplotlib & GeoPandas to create compelling narratives around social equity.</li>
-            <li>Collaborated with researchers to translate technical findings into actionable community insights.</li>
+            <li>Engineered an end-to-end spatial ML pipeline analyzing 10k+ census and location records to quantify food access inequities across underserved Bay Area communities.</li>
+            <li>Drove an 18% accuracy improvement on regression and clustering models through targeted feature engineering, normalization, and cross-validation.</li>
+            <li>Produced geospatial visualizations with Matplotlib & GeoPandas that turned model output into policy-ready narratives accessible to non-technical stakeholders.</li>
+            <li>Partnered with researchers to translate technical findings into actionable insights supporting social equity initiatives and community food access programs.</li>
           </ul>
         </div>
       </div>
@@ -1089,6 +1142,13 @@
           <span class="project-tag">Scikit-learn</span>
           <span class="project-tag">Visualization</span>
         </div>
+        <div class="project-links">
+          <!-- TODO: replace href="#" with the actual Housing Price Prediction repo URL -->
+          <a href="#" target="_blank" rel="noopener noreferrer" class="project-link">
+            <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            View Code
+          </a>
+        </div>
       </div>
       <div class="project-card">
         <div class="project-icon">🗺️</div>
@@ -1101,6 +1161,12 @@
           <span class="project-tag">GeoPandas</span>
           <span class="project-tag">Clustering</span>
           <span class="project-tag">Spatial Analysis</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/davidzhangberkeley/GIStice-League" target="_blank" rel="noopener noreferrer" class="project-link">
+            <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            View Code
+          </a>
         </div>
       </div>
       <div class="project-card">
@@ -1115,6 +1181,13 @@
           <span class="project-tag">Testing</span>
           <span class="project-tag">Algorithms</span>
         </div>
+        <div class="project-links">
+          <!-- TODO: replace href="#" with the actual Scheme Interpreter repo URL -->
+          <a href="#" target="_blank" rel="noopener noreferrer" class="project-link">
+            <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            View Code
+          </a>
+        </div>
       </div>
       <div class="project-card">
         <div class="project-icon">📊</div>
@@ -1128,26 +1201,39 @@
           <span class="project-tag">Matplotlib</span>
           <span class="project-tag">Seaborn</span>
         </div>
+        <div class="project-links">
+          <!-- TODO: replace href="#" with the actual Statistical Data Analysis repo URL -->
+          <a href="#" target="_blank" rel="noopener noreferrer" class="project-link">
+            <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            View Code
+          </a>
+        </div>
       </div>
 
-      <!-- FinSight project card (added) -->
-      <a href="https://finsight-tau-livid.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-card-link">
-        <div class="project-card">
-          <div class="project-icon">💰</div>
-          <div class="project-title">FinSight Dashboard</div>
-          <div class="project-desc">
-            Full-stack wealth-building platform combining live portfolio tracking, AI-powered financial insights, interactive wealth projection simulations, and a complete educational curriculum on long-term investing.
-          </div>
-          <div class="project-tags">
-            <span class="project-tag">Next.js</span>
-            <span class="project-tag">TypeScript</span>
-            <span class="project-tag">Recharts</span>
-            <span class="project-tag">Framer Motion</span>
-            <span class="project-tag">Tailwind</span>
-          </div>
-          <span class="project-live-link">Visit live site →</span>
+      <!-- FinSight project card -->
+      <div class="project-card">
+        <div class="project-icon">💰</div>
+        <div class="project-title">FinSight Dashboard</div>
+        <div class="project-desc">
+          Full-stack wealth-building platform combining live portfolio tracking, AI-powered financial insights, interactive wealth projection simulations, and a complete educational curriculum on long-term investing.
         </div>
-      </a>
+        <div class="project-tags">
+          <span class="project-tag">Next.js</span>
+          <span class="project-tag">TypeScript</span>
+          <span class="project-tag">Recharts</span>
+          <span class="project-tag">Framer Motion</span>
+          <span class="project-tag">Tailwind</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/ojasvi24-coder/finsight" target="_blank" rel="noopener noreferrer" class="project-link">
+            <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            View Code
+          </a>
+          <a href="https://finsight-tau-livid.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-link project-link-live">
+            Live Site ↗
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 
