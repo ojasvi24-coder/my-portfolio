@@ -14,8 +14,6 @@ import {
 } from "recharts";
 import { ExternalLink, Github, TrendingUp, BookOpen, BarChart3, Zap } from "lucide-react";
 
-<h1>TESTING123</h1>
-
 export default function App() {
   const [sqft, setSqft] = useState(1000);
   const [bedrooms, setBedrooms] = useState(2);
@@ -67,7 +65,7 @@ export default function App() {
         { label: "Dashboard Analytics", value: "âˆž" },
         { label: "Content Hours", value: "80+ min" },
       ],
-      liveUrl: "https://finsight-iojnaucix-ojasvi24-coders-projects.vercel.app/",
+      liveUrl: "https://finsight-tau-livid.vercel.app/",
       githubUrl: "#", // Add your GitHub URL if public
       image: "finsight",
       featured: true,
@@ -374,6 +372,82 @@ export default function App() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
+          {/* FINSIGHT PREVIEW CARD (added) */}
+          <motion.a
+            href="https://finsight-tau-livid.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            whileHover={{ y: -4 }}
+            className="group block mb-16 relative overflow-hidden rounded-2xl border border-slate-700 bg-gradient-to-br from-slate-900 via-slate-900 to-emerald-950/40 hover:border-emerald-500/50 transition-all"
+          >
+            <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-emerald-500/10 blur-3xl group-hover:bg-emerald-500/20 transition-all" />
+            <div className="absolute -bottom-24 -left-24 h-64 w-64 rounded-full bg-cyan-500/10 blur-3xl group-hover:bg-cyan-500/20 transition-all" />
+
+            <div className="relative grid lg:grid-cols-5 gap-8 p-8 items-center">
+              <div className="lg:col-span-3">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-500/20 text-emerald-400 rounded-full text-xs font-semibold">
+                    <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                    Live
+                  </span>
+                  <span className="text-xs text-slate-500">finsight-tau-livid.vercel.app</span>
+                </div>
+
+                <h3 className="text-3xl font-bold text-white mb-3">
+                  FinSight Dashboard
+                </h3>
+
+                <p className="text-slate-300 leading-relaxed mb-6">
+                  An intelligent wealth-building platform with AI-powered insights, live portfolio tracking, wealth projection simulations, and a full educational curriculum. Click anywhere on this card to explore the live app.
+                </p>
+
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {["Next.js", "TypeScript", "Recharts", "Framer Motion", "Tailwind"].map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-3 py-1 bg-slate-800/80 border border-slate-700 text-slate-300 rounded-full text-xs"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                <span className="inline-flex items-center gap-2 text-emerald-400 font-semibold group-hover:gap-3 transition-all">
+                  Open FinSight
+                  <ExternalLink className="h-4 w-4" />
+                </span>
+              </div>
+
+              <div className="lg:col-span-2 bg-slate-950/60 border border-slate-800 rounded-xl p-5">
+                <div className="flex items-center justify-between mb-3">
+                  <p className="text-xs text-slate-400 uppercase tracking-wider">Portfolio Growth</p>
+                  <TrendingUp className="h-4 w-4 text-emerald-400" />
+                </div>
+                <div className="h-32">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <LineChart data={wealthData}>
+                      <Line
+                        type="monotone"
+                        dataKey="balance"
+                        stroke="#10b981"
+                        strokeWidth={2.5}
+                        dot={false}
+                      />
+                    </LineChart>
+                  </ResponsiveContainer>
+                </div>
+                <div className="flex items-baseline justify-between mt-3 pt-3 border-t border-slate-800">
+                  <span className="text-xs text-slate-500">30yr projection</span>
+                  <span className="text-lg font-bold text-emerald-400">$500k+</span>
+                </div>
+              </div>
+            </div>
+          </motion.a>
+
           <h2 className="text-4xl font-bold mb-4 text-white">ML House Price Predictor</h2>
           <p className="text-slate-400 mb-12">Interactive machine learning demo with explainability</p>
 
@@ -481,6 +555,87 @@ export default function App() {
               </div>
             </motion.div>
           </div>
+        </motion.div>
+      </section>
+
+      {/* PROJECTS SECTION (added) */}
+      <section id="projects" className="max-w-6xl mx-auto mb-32 px-6">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-4xl font-bold mb-4 text-white">Projects</h2>
+          <p className="text-slate-400 mb-12">A collection of things I've built</p>
+
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid md:grid-cols-2 gap-6"
+          >
+            {projects.map((project) => {
+              const isExternal = project.liveUrl.startsWith("http");
+              return (
+                <motion.a
+                  key={project.id}
+                  variants={itemVariants}
+                  href={project.liveUrl}
+                  target={isExternal ? "_blank" : undefined}
+                  rel={isExternal ? "noopener noreferrer" : undefined}
+                  whileHover={{ y: -4 }}
+                  className="group relative overflow-hidden rounded-2xl border border-slate-700 bg-slate-900/50 p-8 hover:border-slate-500 transition-all flex flex-col"
+                >
+                  <div
+                    className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${project.color}`}
+                  />
+
+                  {project.featured && (
+                    <span className="absolute top-6 right-6 px-3 py-1 bg-emerald-500/20 text-emerald-400 rounded-full text-xs font-semibold">
+                      Featured
+                    </span>
+                  )}
+
+                  <div className="mb-4">
+                    <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">
+                      {project.category}
+                    </p>
+                    <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">
+                      {project.title}
+                    </h3>
+                    <p className="text-sm text-slate-400 italic">{project.subtitle}</p>
+                  </div>
+
+                  <p className="text-slate-300 text-sm leading-relaxed mb-6 flex-grow">
+                    {project.description}
+                  </p>
+
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {project.technologies.slice(0, 5).map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-2.5 py-1 bg-slate-800 border border-slate-700 text-slate-300 rounded-full text-xs"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                    {project.technologies.length > 5 && (
+                      <span className="px-2.5 py-1 text-slate-500 text-xs">
+                        +{project.technologies.length - 5} more
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="flex items-center gap-2 text-sm font-semibold text-emerald-400 group-hover:gap-3 transition-all">
+                    <ExternalLink className="h-4 w-4" />
+                    {isExternal ? "View Live Project" : "Try the Demo"}
+                  </div>
+                </motion.a>
+              );
+            })}
+          </motion.div>
         </motion.div>
       </section>
 
