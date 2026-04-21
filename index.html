@@ -549,6 +549,102 @@
       cursor: not-allowed;
     }
 
+    /* ─── FinSight preview card (added) ─── */
+    .finsight-card {
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+    }
+    .finsight-card .live-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(240, 45, 125, 0.15);
+      border: 1px solid rgba(240, 45, 125, 0.35);
+      border-radius: 999px;
+      padding: 0.35rem 0.9rem;
+      font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--pink-light); font-weight: 700;
+      align-self: flex-start;
+      margin-bottom: 1rem;
+    }
+    .finsight-card .live-badge::before {
+      content: ''; width: 6px; height: 6px;
+      background: var(--pink); border-radius: 50%;
+      box-shadow: 0 0 8px var(--pink);
+      animation: pulse 1.6s ease-in-out infinite;
+    }
+    .finsight-preview {
+      background: linear-gradient(135deg, rgba(240, 45, 125, 0.08), rgba(124, 58, 237, 0.05));
+      border: 1px solid rgba(240, 45, 125, 0.18);
+      border-radius: 16px;
+      padding: 1.5rem;
+      flex: 1;
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+    }
+    .finsight-preview::before {
+      content: '';
+      position: absolute; top: -40%; right: -30%;
+      width: 220px; height: 220px;
+      background: radial-gradient(circle, rgba(240, 45, 125, 0.18) 0%, transparent 65%);
+      pointer-events: none;
+      filter: blur(10px);
+    }
+    .finsight-stat-row {
+      display: flex; justify-content: space-between; align-items: baseline;
+      margin-bottom: 0.8rem;
+      position: relative; z-index: 1;
+    }
+    .finsight-stat-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: #999;
+    }
+    .finsight-stat-value {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.6rem; font-weight: 800;
+      background: linear-gradient(135deg, var(--pink), var(--pink-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .finsight-chart {
+      position: relative; z-index: 1;
+      height: 80px;
+      display: flex; align-items: flex-end; gap: 4px;
+      padding: 0.5rem 0;
+    }
+    .finsight-chart .bar {
+      flex: 1;
+      background: linear-gradient(to top, var(--pink), var(--pink-light));
+      border-radius: 3px 3px 0 0;
+      opacity: 0.7;
+      transition: opacity 0.3s;
+    }
+    .finsight-card:hover .finsight-chart .bar { opacity: 1; }
+    .finsight-footer {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-top: 1.2rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(240, 45, 125, 0.15);
+      position: relative; z-index: 1;
+    }
+    .finsight-footer-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem; color: #888;
+    }
+    .finsight-open {
+      color: var(--pink-light); font-weight: 600; font-size: 0.85rem;
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      transition: gap 0.3s;
+    }
+    .finsight-card:hover .finsight-open { gap: 0.6rem; }
+
     /* ─── Projects ─── */
     #projects .projects-grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -612,6 +708,21 @@
       border-color: rgba(240, 45, 125, 0.4);
       color: var(--pink-light);
     }
+
+    /* ─── Project card link wrapper (added) ─── */
+    .project-card-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .project-live-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      margin-top: 1rem;
+      color: var(--pink-light);
+      font-size: 0.85rem; font-weight: 600;
+      transition: gap 0.3s;
+    }
+    .project-card-link:hover .project-live-link { gap: 0.7rem; }
 
     /* ─── Contact ─── */
     #contact {
@@ -921,6 +1032,41 @@
           <button class="demo-button" onclick="startClustering()" id="km-btn">Run Clustering</button>
         </div>
       </div>
+
+      <!-- FinSight Live App (added) -->
+      <a href="https://finsight-tau-livid.vercel.app/" target="_blank" rel="noopener noreferrer" class="demo-card finsight-card">
+        <span class="live-badge">Live App</span>
+        <div class="demo-title">FinSight Dashboard</div>
+        <div class="demo-desc">
+          Full production web app — wealth-building platform with AI insights, portfolio tracking, and interactive simulations. Click anywhere to open the live site.
+        </div>
+        <div class="finsight-preview">
+          <div>
+            <div class="finsight-stat-row">
+              <span class="finsight-stat-label">Portfolio Value</span>
+              <span class="finsight-stat-value">$500k+</span>
+            </div>
+            <div class="finsight-chart">
+              <div class="bar" style="height: 22%"></div>
+              <div class="bar" style="height: 28%"></div>
+              <div class="bar" style="height: 24%"></div>
+              <div class="bar" style="height: 38%"></div>
+              <div class="bar" style="height: 44%"></div>
+              <div class="bar" style="height: 52%"></div>
+              <div class="bar" style="height: 48%"></div>
+              <div class="bar" style="height: 62%"></div>
+              <div class="bar" style="height: 70%"></div>
+              <div class="bar" style="height: 78%"></div>
+              <div class="bar" style="height: 86%"></div>
+              <div class="bar" style="height: 95%"></div>
+            </div>
+          </div>
+          <div class="finsight-footer">
+            <span class="finsight-footer-label">30yr projection · 8% APR</span>
+            <span class="finsight-open">Open FinSight →</span>
+          </div>
+        </div>
+      </a>
     </div>
   </section>
 
@@ -983,6 +1129,25 @@
           <span class="project-tag">Seaborn</span>
         </div>
       </div>
+
+      <!-- FinSight project card (added) -->
+      <a href="https://finsight-tau-livid.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-card-link">
+        <div class="project-card">
+          <div class="project-icon">💰</div>
+          <div class="project-title">FinSight Dashboard</div>
+          <div class="project-desc">
+            Full-stack wealth-building platform combining live portfolio tracking, AI-powered financial insights, interactive wealth projection simulations, and a complete educational curriculum on long-term investing.
+          </div>
+          <div class="project-tags">
+            <span class="project-tag">Next.js</span>
+            <span class="project-tag">TypeScript</span>
+            <span class="project-tag">Recharts</span>
+            <span class="project-tag">Framer Motion</span>
+            <span class="project-tag">Tailwind</span>
+          </div>
+          <span class="project-live-link">Visit live site →</span>
+        </div>
+      </a>
     </div>
   </section>
 
