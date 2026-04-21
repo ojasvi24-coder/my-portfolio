@@ -62,7 +62,7 @@ export default function App() {
       stats: [
         { label: "Learning Articles", value: "8" },
         { label: "AI Insights", value: "50+" },
-        { label: "Dashboard Analytics", value: "âˆž" },
+        { label: "Dashboard Analytics", value: "∞" },
         { label: "Content Hours", value: "80+ min" },
       ],
       liveUrl: "https://finsight-tau-livid.vercel.app/",
@@ -122,9 +122,9 @@ export default function App() {
           </h1>
 
           <p className="text-lg md:text-xl text-slate-400 mb-8">
-            Full-Stack Engineer â€¢ Data Scientist â€¢ Machine Learning Enthusiast
+            Full-Stack Engineer • Data Scientist • Machine Learning Enthusiast
             <br />
-            UC Berkeley â€¢ Building wealth-building tools & AI solutions
+            UC Berkeley • Building wealth-building tools & AI solutions
           </p>
 
           <div className="flex justify-center gap-4 flex-wrap">
@@ -216,7 +216,7 @@ export default function App() {
                       viewport={{ once: true }}
                       className="flex items-start gap-3 text-slate-300"
                     >
-                      <span className="text-emerald-400 mt-1">âœ“</span>
+                      <span className="text-emerald-400 mt-1">✓</span>
                       {feature}
                     </motion.li>
                   ))}
@@ -669,7 +669,7 @@ export default function App() {
 
       {/* FOOTER */}
       <footer className="text-center text-slate-500 pb-10 border-t border-slate-800 pt-10">
-        <p>Â© {new Date().getFullYear()} Ojasvi Shrivastava â€¢ Built with React, Framer Motion & Next.js</p>
+        <p>© {new Date().getFullYear()} Ojasvi Shrivastava • Built with React, Framer Motion & Next.js</p>
       </footer>
     </div>
   );
