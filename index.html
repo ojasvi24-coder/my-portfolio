@@ -746,6 +746,84 @@
       color: white;
     }
 
+    /* ─── Project badge (team/context) ─── */
+    .project-badge {
+      display: inline-flex; align-items: center;
+      background: linear-gradient(135deg, rgba(240, 45, 125, 0.14), rgba(124, 58, 237, 0.14));
+      border: 1px solid rgba(240, 45, 125, 0.28);
+      border-radius: 999px;
+      padding: 0.32rem 0.85rem;
+      font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--pink-light);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      align-self: flex-start;
+      backdrop-filter: blur(6px);
+    }
+    .project-subtitle {
+      font-weight: 400;
+      color: #999;
+      font-size: 0.95rem;
+    }
+    .project-highlight {
+      color: #f7e0ec;
+      font-weight: 600;
+      background:
+        linear-gradient(120deg,
+          rgba(240, 45, 125, 0.18) 0%,
+          rgba(124, 58, 237, 0.12) 100%);
+      padding: 0.12rem 0.4rem;
+      border-radius: 4px;
+      box-shadow: inset 0 -2px 0 rgba(240, 45, 125, 0.55);
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+    }
+
+    /* ─── Download Resume button (used in hero + about) ─── */
+    .btn-resume {
+      position: relative;
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      padding: 0.9rem 2.2rem;
+      border-radius: 999px;
+      background:
+        linear-gradient(135deg, rgba(240, 45, 125, 0.18), rgba(124, 58, 237, 0.18)),
+        rgba(10, 10, 10, 0.6);
+      border: 1.5px solid rgba(240, 45, 125, 0.38);
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.95rem; font-weight: 600;
+      letter-spacing: 0.04em;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      backdrop-filter: blur(10px);
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .btn-resume::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.18) 50%, transparent 100%);
+      transform: translateX(-110%);
+      transition: transform 0.7s ease;
+      pointer-events: none;
+    }
+    .btn-resume:hover::before { transform: translateX(110%); }
+    .btn-resume:hover {
+      transform: translateY(-4px);
+      border-color: var(--pink);
+      box-shadow: 0 14px 40px rgba(240, 45, 125, 0.3);
+      background:
+        linear-gradient(135deg, rgba(240, 45, 125, 0.28), rgba(124, 58, 237, 0.22)),
+        rgba(10, 10, 10, 0.4);
+    }
+    .btn-resume svg { width: 18px; height: 18px; fill: currentColor; }
+
+    /* A smaller, inline variant for the About section */
+    .btn-resume-inline {
+      margin-top: 1.2rem;
+      padding: 0.75rem 1.6rem;
+      font-size: 0.88rem;
+    }
+
     /* ─── Project card link wrapper (added) ─── */
     .project-card-link {
       text-decoration: none;
@@ -869,10 +947,14 @@
         data speak.
       </h1>
       <p class="hero-sub">
-        I am Ojasvi Shrivastava, a UC Berkeley Data Science student. I specialize in building end-to-end intelligent systems that bridge the gap between complex data modeling and production-ready applications. With a technical foundation and a background in full-stack development, I have a proven track record of shipping scalable products like FinSight, where I engineered AI-driven recommendation layers and interactive wealth-projection engines.
+        I am Ojasvi Shrivastava, a UC Berkeley Data Science student. I specialize in building end-to-end intelligent systems that bridge the gap between complex data modeling and production-ready applications. With a technical foundation and a background in full-stack development, I have a proven track record of building scalable products like FinSight, where I engineered AI-driven recommendation layers and interactive wealth-projection engines.
       </p>
       <div class="hero-ctas">
         <a href="#demos" class="btn-primary">Explore Demos</a>
+        <a href="Ojasvi_Shrivastava_Resume.pdf" download class="btn-resume">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a1 1 0 0 1 1 1v9.585l3.293-3.292a1 1 0 1 1 1.414 1.414l-5 5a1 1 0 0 1-1.414 0l-5-5a1 1 0 1 1 1.414-1.414L11 13.585V4a1 1 0 0 1 1-1zm-7 15a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H6a1 1 0 0 1-1-1z"/></svg>
+          Download Resume (PDF)
+        </a>
         <a href="https://www.linkedin.com/in/ojasvi-shrivastava-94a00b340" target="_blank" class="btn-outline">LinkedIn ↗</a>
       </div>
     </div>
@@ -899,6 +981,10 @@
         <p>
           Currently hunting for <strong>Technical internships</strong> where I can push my skills, contribute to real products, and learn from people building at scale. Always excited to chat about data, models, and building things.
         </p>
+        <a href="Ojasvi_Shrivastava_Resume.pdf" download class="btn-resume btn-resume-inline">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a1 1 0 0 1 1 1v9.585l3.293-3.292a1 1 0 1 1 1.414 1.414l-5 5a1 1 0 0 1-1.414 0l-5-5a1 1 0 1 1 1.414-1.414L11 13.585V4a1 1 0 0 1 1-1zm-7 15a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H6a1 1 0 0 1-1-1z"/></svg>
+          Download Resume (PDF)
+        </a>
       </div>
       <div class="about-stats">
         <div class="stat-card">
@@ -984,10 +1070,10 @@
           <div class="exp-org">
   FinSight · <a href="https://finsight-tau-livid.vercel.app/" target="_blank" style="color: inherit; text-decoration: none; border-bottom: 1px dashed var(--pink-border);">finsight-tau-livid.vercel.app</a>
           <ul class="exp-bullets">
-            <li>Designed, built, and shipped FinSight a live full-stack wealth-building platform from concept to production using Next.js, TypeScript, Tailwind CSS, and Recharts.</li>
+            <li>Designed and built FinSight, a full-stack wealth-building platform with a live deployment on Vercel, using Next.js, TypeScript, Tailwind CSS, and Recharts.</li>
             <li>Engineered an AI-driven recommendation layer that generates 50+ personalized financial insights per user and powers a 30-year interactive wealth-projection simulator across multiple investment strategies.</li>
             <li>Authored and published a 6-article financial literacy curriculum spanning risk assessment, tax-efficient investing, and algorithmic saving strategies.</li>
-            <li>Owned the full product lifecycle independently: architecture, data modeling, UI/UX, deployment on Vercel, and iteration based on user feedback shipping a polished product without a team.</li>
+            <li>Owned the full product lifecycle independently: architecture, data modeling, UI/UX, deployment on Vercel, and iteration based on user feedback — building a polished product without a team.</li>
           </ul>
         </div>
       </div>
@@ -1112,10 +1198,11 @@
     </div>
     <div class="projects-grid reveal">
       <div class="project-card">
+        <span class="project-badge">🎓 Berkeley Club Open Project · Machine Learning Team</span>
         <div class="project-icon">🗺️</div>
-        <div class="project-title">Spatial ML Pipeline</div>
+        <div class="project-title">GIStice League <span class="project-subtitle">— Spatial ML Pipeline</span></div>
         <div class="project-desc">
-          Analyzed food access inequities across communities using 10k+ census records. Trained clustering & regression models, visualized with GeoPandas. Communicated findings to support social justice initiatives.
+          Analyzed food access inequities across communities using 10k+ census records. Trained clustering &amp; regression models, visualized with GeoPandas. <strong class="project-highlight">Uncovered statistically significant disparities in grocery-store density between low-income and higher-income census tracts, surfacing concrete food-desert hotspots previously obscured in aggregate reporting</strong> — findings packaged into a map-based narrative to equip community advocates with data-backed evidence for targeted food-infrastructure investments.
         </div>
         <div class="project-tags">
           <span class="project-tag">PyTorch</span>
@@ -1129,8 +1216,6 @@
             View Code
           </a>
         </div>
-      </div>
-      </div>
       </div>
 
       <!-- FinSight project card -->
@@ -1580,4 +1665,3 @@
   </script>
 </body>
 </html>
-
