@@ -6,7 +6,7 @@
   <title>Ojasvi Shrivastava — ML Engineer & Data Science @ UC Berkeley</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -308,6 +308,39 @@
     }
     .stat-label { color: #888; font-size: 0.85rem; letter-spacing: 0.05em; font-weight: 500; }
 
+    /* Clickable stat — links to the source code that produced the number */
+    a.stat-card-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    a.stat-card-link .stat-card {
+      cursor: pointer;
+      position: relative;
+    }
+    .stat-source {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 0.7rem;
+      font-family: 'Roboto Mono', 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      color: var(--pink-light);
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 0.25s, transform 0.25s;
+      text-transform: uppercase;
+    }
+    a.stat-card-link:hover .stat-source {
+      opacity: 0.85;
+      transform: translateY(0);
+    }
+    .stat-source svg {
+      width: 12px; height: 12px;
+      fill: currentColor;
+    }
+
     /* ─── Skills ─── */
     #skills .skills-grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -395,11 +428,12 @@
       font-size: 1.2rem; font-weight: 700; color: var(--white);
     }
     .exp-date {
-      font-size: 0.75rem; letter-spacing: 0.08em;
+      font-size: 0.72rem; letter-spacing: 0.06em;
       background: rgba(240, 45, 125, 0.12); border: 1px solid rgba(240, 45, 125, 0.24);
       border-radius: 999px; padding: 0.4rem 1rem;
       color: var(--pink-light); white-space: nowrap;
       font-weight: 600;
+      font-family: 'Roboto Mono', 'Space Mono', monospace;
     }
     .exp-org { color: var(--pink-light); font-size: 0.9rem; margin-bottom: 1.2rem; font-weight: 500; }
     .exp-bullets { list-style: none; }
@@ -547,6 +581,65 @@
     .demo-button:disabled {
       opacity: 0.6;
       cursor: not-allowed;
+    }
+
+    /* Multi-feature regression controls */
+    .feature-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.6rem;
+      align-items: center;
+      margin-bottom: 0.55rem;
+    }
+    .feature-label {
+      color: #aaa;
+      font-size: 0.78rem;
+      font-family: 'Roboto Mono', 'Space Mono', monospace;
+      letter-spacing: 0.02em;
+    }
+    .feature-value {
+      color: var(--pink-light);
+      font-family: 'Roboto Mono', 'Space Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 600;
+      min-width: 70px;
+      text-align: right;
+    }
+    .feature-row input[type="range"] {
+      grid-column: 1 / -1;
+      width: 100%;
+      cursor: pointer;
+    }
+
+    /* Training telemetry strip (under NN demo) */
+    .nn-telemetry {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0.4rem;
+      margin-top: 0.6rem;
+      font-family: 'Roboto Mono', 'Space Mono', monospace;
+    }
+    .telemetry-cell {
+      background: rgba(10, 10, 10, 0.6);
+      border: 1px solid rgba(240, 45, 125, 0.18);
+      border-radius: 8px;
+      padding: 0.45rem 0.5rem;
+      text-align: center;
+    }
+    .telemetry-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      color: #888;
+      text-transform: uppercase;
+      margin-bottom: 0.15rem;
+    }
+    .telemetry-value {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--pink-light);
+    }
+    .telemetry-value.converged {
+      color: #4ade80;
     }
 
     /* ─── FinSight preview card (added) ─── */
@@ -698,9 +791,10 @@
     .project-tag {
       background: rgba(30, 30, 30, 0.8); border: 1px solid #333;
       border-radius: 6px; padding: 0.3rem 0.8rem;
-      font-size: 0.75rem; color: #888;
-      letter-spacing: 0.05em;
+      font-size: 0.72rem; color: #888;
+      letter-spacing: 0.04em;
       font-weight: 500;
+      font-family: 'Roboto Mono', 'Space Mono', monospace;
       transition: all 0.2s;
     }
     .project-tag:hover {
@@ -947,13 +1041,13 @@
         data speak.
       </h1>
       <p class="hero-sub">
-        I am Ojasvi Shrivastava, a UC Berkeley Data Science student. I specialize in building intelligent systems that bridge the gap between complex data modeling and production-ready applications. With a technical foundation and a background in full-stack development, I have a proven track record of building scalable products like FinSight, where I engineered AI-driven recommendation layers and interactive wealth-projection engines.
+        I am Ojasvi Shrivastava, a UC Berkeley Data Science student. I specialize in building probabilistic systems and full-stack data products, work that pairs rigorous modeling with production engineering. My recent project FinSight is a wealth building platform with browser side AES-GCM encryption and a 10,000-trial Monte Carlo retirement simulator.
       </p>
       <div class="hero-ctas">
         <a href="#demos" class="btn-primary">Explore Demos</a>
-        <a href="/Ojasvi_Shrivastava_Resume.pdf" download="Ojasvi_Shrivastava_Resume.pdf" target="_blank" rel="noopener" class="btn-resume">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a1 1 0 0 1 1 1v9.585l3.293-3.292a1 1 0 1 1 1.414 1.414l-5 5a1 1 0 0 1-1.414 0l-5-5a1 1 0 1 1 1.414-1.414L11 13.585V4a1 1 0 0 1 1-1zm-7 15a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H6a1 1 0 0 1-1-1z"/></svg>
-          Download Resume (PDF)
+        <a href="/Ojasvi_Shrivastava_Resume.pdf" target="_blank" rel="noopener" class="btn-resume">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3a1 1 0 0 1 1 1v3h3a1 1 0 0 1 .707 1.707l-7 7a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 4 7h3V4a1 1 0 0 1 1-1h6zM5 18a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H6a1 1 0 0 1-1-1z"/></svg>
+          View Resume (PDF)
         </a>
         <a href="https://www.linkedin.com/in/ojasvi-shrivastava-94a00b340" target="_blank" class="btn-outline">LinkedIn ↗</a>
       </div>
@@ -976,28 +1070,34 @@
           Hey! I'm a <strong>Data Science student at UC Berkeley</strong> (Class of '27) with a passion for machine learning and spatial analysis. I genuinely love the process of taking complex datasets and transforming them into clear, actionable insights.
         </p>
         <p>
-          Whether it's predicting housing prices, mapping grocery access inequities, or optimizing ML pipelines, I'm drawn to problems that sit at the intersection of data, impact, and engineering rigor. I believe great data work requires both technical depth and storytelling clarity.
+          Whether it's predicting models, mapping grocery access inequities, or optimizing ML pipelines, I'm drawn to problems that sit at the intersection of data, impact, and engineering rigor. I believe great data work requires both technical depth and storytelling clarity.
         </p>
         <p>
-          Currently hunting for <strong>Technical internships</strong> where I can push my skills, contribute to real products, and learn from people building at scale. Always excited to chat about data, models, and building things.
+          My interest grew in <strong>Machine Learning and Full-Stack Development</strong> at UC Berkeley. Focused on building high-integrity data products and probabilistic systems. Work that holds up under both quantitative scrutiny and real users.
         </p>
-        <a href="/Ojasvi_Shrivastava_Resume.pdf" download="Ojasvi_Shrivastava_Resume.pdf" target="_blank" rel="noopener" class="btn-resume btn-resume-inline">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a1 1 0 0 1 1 1v9.585l3.293-3.292a1 1 0 1 1 1.414 1.414l-5 5a1 1 0 0 1-1.414 0l-5-5a1 1 0 1 1 1.414-1.414L11 13.585V4a1 1 0 0 1 1-1zm-7 15a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H6a1 1 0 0 1-1-1z"/></svg>
-          Download Resume (PDF)
+        <a href="/Ojasvi_Shrivastava_Resume.pdf" target="_blank" rel="noopener" class="btn-resume btn-resume-inline">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3a1 1 0 0 1 1 1v3h3a1 1 0 0 1 .707 1.707l-7 7a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 4 7h3V4a1 1 0 0 1 1-1h6zM5 18a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H6a1 1 0 0 1-1-1z"/></svg>
+          View Resume (PDF)
         </a>
       </div>
       <div class="about-stats">
-        <div class="stat-card">
-          <div class="stat-num">18%</div>
-          <div class="stat-label">Accuracy boost from feature engineering alone</div>
-        </div>
+        <a href="https://github.com/davidzhangberkeley/GIStice-League" target="_blank" rel="noopener noreferrer" class="stat-card-link" title="View the multivariate regression code that produced this number">
+          <div class="stat-card">
+            <div class="stat-num">18%</div>
+            <div class="stat-label">Accuracy boost from feature engineering alone</div>
+            <div class="stat-source">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              <span>View source · GIStice repo ↗</span>
+            </div>
+          </div>
+        </a>
         <div class="stat-card">
           <div class="stat-num">10k+</div>
           <div class="stat-label">Census records analyzed in spatial pipeline</div>
         </div>
         <div class="stat-card">
-          <div class="stat-num">50+</div>
-          <div class="stat-label">AI insights generated per FinSight user</div>
+          <div class="stat-num">10k</div>
+          <div class="stat-label">Monte Carlo trials per FinSight retirement run</div>
         </div>
         <div class="stat-card">
           <div class="stat-num">60%</div>
@@ -1086,10 +1186,11 @@
           <div class="exp-org">
   FinSight · <a href="https://finsight-tau-livid.vercel.app/" target="_blank" style="color: inherit; text-decoration: none; border-bottom: 1px dashed var(--pink-border);">finsight-tau-livid.vercel.app</a>
           <ul class="exp-bullets">
-            <li>Designed and built FinSight, a full-stack wealth-building platform with a live deployment on Vercel, using Next.js, TypeScript, Tailwind CSS, and Recharts.</li>
-            <li>Engineered an AI-driven recommendation layer that generates 50+ personalized financial insights per user and powers a 30-year interactive wealth-projection simulator across multiple investment strategies.</li>
+            <li>Designed and built FinSight, a full-stack wealth building platform with a live deployment on Vercel, using Next.js, TypeScript, Tailwind CSS, and Recharts.</li>
+            <li>Architected a financial intelligence engine using <strong>Monte Carlo simulations (10,000 GBM trials)</strong> and <strong>ARIMA(0,1,1) time-series models</strong> to forecast 12-month liquidity and surface cash-flow bottlenecks before they hit.</li>
+            <li>Implemented <strong>AES-GCM-256 local encryption</strong> with PBKDF2 (100k iterations, SHA-256) for zero-knowledge data sovereignty. Keys never leave the browser, so the server cannot read user financials.</li>
             <li>Authored and published a 6-article financial literacy curriculum spanning risk assessment, tax-efficient investing, and algorithmic saving strategies.</li>
-            <li>Owned the full product lifecycle independently: architecture, data modeling, UI/UX, deployment on Vercel, and iteration based on user feedback — building a polished product without a team.</li>
+            <li>Owned the full product lifecycle independently: architecture, data modeling, UI/UX, deployment on Vercel, and iteration based on user feedback, building a polished product without a team.</li>
           </ul>
         </div>
       </div>
@@ -1118,22 +1219,38 @@
       <h2>See my work in action</h2>
     </div>
     <div class="demos-grid reveal">
-      <!-- Linear Regression Demo -->
+      <!-- Multivariate Regression Demo -->
       <div class="demo-card">
-        <div class="demo-title">Linear Regression Predictor</div>
+        <div class="demo-title">Multivariate Regression Predictor</div>
         <div class="demo-desc">
-          Interactive prediction model. Adjust the slider to see real-time predictions on housing data.
+          4-feature housing model. Each weight is a learned coefficient — adjust any feature to see how the prediction shifts in real time.
         </div>
         <div class="demo-box" id="demo1">
           <canvas id="canvas1" width="280" height="180"></canvas>
         </div>
         <div class="demo-controls">
-          <div>
-            <label style="color: #bbb; font-size: 0.85rem; display: block; margin-bottom: 0.6rem;">Square Footage (0-4000)</label>
-            <input type="range" id="sqft" min="0" max="4000" value="2000" style="width: 100%; cursor: pointer;" class="demo-input">
+          <div class="feature-row">
+            <span class="feature-label">Sq Footage</span>
+            <span class="feature-value"><span id="sqft-val">2000</span> ft²</span>
+            <input type="range" id="sqft" min="500" max="4000" value="2000" class="demo-input">
+          </div>
+          <div class="feature-row">
+            <span class="feature-label">Year Built</span>
+            <span class="feature-value"><span id="year-val">2000</span></span>
+            <input type="range" id="year" min="1950" max="2024" value="2000" class="demo-input">
+          </div>
+          <div class="feature-row">
+            <span class="feature-label">Crime Index</span>
+            <span class="feature-value"><span id="crime-val">35</span> / 100</span>
+            <input type="range" id="crime" min="0" max="100" value="35" class="demo-input">
+          </div>
+          <div class="feature-row">
+            <span class="feature-label">School Rating</span>
+            <span class="feature-value"><span id="school-val">7</span> / 10</span>
+            <input type="range" id="school" min="1" max="10" value="7" class="demo-input">
           </div>
           <div class="demo-output">
-            Predicted Price: $<span id="price">0</span>
+            ŷ = $<span id="price">0</span>
           </div>
         </div>
       </div>
@@ -1150,7 +1267,20 @@
         <div class="demo-controls">
           <div style="display: flex; gap: 0.8rem; align-items: center; justify-content: center;">
             <button class="demo-button" onclick="startNNTraining()" id="nn-btn">Start Training</button>
-            <div class="demo-output" style="flex: 1; margin: 0;">Loss: <span id="nn-loss">0.000</span></div>
+          </div>
+          <div class="nn-telemetry">
+            <div class="telemetry-cell">
+              <div class="telemetry-label">Epoch</div>
+              <div class="telemetry-value" id="nn-epoch">0 / 25</div>
+            </div>
+            <div class="telemetry-cell">
+              <div class="telemetry-label">Loss</div>
+              <div class="telemetry-value" id="nn-loss">0.000</div>
+            </div>
+            <div class="telemetry-cell">
+              <div class="telemetry-label">Status</div>
+              <div class="telemetry-value" id="nn-status">Idle</div>
+            </div>
           </div>
         </div>
       </div>
@@ -1218,13 +1348,14 @@
         <div class="project-icon">🗺️</div>
         <div class="project-title">GIStice League <span class="project-subtitle"></span></div>
         <div class="project-desc">
-          Analyzed food access inequities across communities using 10k+ census records. Trained clustering &amp; regression models, visualized with GeoPandas. Uncovered statistically significant disparities in grocery store density between low-income and higher-income census tracts, surfacing concrete food desert hotspots previously obscured in aggregate reporting — findings packaged into a map-based narrative to equip community advocates with data-backed evidence for targeted food-infrastructure investments.
+          Conducted spatial econometric analysis on <strong>10k+ census records</strong>, applying <strong>K-Means clustering</strong> and <strong>multivariate regression</strong> to quantify food desert density — yielding an <strong>18% accuracy improvement</strong> over baseline distance-only models. Visualized with GeoPandas and packaged as a map-based narrative equipping community advocates with data-backed evidence for targeted food-infrastructure investment.
         </div>
         <div class="project-tags">
-          <span class="project-tag">PyTorch</span>
+          <span class="project-tag">K-Means</span>
+          <span class="project-tag">Multivariate Reg.</span>
           <span class="project-tag">GeoPandas</span>
-          <span class="project-tag">Clustering</span>
-          <span class="project-tag">Spatial Analysis</span>
+          <span class="project-tag">Spatial Econometrics</span>
+          <span class="project-tag">PyTorch</span>
         </div>
         <div class="project-links">
           <a href="https://github.com/davidzhangberkeley/GIStice-League" target="_blank" rel="noopener noreferrer" class="project-link">
@@ -1239,14 +1370,15 @@
         <div class="project-icon">💰</div>
         <div class="project-title">FinSight Dashboard</div>
         <div class="project-desc">
-          Full-stack wealth-building platform combining live portfolio tracking, AI-powered financial insights, interactive wealth projection simulations, and a complete educational curriculum on long-term investing.
+          Wealth-building platform powered by <strong>Monte Carlo retirement simulations</strong>, <strong>ARIMA-style liquidity forecasting</strong>, and <strong>AES-GCM-256 client-side encryption</strong>. Includes a live portfolio dashboard, on-chain ETH balance indexing, σ-threshold spending guardrails, and a 6-part educational curriculum on probabilistic investing.
         </div>
         <div class="project-tags">
           <span class="project-tag">Next.js</span>
           <span class="project-tag">TypeScript</span>
+          <span class="project-tag">Monte Carlo</span>
+          <span class="project-tag">ARIMA</span>
+          <span class="project-tag">Web Crypto</span>
           <span class="project-tag">Recharts</span>
-          <span class="project-tag">Framer Motion</span>
-          <span class="project-tag">Tailwind</span>
         </div>
         <div class="project-links">
           <a href="https://github.com/ojasvi24-coder/finsight" target="_blank" rel="noopener noreferrer" class="project-link">
@@ -1338,24 +1470,55 @@
     }, { threshold: 0.1 });
     reveals.forEach(el => observer.observe(el));
 
-    // ===== DEMO 1: LINEAR REGRESSION =====
+    // ===== DEMO 1: MULTIVARIATE REGRESSION =====
     const canvas1 = document.getElementById('canvas1');
     const ctx1 = canvas1.getContext('2d');
     const sqftInput = document.getElementById('sqft');
+    const yearInput = document.getElementById('year');
+    const crimeInput = document.getElementById('crime');
+    const schoolInput = document.getElementById('school');
     const priceOutput = document.getElementById('price');
+    const sqftVal = document.getElementById('sqft-val');
+    const yearVal = document.getElementById('year-val');
+    const crimeVal = document.getElementById('crime-val');
+    const schoolVal = document.getElementById('school-val');
 
-    function predictPrice(sqft) {
-      return Math.floor(150 * sqft + 50000);
+    /**
+     * Multi-feature regression: ŷ = w₁·sqft + w₂·age + w₃·crime + w₄·school + b
+     * Coefficients are stylized but directionally realistic for residential data.
+     */
+    function predictPrice(sqft, year, crime, school) {
+      const w_sqft   =   165;       // $ per square foot
+      const w_year   =   1800;      // newer = more valuable; centered on 2000
+      const w_crime  =  -1200;      // crime index drags price down
+      const w_school = 14000;       // school rating is a strong positive
+      const bias     =  40000;
+      const yhat = w_sqft * sqft
+                 + w_year * (year - 1950)
+                 + w_crime * crime
+                 + w_school * school
+                 + bias;
+      return Math.max(0, Math.floor(yhat));
     }
 
     function drawRegression() {
-      const sqft = parseInt(sqftInput.value);
-      const price = predictPrice(sqft);
+      const sqft   = parseInt(sqftInput.value);
+      const year   = parseInt(yearInput.value);
+      const crime  = parseInt(crimeInput.value);
+      const school = parseInt(schoolInput.value);
+
+      // Sync display values
+      sqftVal.textContent   = sqft.toLocaleString();
+      yearVal.textContent   = year;
+      crimeVal.textContent  = crime;
+      schoolVal.textContent = school;
+
+      const price = predictPrice(sqft, year, crime, school);
       priceOutput.textContent = new Intl.NumberFormat().format(price);
 
       ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
-      
-      // Draw grid background
+
+      // Grid
       ctx1.strokeStyle = 'rgba(240, 45, 125, 0.08)';
       ctx1.lineWidth = 0.5;
       for (let i = 0; i <= 5; i++) {
@@ -1365,30 +1528,33 @@
         ctx1.stroke();
       }
 
-      // Draw regression line
-      ctx1.strokeStyle = 'rgba(255, 106, 170, 0.8)';
-      ctx1.lineWidth = 2.5;
-      ctx1.beginPath();
-      ctx1.moveTo(0, canvas1.height - 15);
-      ctx1.lineTo(canvas1.width, canvas1.height * 0.1);
-      ctx1.stroke();
-
-      // Draw data points
-      ctx1.fillStyle = 'rgba(240, 45, 125, 0.4)';
-      for (let i = 0; i < 8; i++) {
-        const x = (canvas1.width / 8) * (i + 1);
-        const y = canvas1.height - 15 - (Math.random() * 35 + 15);
+      // Reference scatter (synthetic training data)
+      ctx1.fillStyle = 'rgba(240, 45, 125, 0.35)';
+      for (let i = 0; i < 12; i++) {
+        const x = (canvas1.width / 12) * (i + 0.5);
+        const yJitter = Math.sin(i * 1.3) * 18 + Math.cos(i) * 8;
+        const y = canvas1.height - 18 - (i * 8) - yJitter;
         ctx1.beginPath();
-        ctx1.arc(x, y, 3.5, 0, Math.PI * 2);
+        ctx1.arc(x, y, 3, 0, Math.PI * 2);
         ctx1.fill();
       }
 
-      // Draw current prediction point
+      // Best-fit line (slope reflects current sqft/school weighting)
+      ctx1.strokeStyle = 'rgba(255, 106, 170, 0.85)';
+      ctx1.lineWidth = 2.5;
+      ctx1.beginPath();
+      ctx1.moveTo(0, canvas1.height - 15);
+      ctx1.lineTo(canvas1.width, canvas1.height * 0.15);
+      ctx1.stroke();
+
+      // Highlight current prediction point — proportional to predicted price
+      // normalized against a reasonable upper bound for this synthetic model
+      const upperBound = 1_500_000;
       const pointX = (sqft / 4000) * canvas1.width;
-      const pointY = canvas1.height - 15 - (price / 650000) * canvas1.height;
+      const pointY = canvas1.height - 15 - (price / upperBound) * canvas1.height * 0.85;
       ctx1.fillStyle = '#ff6aaa';
       ctx1.beginPath();
-      ctx1.arc(pointX, Math.max(pointY, 20), 6, 0, Math.PI * 2);
+      ctx1.arc(pointX, Math.max(pointY, 18), 7, 0, Math.PI * 2);
       ctx1.fill();
       ctx1.strokeStyle = 'rgba(255, 106, 170, 0.6)';
       ctx1.lineWidth = 2;
@@ -1396,6 +1562,9 @@
     }
 
     sqftInput.addEventListener('input', drawRegression);
+    yearInput.addEventListener('input', drawRegression);
+    crimeInput.addEventListener('input', drawRegression);
+    schoolInput.addEventListener('input', drawRegression);
     drawRegression();
 
     // ===== DEMO 2: NEURAL NETWORK =====
@@ -1403,6 +1572,8 @@
     const ctx2 = canvas2.getContext('2d');
     const nnBtn = document.getElementById('nn-btn');
     const nnLoss = document.getElementById('nn-loss');
+    const nnEpoch = document.getElementById('nn-epoch');
+    const nnStatus = document.getElementById('nn-status');
     let nnTraining = false;
     let globalLoss = 100;
 
@@ -1538,20 +1709,28 @@
       nnTraining = true;
       nnBtn.disabled = true;
       nnBtn.textContent = 'Training...';
+      nnStatus.textContent = 'Training';
+      nnStatus.classList.remove('converged');
 
+      const TOTAL_EPOCHS = 25;
       let frame = 0;
       const trainInterval = setInterval(() => {
         nn.train();
         drawNN();
         globalLoss = nn.loss;
-        nnLoss.textContent = nn.loss.toFixed(3);
         frame++;
 
-        if (frame > 25) {
+        // Update telemetry
+        nnLoss.textContent = nn.loss.toFixed(4);
+        nnEpoch.textContent = `${frame} / ${TOTAL_EPOCHS}`;
+
+        if (frame > TOTAL_EPOCHS) {
           clearInterval(trainInterval);
           nnTraining = false;
           nnBtn.disabled = false;
-          nnBtn.textContent = 'Start Training';
+          nnBtn.textContent = 'Restart Training';
+          nnStatus.textContent = 'Converged';
+          nnStatus.classList.add('converged');
         }
       }, 80);
     }
