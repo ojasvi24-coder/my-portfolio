@@ -3,12 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ojasvi Shrivastava — ML Engineer & Data Science @ UC Berkeley</title>
+  <title>Ojasvi Shrivastava — Data Science @ UC Berkeley</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* Global typography lock — clean, upright sans-serif throughout.
+       Force font-style: normal everywhere so no element renders as fake or
+       synthesized italic on Safari/Firefox, even if a third-party rule or
+       inline attribute tries to override it. */
+    *, *::before, *::after {
+      font-style: normal !important;
+    }
 
     :root {
       --black: #0a0a0a;
@@ -243,39 +251,43 @@
       100% { transform: scaleY(1); transform-origin: bottom; opacity: 0; }
     }
 
-    /* ─── Sections ─── */
-    section { padding: 6rem 4rem; max-width: 1200px; margin: 0 auto; }
+    /* ─── Sections — luxurious vertical rhythm ─── */
+    section {
+      padding: 12rem 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
     .section-label {
       display: flex; align-items: center; gap: 1rem;
-      color: var(--pink); font-size: 0.75rem; letter-spacing: 0.18em;
-      text-transform: uppercase; margin-bottom: 1.5rem;
+      color: var(--pink); font-size: 0.75rem; letter-spacing: 0.22em;
+      text-transform: uppercase; margin-bottom: 3rem;
       font-weight: 700;
     }
     .section-label::after {
-      content: ''; flex: 1; max-width: 80px; height: 2px; 
+      content: ''; flex: 1; max-width: 80px; height: 2px;
       background: linear-gradient(to right, var(--pink), transparent);
     }
     h2 {
       font-family: 'Outfit', sans-serif;
       font-size: clamp(2.2rem, 5vw, 3.5rem);
-      font-weight: 800; line-height: 1.1;
-      margin-bottom: 3.5rem;
+      font-weight: 800; line-height: 1.15;
+      margin-bottom: 6rem;
       letter-spacing: -0.02em;
     }
 
     /* ─── About ─── */
     #about .about-grid {
       display: grid; grid-template-columns: 1fr 1fr;
-      gap: 4.5rem; align-items: center;
+      gap: 6rem; align-items: center;
     }
     .about-text p {
       color: #bbb; font-size: 1.1rem; font-weight: 300;
-      margin-bottom: 1.5rem; line-height: 1.9;
+      margin-bottom: 1.8rem; line-height: 1.9;
     }
     .about-text p strong { color: var(--pink-light); font-weight: 600; }
     .about-stats {
       display: grid; grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
+      gap: 1.8rem;
     }
     .stat-card {
       background: linear-gradient(135deg, rgba(240, 45, 125, 0.08), rgba(124, 58, 237, 0.04));
@@ -344,7 +356,7 @@
     /* ─── Skills ─── */
     #skills .skills-grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.5rem;
+      gap: 2rem;
     }
     .skill-group {
       background: linear-gradient(135deg, rgba(26, 26, 26, 0.85), rgba(240, 45, 125, 0.04));
@@ -455,49 +467,111 @@
       border-bottom: 1px solid rgba(240, 45, 125, 0.12);
     }
     .demos-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 2.5rem;
     }
+
+    /* Card chrome — closer to a SaaS dashboard tile */
     .demo-card {
-      background: linear-gradient(135deg, rgba(10, 10, 10, 0.7), rgba(26, 26, 26, 0.85));
-      border: 1.5px solid rgba(240, 45, 125, 0.16);
-      border-radius: 24px; padding: 2.5rem;
-      position: relative; overflow: hidden;
-      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-      display: flex; flex-direction: column;
-      backdrop-filter: blur(8px);
+      background:
+        linear-gradient(180deg, rgba(20, 20, 24, 0.85) 0%, rgba(12, 12, 14, 0.92) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 22px;
+      padding: 2.2rem 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  border-color 0.3s, box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+      backdrop-filter: blur(10px);
     }
+    /* Soft top accent line */
     .demo-card::before {
       content: '';
-      position: absolute; top: -50%; right: -50%;
-      width: 200%; height: 200%;
-      background: radial-gradient(circle, rgba(240, 45, 125, 0.08) 0%, transparent 60%);
-      pointer-events: none;
+      position: absolute; top: 0; left: 1.5rem; right: 1.5rem; height: 1px;
+      background: linear-gradient(to right,
+        transparent 0%,
+        rgba(240, 45, 125, 0.4) 50%,
+        transparent 100%);
+      opacity: 0.5;
+      transition: opacity 0.3s;
     }
     .demo-card:hover {
-      transform: translateY(-10px);
+      transform: translateY(-8px);
       border-color: rgba(240, 45, 125, 0.32);
-      box-shadow: 0 25px 60px rgba(240, 45, 125, 0.15);
-      background: linear-gradient(135deg, rgba(10, 10, 10, 0.8), rgba(26, 26, 26, 0.9));
+      box-shadow:
+        0 28px 60px -12px rgba(240, 45, 125, 0.22),
+        0 0 0 1px rgba(240, 45, 125, 0.14) inset,
+        0 0 80px -20px rgba(240, 45, 125, 0.3);
     }
+    .demo-card:hover::before { opacity: 1; }
+
+    /* Status chip at top — "Live · ML Model" feel */
+    .demo-card .demo-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      align-self: flex-start;
+      background: rgba(240, 45, 125, 0.08);
+      border: 1px solid rgba(240, 45, 125, 0.18);
+      border-radius: 999px;
+      padding: 0.25rem 0.65rem;
+      font-family: 'Roboto Mono', 'Space Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--pink-light);
+      font-weight: 600;
+      margin-bottom: 0.85rem;
+    }
+    .demo-card .demo-tag::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--pink);
+      box-shadow: 0 0 8px var(--pink);
+      animation: tag-pulse 1.8s ease-in-out infinite;
+    }
+    @keyframes tag-pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(0.85); }
+    }
+
     .demo-title {
       font-family: 'Outfit', sans-serif;
-      font-size: 1.3rem; font-weight: 700;
-      margin-bottom: 0.8rem;
-      position: relative;
-      z-index: 1;
+      font-size: 1.2rem; font-weight: 700;
+      margin-bottom: 0.25rem;
+      letter-spacing: -0.01em;
+      color: var(--white);
+    }
+    /* Subtitle / model meta — sits right under title for "shipping product" feel */
+    .demo-meta {
+      font-family: 'Roboto Mono', 'Space Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.05em;
+      color: #777;
+      text-transform: uppercase;
+      margin-bottom: 0.85rem;
+      padding-bottom: 0.85rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
     .demo-desc {
-      color: #999; font-size: 0.95rem; font-weight: 300;
-      margin-bottom: 1.8rem; line-height: 1.7;
-      position: relative;
-      z-index: 1;
+      color: #888;
+      font-size: 0.85rem;
+      font-weight: 400;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
     }
+
+    /* Visualization viewport — render area with subtle scanline animation */
     .demo-box {
-      background: rgba(0, 0, 0, 0.5);
-      border: 1px solid rgba(240, 45, 125, 0.12);
-      border-radius: 16px;
-      padding: 1.5rem;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(240, 45, 125, 0.06), transparent 70%),
+        rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 14px;
+      padding: 1.2rem;
       position: relative;
       flex: 1;
       display: flex;
@@ -505,141 +579,223 @@
       justify-content: center;
       align-items: center;
       min-height: 220px;
-      z-index: 1;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+      overflow: hidden;
+    }
+    /* Soft scan-line overlay — adds "live data" feel without being distracting */
+    .demo-box::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        transparent 0%,
+        rgba(240, 45, 125, 0.04) 50%,
+        transparent 100%
+      );
+      background-size: 100% 8px;
+      pointer-events: none;
+      opacity: 0.4;
+      mix-blend-mode: overlay;
+    }
+    /* Corner brackets — terminal/monitoring aesthetic */
+    .demo-box::before {
+      content: '';
+      position: absolute;
+      top: 8px; left: 8px;
+      width: 14px; height: 14px;
+      border-top: 1.5px solid rgba(240, 45, 125, 0.4);
+      border-left: 1.5px solid rgba(240, 45, 125, 0.4);
+      border-top-left-radius: 4px;
+      pointer-events: none;
     }
     .demo-box canvas {
       width: 100% !important;
       height: 100% !important;
       max-width: 100%;
+      position: relative;
+      z-index: 1;
     }
+
+    /* Controls strip — separated from viewport with subtle divider */
     .demo-controls {
-      display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem;
-      position: relative; z-index: 1;
+      display: flex; flex-direction: column; gap: 0.85rem;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
     }
-    .demo-input {
-      background: rgba(10, 10, 10, 0.9);
-      border: 1px solid rgba(240, 45, 125, 0.2);
-      border-radius: 12px;
-      padding: 0.7rem 1rem;
-      color: var(--white);
-      font-family: 'Space Mono', monospace;
-      font-size: 0.9rem;
-      transition: all 0.3s;
-    }
-    .demo-input:focus {
-      outline: none;
-      border-color: var(--pink);
-      box-shadow: 0 0 12px rgba(240, 45, 125, 0.25);
-      background: rgba(10, 10, 10, 0.95);
-    }
-    .demo-input::-webkit-slider-thumb {
+
+    /* Sliders — modern app-like track + thumb */
+    .demo-input[type="range"] {
+      -webkit-appearance: none;
       appearance: none;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--pink), var(--pink-light));
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(to right,
+        var(--pink) 0%, var(--pink) var(--fill, 50%),
+        rgba(255, 255, 255, 0.08) var(--fill, 50%), rgba(255, 255, 255, 0.08) 100%);
+      border-radius: 999px;
       cursor: pointer;
-      box-shadow: 0 0 12px rgba(240, 45, 125, 0.4);
+      outline: none;
+      transition: background 0.15s;
     }
-    .demo-input::-moz-range-thumb {
-      width: 18px;
-      height: 18px;
+    .demo-input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 16px;
+      height: 16px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--pink), var(--pink-light));
+      background: var(--white);
+      border: 3px solid var(--pink);
       cursor: pointer;
-      border: none;
-      box-shadow: 0 0 12px rgba(240, 45, 125, 0.4);
+      box-shadow: 0 2px 8px rgba(240, 45, 125, 0.35),
+                  0 0 0 0 rgba(240, 45, 125, 0.3);
+      transition: box-shadow 0.2s, transform 0.15s;
     }
+    .demo-input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.15);
+      box-shadow: 0 2px 12px rgba(240, 45, 125, 0.5),
+                  0 0 0 6px rgba(240, 45, 125, 0.12);
+    }
+    .demo-input[type="range"]::-moz-range-thumb {
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 3px solid var(--pink);
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(240, 45, 125, 0.35);
+    }
+
+    /* Output readout — large prediction display */
     .demo-output {
-      background: rgba(240, 45, 125, 0.08);
-      border: 1px solid rgba(240, 45, 125, 0.2);
+      background: linear-gradient(135deg,
+        rgba(240, 45, 125, 0.1) 0%,
+        rgba(124, 58, 237, 0.06) 100%);
+      border: 1px solid rgba(240, 45, 125, 0.22);
       border-radius: 12px;
-      padding: 0.85rem 1rem;
-      color: var(--pink-light);
-      font-family: 'Space Mono', monospace;
-      font-size: 0.9rem;
-      font-weight: 600;
+      padding: 1rem 1.2rem;
+      color: var(--white);
+      font-family: 'Roboto Mono', 'Space Mono', monospace;
+      font-size: 1.05rem;
+      font-weight: 700;
       text-align: center;
+      letter-spacing: -0.01em;
+      margin-top: 0.5rem;
+      position: relative;
+      overflow: hidden;
     }
+    .demo-output::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg,
+        transparent 30%, rgba(255, 255, 255, 0.06) 50%, transparent 70%);
+      animation: output-shimmer 4s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes output-shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
     .demo-button {
       background: linear-gradient(135deg, var(--pink), var(--pink-light));
       border: none;
       color: white;
-      padding: 0.7rem 1.6rem;
-      border-radius: 999px;
+      padding: 0.7rem 1.5rem;
+      border-radius: 10px;
       cursor: pointer;
+      font-family: 'Outfit', sans-serif;
       font-weight: 600;
       font-size: 0.85rem;
+      letter-spacing: 0.01em;
       transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-      align-self: flex-start;
-      box-shadow: 0 8px 25px rgba(240, 45, 125, 0.3);
+      box-shadow: 0 6px 20px rgba(240, 45, 125, 0.28);
     }
     .demo-button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 35px rgba(240, 45, 125, 0.4);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(240, 45, 125, 0.4);
     }
     .demo-button:disabled {
-      opacity: 0.6;
+      opacity: 0.55;
       cursor: not-allowed;
+      transform: none;
     }
 
-    /* Multi-feature regression controls */
+    /* Multi-feature regression controls — refined row layout */
     .feature-row {
       display: grid;
       grid-template-columns: 1fr auto;
-      gap: 0.6rem;
+      gap: 0.5rem 1rem;
       align-items: center;
-      margin-bottom: 0.55rem;
+      padding: 0.6rem 0.85rem;
+      background: rgba(255, 255, 255, 0.015);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 10px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .feature-row:hover {
+      border-color: rgba(240, 45, 125, 0.18);
+      background: rgba(240, 45, 125, 0.025);
     }
     .feature-label {
-      color: #aaa;
-      font-size: 0.78rem;
+      color: #ccc;
+      font-size: 0.74rem;
       font-family: 'Roboto Mono', 'Space Mono', monospace;
       letter-spacing: 0.02em;
+      font-weight: 500;
     }
     .feature-value {
       color: var(--pink-light);
       font-family: 'Roboto Mono', 'Space Mono', monospace;
-      font-size: 0.78rem;
+      font-size: 0.74rem;
       font-weight: 600;
-      min-width: 70px;
+      min-width: 78px;
       text-align: right;
     }
     .feature-row input[type="range"] {
       grid-column: 1 / -1;
       width: 100%;
       cursor: pointer;
+      margin-top: 0.15rem;
     }
 
-    /* Training telemetry strip (under NN demo) */
+    /* Training telemetry strip — refined for new card aesthetic */
     .nn-telemetry {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      gap: 0.4rem;
-      margin-top: 0.6rem;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
       font-family: 'Roboto Mono', 'Space Mono', monospace;
     }
     .telemetry-cell {
-      background: rgba(10, 10, 10, 0.6);
-      border: 1px solid rgba(240, 45, 125, 0.18);
-      border-radius: 8px;
-      padding: 0.45rem 0.5rem;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      padding: 0.6rem 0.55rem;
       text-align: center;
+      transition: border-color 0.2s;
+    }
+    .telemetry-cell:hover {
+      border-color: rgba(240, 45, 125, 0.2);
     }
     .telemetry-label {
-      font-size: 0.62rem;
-      letter-spacing: 0.1em;
-      color: #888;
+      font-size: 0.58rem;
+      letter-spacing: 0.14em;
+      color: #777;
       text-transform: uppercase;
-      margin-bottom: 0.15rem;
+      margin-bottom: 0.25rem;
+      font-weight: 600;
     }
     .telemetry-value {
-      font-size: 0.85rem;
+      font-size: 0.92rem;
       font-weight: 700;
       color: var(--pink-light);
+      letter-spacing: -0.01em;
     }
     .telemetry-value.converged {
       color: #4ade80;
+      text-shadow: 0 0 8px rgba(74, 222, 128, 0.3);
     }
 
     /* ─── FinSight preview card (added) ─── */
@@ -741,7 +897,7 @@
     /* ─── Projects ─── */
     #projects .projects-grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 1.8rem;
+      gap: 2.4rem;
     }
     .project-card {
       background: linear-gradient(135deg, rgba(26, 26, 26, 0.85), rgba(240, 45, 125, 0.04));
@@ -1001,12 +1157,13 @@
     @media (max-width: 768px) {
       nav { padding: 1.2rem 1.5rem; }
       .nav-links { display: none; }
-      section { padding: 4rem 1.5rem; }
-      #hero { padding: 5rem 1.5rem 4rem; }
-      #about .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      section { padding: 8rem 1.5rem; }
+      #hero { padding: 6rem 1.5rem 5rem; }
+      #about .about-grid { grid-template-columns: 1fr; gap: 3rem; }
       #contact .contact-inner { padding: 3rem 2rem; }
       footer { flex-direction: column; gap: 1rem; text-align: center; }
       h1 { font-size: clamp(2.5rem, 7vw, 4rem); }
+      h2 { margin-bottom: 4rem; }
     }
   </style>
 </head>
@@ -1041,7 +1198,7 @@
         data speak.
       </h1>
       <p class="hero-sub">
-        I am Ojasvi Shrivastava, a UC Berkeley Data Science student. I specialize in building probabilistic systems and full-stack data products, work that pairs rigorous modeling with production engineering. My recent project FinSight is a wealth building platform with browser side AES-GCM encryption and a 10,000-trial Monte Carlo retirement simulator.
+        I am Ojasvi Shrivastava, a UC Berkeley Data Science student. I specialize in building probabilistic systems and full-stack data products. Work that pairs rigorous modeling with production engineering. My recent project FinSight is a wealth building platform with browser side AES-GCM encryption and a 10,000-trial Monte Carlo retirement simulator.
       </p>
       <div class="hero-ctas">
         <a href="#demos" class="btn-primary">Explore Demos</a>
@@ -1067,13 +1224,13 @@
     <div class="about-grid reveal">
       <div class="about-text">
         <p>
-          Hey! I'm a <strong>Data Science student at UC Berkeley</strong> (Class of '27) with a passion for machine learning and spatial analysis. I genuinely love the process of taking complex datasets and transforming them into clear, actionable insights.
+          Hey! I'm a <strong>Data Science student at UC Berkeley</strong> (Class of '27) with a passion for machine learning and web development. I genuinely love the process of taking complex datasets and transforming them into clear, actionable insights.
         </p>
         <p>
-          Whether it's predicting models, mapping grocery access inequities, or optimizing ML pipelines, I'm drawn to problems that sit at the intersection of data, impact, and engineering rigor. I believe great data work requires both technical depth and storytelling clarity.
+          Whether it's predicting housing prices, mapping grocery access inequities, or optimizing ML pipelines, I am drawn to problems that sit at the intersection of data, impact, and engineering rigor. I believe great data work requires both technical depth and storytelling clarity.
         </p>
         <p>
-          My interest grew in <strong>Machine Learning and Full-Stack Development</strong> at UC Berkeley. Focused on building high-integrity data products and probabilistic systems. Work that holds up under both quantitative scrutiny and real users.
+          My interest grew in <strong>Machine Learning and Full-Stack Engineering</strong> at UC Berkeley. Focused on building high integrity data products and probabilistic systems to do work that holds up under both quantitative scrutiny and real users.
         </p>
         <a href="/Ojasvi_Shrivastava_Resume.pdf" target="_blank" rel="noopener" class="btn-resume btn-resume-inline">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3a1 1 0 0 1 1 1v3h3a1 1 0 0 1 .707 1.707l-7 7a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 4 7h3V4a1 1 0 0 1 1-1h6zM5 18a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H6a1 1 0 0 1-1-1z"/></svg>
@@ -1186,9 +1343,9 @@
           <div class="exp-org">
   FinSight · <a href="https://finsight-tau-livid.vercel.app/" target="_blank" style="color: inherit; text-decoration: none; border-bottom: 1px dashed var(--pink-border);">finsight-tau-livid.vercel.app</a>
           <ul class="exp-bullets">
-            <li>Designed and built FinSight, a full-stack wealth building platform with a live deployment on Vercel, using Next.js, TypeScript, Tailwind CSS, and Recharts.</li>
-            <li>Architected a financial intelligence engine using <strong>Monte Carlo simulations (10,000 GBM trials)</strong> and <strong>ARIMA(0,1,1) time-series models</strong> to forecast 12-month liquidity and surface cash-flow bottlenecks before they hit.</li>
-            <li>Implemented <strong>AES-GCM-256 local encryption</strong> with PBKDF2 (100k iterations, SHA-256) for zero-knowledge data sovereignty. Keys never leave the browser, so the server cannot read user financials.</li>
+            <li>Designed and built FinSight, a full-stack wealth-building platform with a live deployment on Vercel, using Next.js, TypeScript, Tailwind CSS, and Recharts.</li>
+            <li>Architected a financial intelligence engine using <strong>Monte Carlo simulations (10,000 GBM trials)</strong> and <strong>ARIMA(0,1,1) time series models</strong> to forecast 12 month liquidity and surface cash flow bottlenecks before they hit.</li>
+            <li>Implemented <strong>AES-GCM-256 local encryption</strong> with PBKDF2 (100k iterations, SHA-256) for zero knowledge data sovereignty; keys never leave the browser, so the server cannot read user financials.</li>
             <li>Authored and published a 6-article financial literacy curriculum spanning risk assessment, tax-efficient investing, and algorithmic saving strategies.</li>
             <li>Owned the full product lifecycle independently: architecture, data modeling, UI/UX, deployment on Vercel, and iteration based on user feedback, building a polished product without a team.</li>
           </ul>
@@ -1221,9 +1378,11 @@
     <div class="demos-grid reveal">
       <!-- Multivariate Regression Demo -->
       <div class="demo-card">
+        <span class="demo-tag">Live · ML Model</span>
         <div class="demo-title">Multivariate Regression Predictor</div>
+        <div class="demo-meta">4 features · ŷ = w·x + b · Closed-form</div>
         <div class="demo-desc">
-          4-feature housing model. Each weight is a learned coefficient — adjust any feature to see how the prediction shifts in real time.
+          4-feature housing model. Each weight is a learned coefficient. You can adjust any feature to see how the prediction shifts in real time.
         </div>
         <div class="demo-box" id="demo1">
           <canvas id="canvas1" width="280" height="180"></canvas>
@@ -1257,7 +1416,9 @@
 
       <!-- Neural Network Visualizer -->
       <div class="demo-card">
+        <span class="demo-tag">Training · 2-8-1</span>
         <div class="demo-title">Neural Network Learning</div>
+        <div class="demo-meta">MLP · ReLU · MSE Loss · η = 0.05</div>
         <div class="demo-desc">
           Watch a neural network learn in real-time. Network trains to predict a sine wave pattern.
         </div>
@@ -1287,7 +1448,9 @@
 
       <!-- K-Means Clustering -->
       <div class="demo-card">
+        <span class="demo-tag">Unsupervised · k=4</span>
         <div class="demo-title">K-Means Clustering</div>
+        <div class="demo-meta">Lloyd's Algorithm · Euclidean Distance</div>
         <div class="demo-desc">
           Visual clustering algorithm. Points automatically group into k clusters. Watch it converge!
         </div>
@@ -1400,7 +1563,7 @@
     </div>
     <div class="contact-inner reveal">
       <h2>Get in touch</h2>
-      <p>I'm always open to interesting conversations about ML, data, internships, or just building connections. Reach out!</p>
+      <p>I am always open to interesting conversations about ML, web development, data, internships, or just building connections. Reach out!</p>
       <div class="contact-links">
         <a href="mailto:ojasvi24@berkeley.edu" class="contact-link">
           <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
