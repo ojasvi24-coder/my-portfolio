@@ -155,7 +155,128 @@
       50% { transform: translateY(35px); }
     }
     .hero-content {
-      position: relative; text-align: center; max-width: 900px; z-index: 2;
+      position: relative; z-index: 2;
+      width: 100%; max-width: 1240px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      align-items: center;
+      text-align: center;
+    }
+    @media (min-width: 1024px) {
+      .hero-content {
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 4.5rem;
+        text-align: left;
+      }
+      .hero-content .hero-sub { margin-left: 0; margin-right: 0; max-width: 560px; }
+      .hero-content .hero-ctas { justify-content: flex-start; }
+    }
+    .hero-text { width: 100%; }
+    @media (min-width: 1024px) {
+      .hero-text h1 { font-size: clamp(2.6rem, 4.8vw, 4.6rem); }
+    }
+
+    /* ─── Hero live simulation panel ─── */
+    .hero-viz {
+      position: relative;
+      background: linear-gradient(180deg, rgba(20, 20, 24, 0.78), rgba(12, 12, 14, 0.88));
+      border: 1px solid rgba(240, 45, 125, 0.2);
+      border-radius: 22px;
+      padding: 1.3rem;
+      backdrop-filter: blur(12px);
+      box-shadow:
+        0 30px 80px rgba(240, 45, 125, 0.1),
+        0 0 0 1px rgba(255, 255, 255, 0.02) inset;
+      overflow: hidden;
+      animation: hero-fade-in 0.9s ease-out 0.45s both;
+      width: 100%;
+      max-width: 560px;
+      justify-self: center;
+    }
+    .hero-viz::before {
+      content: '';
+      position: absolute; top: 0; left: 1.5rem; right: 1.5rem; height: 1px;
+      background: linear-gradient(to right, transparent, rgba(240, 45, 125, 0.5), transparent);
+    }
+    .hero-viz-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 0.9rem;
+      font-family: 'Roboto Mono', 'Space Mono', monospace;
+      font-size: 0.68rem; letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #888;
+    }
+    .hero-viz-tag {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: rgba(240, 45, 125, 0.1);
+      border: 1px solid rgba(240, 45, 125, 0.28);
+      border-radius: 999px;
+      padding: 0.3rem 0.75rem;
+      color: var(--pink-light);
+      font-weight: 700;
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+    }
+    .hero-viz-tag::before {
+      content: ''; width: 6px; height: 6px;
+      background: var(--pink); border-radius: 50%;
+      box-shadow: 0 0 6px var(--pink);
+      animation: pulse 1.6s ease-in-out infinite;
+    }
+    .hero-viz-meta {
+      font-family: 'Roboto Mono', 'Space Mono', monospace;
+      font-size: 0.62rem;
+      color: #777;
+      letter-spacing: 0.06em;
+    }
+    .hero-viz-canvas-wrap {
+      position: relative;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      aspect-ratio: 16 / 11;
+    }
+    .hero-viz-canvas-wrap canvas {
+      display: block; width: 100%; height: 100%;
+    }
+    .hero-viz-axis {
+      position: absolute;
+      font-family: 'Roboto Mono', 'Space Mono', monospace;
+      font-size: 0.58rem;
+      color: #666;
+      letter-spacing: 0.05em;
+      pointer-events: none;
+    }
+    .hero-viz-axis-y { top: 0.6rem; left: 0.7rem; }
+    .hero-viz-axis-x { bottom: 0.6rem; right: 0.7rem; }
+    .hero-viz-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+      margin-top: 0.9rem;
+    }
+    .hero-viz-stat {
+      text-align: center;
+      padding: 0.55rem 0.4rem;
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid rgba(240, 45, 125, 0.12);
+      border-radius: 10px;
+    }
+    .hero-viz-stat-label {
+      font-family: 'Roboto Mono', 'Space Mono', monospace;
+      font-size: 0.58rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: #888;
+      font-weight: 600;
+    }
+    .hero-viz-stat-val {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.95rem; font-weight: 700;
+      color: var(--pink-light);
+      margin-top: 0.2rem;
+    }
+    @media (max-width: 1023px) {
+      .hero-viz { max-width: 480px; margin: 0 auto; }
     }
     .hero-tag {
       display: inline-flex; align-items: center; gap: 0.5rem;
@@ -458,6 +579,66 @@
     .exp-bullets li::before {
       content: '▸'; position: absolute; left: 0;
       color: var(--pink); font-size: 0.9rem;
+    }
+
+    /* ─── Experience: centered single-card layout + skill chips ─── */
+    .experience-solo {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .experience-solo .timeline-item {
+      margin-bottom: 0;
+      padding-left: 2.5rem;
+      position: relative;
+    }
+    .experience-solo .timeline-item::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--pink), rgba(240, 45, 125, 0.15), transparent);
+    }
+    .experience-solo .timeline-dot { left: 0; }
+    .exp-skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.6rem;
+      padding-top: 1.3rem;
+      border-top: 1px dashed rgba(240, 45, 125, 0.18);
+    }
+    .exp-skill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-family: 'Roboto Mono', 'Space Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+      font-weight: 600;
+      color: var(--pink-light);
+      background: rgba(240, 45, 125, 0.08);
+      border: 1px solid rgba(240, 45, 125, 0.22);
+      border-radius: 999px;
+      padding: 0.35rem 0.8rem;
+      transition: all 0.25s ease;
+    }
+    .exp-skill:hover {
+      background: rgba(240, 45, 125, 0.18);
+      border-color: var(--pink);
+      color: var(--white);
+      transform: translateY(-1px);
+    }
+    .exp-skill::before {
+      content: '';
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--pink);
+      box-shadow: 0 0 6px var(--pink);
+    }
+    .exp-bullets li strong {
+      color: var(--pink-light);
+      font-weight: 600;
+    }
+    @media (max-width: 700px) {
+      .experience-solo .timeline-item { padding-left: 1.6rem; }
     }
 
     /* ─── Demos ─── */
@@ -1191,23 +1372,53 @@
     <div class="hero-glow"></div>
     <div class="hero-glow2"></div>
     <div class="hero-content">
-      <div class="hero-tag">🚀 Data Science Student</div>
-      <h1>
+
+      <div class="hero-text">
+        <div class="hero-tag">🚀 Data Science · UC Berkeley '27</div>
+        <h1>
         Building intelligent<br />
         <span class="thin">systems that make</span><br />
         data speak.
       </h1>
-      <p class="hero-sub">
-        I am Ojasvi Shrivastava, a UC Berkeley Data Science student. I specialize in building probabilistic systems and full-stack data products. Work that pairs rigorous modeling with production engineering. My recent project FinSight is a wealth building platform with browser side AES-GCM encryption and a 10,000-trial Monte Carlo retirement simulator.
-      </p>
-      <div class="hero-ctas">
-        <a href="#demos" class="btn-primary">Explore Demos</a>
-        <a href="/Ojasvi_Shrivastava_Resume.pdf" target="_blank" rel="noopener" class="btn-resume">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3a1 1 0 0 1 1 1v3h3a1 1 0 0 1 .707 1.707l-7 7a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 4 7h3V4a1 1 0 0 1 1-1h6zM5 18a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H6a1 1 0 0 1-1-1z"/></svg>
-          View Resume (PDF)
-        </a>
-        <a href="https://www.linkedin.com/in/ojasvi-shrivastava-94a00b340" target="_blank" class="btn-outline">LinkedIn ↗</a>
+        <p class="hero-sub">
+          I am Ojasvi Shrivastava As a UC Berkeley Data Scientist, I thrive on turning complex datasets into high-impact, actionable tools. I am passionate about engineering data products that hold up under both quantitative scrutiny and real-world user needs. I am actively looking for internship opportunities to solve challenging problems within technology driven teams.
+        </p>
+        <div class="hero-ctas">
+          <a href="#demos" class="btn-primary">Explore Demos</a>
+          <a href="./Resume.pdf" target="_blank" rel="noopener noreferrer" class="btn-resume">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3a1 1 0 0 1 1 1v3h3a1 1 0 0 1 .707 1.707l-7 7a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 4 7h3V4a1 1 0 0 1 1-1h6zM5 18a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H6a1 1 0 0 1-1-1z"/></svg>
+            View Resume (PDF)
+          </a>
+          <a href="https://www.linkedin.com/in/ojasvi-shrivastava-94a00b340" target="_blank" rel="noopener noreferrer" class="btn-outline">LinkedIn ↗</a>
+        </div>
       </div>
+
+      <div class="hero-viz" aria-label="Live Monte Carlo simulation">
+        <div class="hero-viz-header">
+          <span class="hero-viz-tag">Live · Monte Carlo</span>
+          <span class="hero-viz-meta">GBM · 10k trials · client-side</span>
+        </div>
+        <div class="hero-viz-canvas-wrap">
+          <canvas id="hero-canvas" width="520" height="358"></canvas>
+          <span class="hero-viz-axis hero-viz-axis-y">portfolio value →</span>
+          <span class="hero-viz-axis hero-viz-axis-x">t (months) →</span>
+        </div>
+        <div class="hero-viz-stats">
+          <div class="hero-viz-stat">
+            <div class="hero-viz-stat-label">P5</div>
+            <div class="hero-viz-stat-val" id="hero-p5">—</div>
+          </div>
+          <div class="hero-viz-stat">
+            <div class="hero-viz-stat-label">P50</div>
+            <div class="hero-viz-stat-val" id="hero-p50">—</div>
+          </div>
+          <div class="hero-viz-stat">
+            <div class="hero-viz-stat-label">P95</div>
+            <div class="hero-viz-stat-val" id="hero-p95">—</div>
+          </div>
+        </div>
+      </div>
+
     </div>
     <div class="hero-scroll">
       <div class="scroll-line"></div>
@@ -1224,15 +1435,15 @@
     <div class="about-grid reveal">
       <div class="about-text">
         <p>
-          Hey! I'm a <strong>Data Science student at UC Berkeley</strong> (Class of '27) with a passion for machine learning and web development. I genuinely love the process of taking complex datasets and transforming them into clear, actionable insights.
+          I'm a <strong>Data Science student at UC Berkeley</strong> (Class of '27) interested in the seam where probabilistic modeling meets the open web. I build systems that move heavy math — Monte Carlo simulation, ARIMA forecasting, gradient updates, AES-GCM encryption — out of the server room and into the browser tab in front of you.
         </p>
         <p>
-          Whether it's predicting housing prices, mapping grocery access inequities, or optimizing ML pipelines, I am drawn to problems that sit at the intersection of data, impact, and engineering rigor. I believe great data work requires both technical depth and storytelling clarity.
+          My recent work splits between full-stack and research. <strong>FinSight</strong> is a wealth and retirement simulator where a vectorized stochastic engine in TypeScript runs 10k Geometric Brownian Motion trials in under a second, while a zero-knowledge pipeline (PBKDF2 + AES-GCM-256) makes the server mathematically incapable of decrypting your data. On the research side, I worked with <strong>GIStice League</strong>'s ML team applying spatial econometrics to food access inequity, engineering K-Means and density features into a PyTorch multivariate regression that delivered an 18% R² gain across 10,000+ U.S. Census tracts.
         </p>
         <p>
-          My interest grew in <strong>Machine Learning and Full-Stack Development</strong> at UC Berkeley. Focused on building high integrity data products and probabilistic systems to do work that holds up under both quantitative scrutiny and real users.
+          I care about work that holds up under both <strong>quantitative scrutiny and real users</strong>. I write TypeScript and Python, ship with Next.js and PyTorch, and like building things you can actually click. You can experience that the interactive demos below run their solvers entirely in your browser, no backend.
         </p>
-        <a href="/Resume.pdf" target="_blank" rel="noopener" class="btn-resume btn-resume-inline">
+        <a href="./Resume.pdf" target="_blank" rel="noopener noreferrer" class="btn-resume btn-resume-inline">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3a1 1 0 0 1 1 1v3h3a1 1 0 0 1 .707 1.707l-7 7a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 4 7h3V4a1 1 0 0 1 1-1h6zM5 18a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H6a1 1 0 0 1-1-1z"/></svg>
           View Resume (PDF)
         </a>
@@ -1327,8 +1538,13 @@
 </section>
 
 <!-- EXPERIENCE -->
-<section id="experience" style="margin-top: 0; padding-top: 0;">
+<section id="experience">
   <div class="reveal">
+    <div class="section-label">03 — Experience & Impact</div>
+    <h2>Where rigor meets real outcomes</h2>
+  </div>
+  <div class="experience-solo reveal">
+
     <div class="timeline-item">
       <div class="timeline-dot"></div>
       <div class="exp-card">
@@ -1336,14 +1552,23 @@
           <div class="exp-title">Private Mathematics Tutor</div>
           <div class="exp-date">2024 — 2025</div>
         </div>
-        <div class="exp-org">Self-employed</div>
+        <div class="exp-org">Self-employed · 1-on-1 instruction</div>
         <ul class="exp-bullets">
-          <li>Designed structured problem-solving frameworks for calculus, linear algebra, and statistics students.</li>
-          <li>Improved student exam scores by an average of 60% through targeted, personalized instruction.</li>
-          <li>Built deep conceptual understanding over rote memorization.</li>
+          <li>Designed structured problem-solving frameworks for <strong>Calculus, Linear Algebra, and Statistics</strong> built around first principles derivation rather than memorized formula application, so students could rebuild any result from definitions on exam day instead of relying on rote recall.</li>
+          <li>Achieved an <strong>average 60% exam score improvement</strong> across tutees by diagnosing each student's specific blocker like algebra fluency, conceptual gaps, or proof technique and re-sequencing material to attack the weak link first before stacking new content on top.</li>
+          <li>Adapted instruction style per student rather than running a fixed curriculum: visual derivations for one, worked example density for another, Socratic dialogue for the strongest. The goal was always to find the binding constraint on understanding and dismantle it directly.</li>
+          <li>Built reusable problem sets and worked solutions across calculus and linear algebra, refined session over session a small private archive of "this is the version of the problem that finally clicks."</li>
         </ul>
+        <div class="exp-skills" aria-label="Subject areas">
+          <span class="exp-skill">Calculus</span>
+          <span class="exp-skill">Linear Algebra</span>
+          <span class="exp-skill">Statistics</span>
+          <span class="exp-skill">First-Principles Pedagogy</span>
+          <span class="exp-skill">1-on-1 Coaching</span>
+        </div>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -1611,6 +1836,203 @@
       });
     }, { threshold: 0.1 });
     reveals.forEach(el => observer.observe(el));
+
+    // ===== HERO: LIVE MONTE CARLO (GBM) =====
+    (function () {
+      const canvas = document.getElementById('hero-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+
+      // Crisp rendering on HiDPI displays — render at devicePixelRatio scale.
+      function fitCanvas() {
+        const rect = canvas.getBoundingClientRect();
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = Math.max(1, Math.round(rect.width * dpr));
+        canvas.height = Math.max(1, Math.round(rect.height * dpr));
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+      fitCanvas();
+      let resizeTimeout;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(fitCanvas, 120);
+      });
+
+      // ----- GBM parameters -----
+      const STEPS = 60;          // ~5 years monthly
+      const NUM_PATHS = 60;      // visible spaghetti
+      const MU = 0.0058;         // ~7% annual drift / 12
+      const SIGMA = 0.045;       // ~15.5% annual vol / sqrt(12)
+      const S0 = 100;            // initial portfolio value (normalized)
+
+      // Box-Muller for Gaussian samples
+      function randn() {
+        let u = 0, v = 0;
+        while (u === 0) u = Math.random();
+        while (v === 0) v = Math.random();
+        return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+      }
+
+      function generatePath() {
+        const out = new Float32Array(STEPS);
+        out[0] = S0;
+        for (let t = 1; t < STEPS; t++) {
+          const z = randn();
+          const dlogS = (MU - 0.5 * SIGMA * SIGMA) + SIGMA * z;
+          out[t] = out[t - 1] * Math.exp(dlogS);
+        }
+        return out;
+      }
+
+      // For percentile envelope we want a *large* virtual ensemble (matches
+      // the FinSight pitch of 10k trials). We compute it once on init.
+      const VIRTUAL_N = 1000;
+      const percentileBands = (() => {
+        const cols = []; // cols[t] = sorted values across virtual ensemble at time t
+        for (let t = 0; t < STEPS; t++) cols.push([]);
+        for (let i = 0; i < VIRTUAL_N; i++) {
+          const p = generatePath();
+          for (let t = 0; t < STEPS; t++) cols[t].push(p[t]);
+        }
+        cols.forEach(c => c.sort((a, b) => a - b));
+        const pick = q => cols.map(c => c[Math.floor(q * (c.length - 1))]);
+        return { p5: pick(0.05), p50: pick(0.5), p95: pick(0.95) };
+      })();
+
+      // Fixed visualization scale derived from the envelope bounds.
+      const allBandValues = [
+        ...percentileBands.p5, ...percentileBands.p50, ...percentileBands.p95
+      ];
+      const yLo = Math.min(...allBandValues) * 0.85;
+      const yHi = Math.max(...allBandValues) * 1.05;
+
+      // Each visible path has its own animation phase, so paths complete
+      // and respawn at staggered times — the canvas stays continuously alive.
+      class Path {
+        constructor() {
+          this.values = generatePath();
+          this.phase = Math.random();              // 0..1 progress
+          this.speed = 0.0028 + Math.random() * 0.002;
+          this.alpha = 0.10 + Math.random() * 0.08;
+        }
+        regen() {
+          this.values = generatePath();
+          this.phase = 0;
+          this.speed = 0.0028 + Math.random() * 0.002;
+          this.alpha = 0.10 + Math.random() * 0.08;
+        }
+        step() {
+          this.phase += this.speed;
+          if (this.phase >= 1) this.regen();
+        }
+      }
+
+      const paths = Array.from({ length: NUM_PATHS }, () => new Path());
+
+      // ----- coord helpers (use CSS pixels, not raw canvas pixels — ctx is scaled) -----
+      function widthCSS()  { return canvas.getBoundingClientRect().width; }
+      function heightCSS() { return canvas.getBoundingClientRect().height; }
+      const padX = 8, padY = 8;
+      function xAt(t) {
+        return padX + (t / (STEPS - 1)) * (widthCSS() - padX * 2);
+      }
+      function yAt(v) {
+        const norm = (v - yLo) / (yHi - yLo);
+        return (heightCSS() - padY) - norm * (heightCSS() - padY * 2);
+      }
+
+      // ----- HUD updates (P5/P50/P95 of terminal value) -----
+      const elP5  = document.getElementById('hero-p5');
+      const elP50 = document.getElementById('hero-p50');
+      const elP95 = document.getElementById('hero-p95');
+      function fmt(v) {
+        const pct = ((v / S0) - 1) * 100;
+        const sign = pct >= 0 ? '+' : '';
+        return sign + pct.toFixed(0) + '%';
+      }
+      if (elP5)  elP5.textContent  = fmt(percentileBands.p5[STEPS - 1]);
+      if (elP50) elP50.textContent = fmt(percentileBands.p50[STEPS - 1]);
+      if (elP95) elP95.textContent = fmt(percentileBands.p95[STEPS - 1]);
+
+      // ----- draw -----
+      function drawBand() {
+        const W = widthCSS(), H = heightCSS();
+        // Filled envelope between p5 and p95
+        ctx.beginPath();
+        for (let t = 0; t < STEPS; t++) {
+          const x = xAt(t), y = yAt(percentileBands.p95[t]);
+          if (t === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+        }
+        for (let t = STEPS - 1; t >= 0; t--) {
+          ctx.lineTo(xAt(t), yAt(percentileBands.p5[t]));
+        }
+        ctx.closePath();
+        const grad = ctx.createLinearGradient(0, 0, 0, H);
+        grad.addColorStop(0, 'rgba(240, 45, 125, 0.07)');
+        grad.addColorStop(1, 'rgba(124, 58, 237, 0.04)');
+        ctx.fillStyle = grad;
+        ctx.fill();
+
+        // P50 (median) — the "expected" track
+        ctx.strokeStyle = 'rgba(255, 106, 170, 0.55)';
+        ctx.lineWidth = 1.4;
+        ctx.setLineDash([4, 3]);
+        ctx.beginPath();
+        for (let t = 0; t < STEPS; t++) {
+          const x = xAt(t), y = yAt(percentileBands.p50[t]);
+          if (t === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+        ctx.setLineDash([]);
+      }
+
+      function drawGrid() {
+        const W = widthCSS(), H = heightCSS();
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.04)';
+        ctx.lineWidth = 1;
+        for (let i = 1; i < 4; i++) {
+          const y = (H * i) / 4;
+          ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+        }
+        for (let i = 1; i < 6; i++) {
+          const x = (W * i) / 6;
+          ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+        }
+      }
+
+      function frame() {
+        const W = widthCSS(), H = heightCSS();
+        ctx.clearRect(0, 0, W, H);
+
+        drawGrid();
+        drawBand();
+
+        // Spaghetti paths — each animated to its own phase.
+        for (const p of paths) {
+          const visibleSteps = Math.max(2, Math.floor(p.phase * STEPS));
+          ctx.strokeStyle = `rgba(240, 45, 125, ${p.alpha})`;
+          ctx.lineWidth = 0.9;
+          ctx.beginPath();
+          for (let t = 0; t < visibleSteps; t++) {
+            const x = xAt(t), y = yAt(p.values[t]);
+            if (t === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+          }
+          ctx.stroke();
+
+          // Bright leading dot on each active path.
+          const tHead = visibleSteps - 1;
+          ctx.fillStyle = 'rgba(255, 180, 210, 0.75)';
+          ctx.beginPath();
+          ctx.arc(xAt(tHead), yAt(p.values[tHead]), 1.4, 0, Math.PI * 2);
+          ctx.fill();
+
+          p.step();
+        }
+
+        requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    })();
 
     // ===== DEMO 1: MULTIVARIATE REGRESSION =====
     const canvas1 = document.getElementById('canvas1');
