@@ -1075,6 +1075,103 @@
     }
     .finsight-card:hover .finsight-open { gap: 0.6rem; }
 
+    /* ─── GIStice preview card ─── */
+    .gistice-card {
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+    }
+    .gistice-card .live-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(6, 182, 212, 0.12);
+      border: 1px solid rgba(6, 182, 212, 0.35);
+      border-radius: 999px;
+      padding: 0.35rem 0.9rem;
+      font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: #67e8f9; font-weight: 700;
+      align-self: flex-start;
+      margin-bottom: 1rem;
+    }
+    .gistice-card .live-badge::before {
+      content: ''; width: 6px; height: 6px;
+      background: var(--cyan); border-radius: 50%;
+      box-shadow: 0 0 8px var(--cyan);
+      animation: pulse 1.6s ease-in-out infinite;
+    }
+    .gistice-preview {
+      background: linear-gradient(135deg, rgba(6, 182, 212, 0.07), rgba(124, 58, 237, 0.05));
+      border: 1px solid rgba(6, 182, 212, 0.18);
+      border-radius: 16px;
+      padding: 1.5rem;
+      flex: 1;
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+    }
+    .gistice-preview::before {
+      content: '';
+      position: absolute; top: -40%; right: -30%;
+      width: 220px; height: 220px;
+      background: radial-gradient(circle, rgba(6, 182, 212, 0.15) 0%, transparent 65%);
+      pointer-events: none;
+      filter: blur(10px);
+    }
+    /* Simulated tract grid */
+    .gistice-map {
+      position: relative; z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(14, 1fr);
+      grid-template-rows: repeat(7, 1fr);
+      gap: 2px;
+      height: 82px;
+      margin-bottom: 0.9rem;
+    }
+    .gistice-map .tract {
+      border-radius: 1px;
+      transition: opacity 0.3s;
+    }
+    .gistice-card:hover .gistice-map .tract { opacity: 1 !important; }
+    .gistice-stat-row {
+      display: flex; justify-content: space-between; align-items: baseline;
+      margin-bottom: 0.4rem;
+      position: relative; z-index: 1;
+    }
+    .gistice-stat-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem; letter-spacing: 0.09em; text-transform: uppercase;
+      color: #999;
+    }
+    .gistice-stat-value {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.5rem; font-weight: 800;
+      background: linear-gradient(135deg, var(--cyan), #67e8f9);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .gistice-footer {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(6, 182, 212, 0.15);
+      position: relative; z-index: 1;
+    }
+    .gistice-footer-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem; color: #888;
+    }
+    .gistice-open {
+      color: #67e8f9; font-weight: 600; font-size: 0.85rem;
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      transition: gap 0.3s;
+    }
+    .gistice-card:hover .gistice-open { gap: 0.6rem; }
+
     /* ─── Projects ─── */
     #projects .projects-grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -1435,10 +1532,10 @@
     <div class="about-grid reveal">
       <div class="about-text">
         <p>
-          I'm a <strong>Data Science student at UC Berkeley</strong> (Class of '27) interested in the seam where probabilistic modeling meets the open web. I build systems that move heavy math like Monte Carlo simulation, ARIMA forecasting, gradient updates, AES-GCM encryption from out of the server room into the browser tab in front of you.
+          I'm a <strong>Data Science student at UC Berkeley</strong> (Class of '27) interested in the seam where probabilistic modeling meets the open web. I build systems that move heavy math like Monte Carlo simulation, gradient descent and spatial regression out of research notebooks and into things you can actually click and interact with.
         </p>
         <p>
-          My recent work splits between full-stack and research. <strong>FinSight</strong> is a wealth and retirement simulator where a vectorized stochastic engine in TypeScript runs 10k Geometric Brownian Motion trials in under a second, while a zero-knowledge pipeline (PBKDF2 + AES-GCM-256) makes the server mathematically incapable of decrypting your data. On the research side, I worked with <strong>GIStice League</strong>'s ML team applying spatial econometrics to food access inequity, engineering K-Means and density features into a PyTorch multivariate regression that delivered an 18% R² gain across 10,000+ U.S. Census tracts.
+          My recent work splits between full-stack product and research. <strong>FinSight</strong> is a personal finance intelligence platform built entirely in the browser. It runs a 3,000-trial Geometric Brownian Motion retirement simulator using a seeded PRNG so results are deterministic and reproducible, generates five categories of AI-driven insight from the user's real income, spending and portfolio data, and stores everything in localStorage so no server ever touches your numbers. The dashboard includes a cash flow tracker with category icons and a repeat last shortcut, an emergency fund ring chart, a live market sentiment gauge and a six-article financial education curriculum with interactive quizzes. On the research side I worked with <strong>GIStice League</strong>'s ML team on food access inequity in the Bay Area, building an interactive Leaflet map where you can color census tracts by accessibility index, race, income or education and run a live multivariate regression across 20+ features to see R² and RMSE update in real time. Engineering K-Means clustering and density features into the model delivered an <strong>18% R² gain</strong> over a naive distance only baseline.
         </p>
         <p>
           I care about work that holds up under both <strong>quantitative scrutiny and real users</strong>. I write TypeScript and Python, ship with Next.js and PyTorch, and like building things you can actually click. You can experience that the interactive demos below run their solvers entirely in your browser, no backend.
@@ -1464,7 +1561,7 @@
           <div class="stat-label">Census records analyzed in spatial pipeline</div>
         </div>
         <div class="stat-card">
-          <div class="stat-num">10k</div>
+          <div class="stat-num">3k</div>
           <div class="stat-label">Monte Carlo trials per FinSight retirement run</div>
         </div>
         <div class="stat-card">
@@ -1666,6 +1763,31 @@
         </div>
       </div>
 
+      <!-- GIStice Live App -->
+      <a href="https://gistice-league.onrender.com/" target="_blank" rel="noopener noreferrer" class="demo-card gistice-card">
+        <span class="live-badge">Live App</span>
+        <div class="demo-title">GIStice League — Bay Area Food Access</div>
+        <div class="demo-desc">
+          Interactive Leaflet map with live ML regression. Color census tracts by accessibility, income or race, then run the model and watch R² update. Click to open the live app.
+        </div>
+        <div class="gistice-preview">
+          <div>
+            <div class="gistice-stat-row">
+              <span class="gistice-stat-label">Accessibility Index</span>
+              <span class="gistice-stat-value">R² +18%</span>
+            </div>
+            <!-- Simulated census tract grid in cyan/green heatmap colors -->
+            <div class="gistice-map" id="gistice-map-grid">
+              <!-- JS fills this in below -->
+            </div>
+          </div>
+          <div class="gistice-footer">
+            <span class="gistice-footer-label">Bay Area · 20+ ML features</span>
+            <span class="gistice-open">Open App →</span>
+          </div>
+        </div>
+      </a>
+
       <!-- FinSight Live App (added) -->
       <a href="https://finsight-tau-livid.vercel.app/" target="_blank" rel="noopener noreferrer" class="demo-card finsight-card">
         <span class="live-badge">Live App</span>
@@ -1713,13 +1835,14 @@
       <div class="project-card">
         <span class="project-badge">🎓 Berkeley Club Open Project · Machine Learning Team</span>
         <div class="project-icon">🗺️</div>
-        <div class="project-title">GIStice League <span class="project-subtitle"></span></div>
+        <div class="project-title">GIStice League</div>
         <div class="project-desc">
-          Conducted spatial econometric analysis on <strong>10k+ census records</strong>, applying <strong>K-Means clustering</strong> and <strong>multivariate regression</strong> to quantify food desert density yielding an <strong>18% accuracy improvement</strong> over baseline distance only models. Visualized with GeoPandas and packaged as a map based narrative equipping community advocates with data-backed evidence for targeted food infrastructure investment.
+          I joined GIStice League's ML team because the problem felt concrete and urgent: which Bay Area neighborhoods have genuinely bad grocery access, and why? We built a full interactive web app where users can load a Leaflet map of Bay Area census tracts and color them by our <strong>Accessibility Index</strong>, by race and ethnicity breakdowns, by median income, homeownership, education level, or age. There's also a residual gradient layer that highlights where our model's predictions diverge from reality exactly the kind of systematic bias you want to surface for policy work.<br><br>The ML panel lets you mix and match from <strong>20+ census features</strong> across four preset groupings or a fully custom selection, then hit run and watch R² and RMSE update live. I was responsible for the feature engineering side: building K-Means spatial clusters and grocery density kernels that the base distance-only model was missing. That set of engineered features produced an <strong>18% R² improvement</strong> over the naive baseline. The end result is a tool that community advocates can actually hand to a city council member.
         </div>
         <div class="project-tags">
-          <span class="project-tag">K-Means</span>
-          <span class="project-tag">Multivariate Reg.</span>
+          <span class="project-tag">Leaflet.js</span>
+          <span class="project-tag">K-Means Clustering</span>
+          <span class="project-tag">Multivariate Regression</span>
           <span class="project-tag">GeoPandas</span>
           <span class="project-tag">Spatial Econometrics</span>
           <span class="project-tag">PyTorch</span>
@@ -1729,6 +1852,9 @@
             <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
             View Code
           </a>
+          <a href="https://gistice-league.onrender.com/" target="_blank" rel="noopener noreferrer" class="project-link project-link-live">
+            Live Site ↗
+          </a>
         </div>
       </div>
 
@@ -1737,15 +1863,15 @@
         <div class="project-icon">💰</div>
         <div class="project-title">FinSight Dashboard</div>
         <div class="project-desc">
-          Wealth building platform powered by <strong>Monte Carlo retirement simulations</strong>, <strong>ARIMA style liquidity forecasting</strong>, and <strong>AES-GCM-256 encryption</strong>. Includes a live portfolio dashboard, on chain ETH balance indexing, σ-threshold spending guardrails, and a 6 part educational curriculum on probabilistic investing.
+          Personal finance intelligence platform where all computation runs in the browser and data never leaves the device. Built a <strong>3,000 trial Monte Carlo retirement simulator</strong> using seeded Geometric Brownian Motion with a P10/P50/P90 percentile chart and a What If slider that shows how an extra $200 per month shifts your 25 year outcome in real time. A rule based <strong>AI insight engine</strong> reads the user's actual savings rate, portfolio P&L, emergency fund gap and sector risk to fire specific, numbered recommendations rather than generic tips. The cash flow tracker logs expenses by icon category with a repeat-last shortcut, savings rate badge and emergency fund ring chart. A six article <strong>financial education curriculum</strong> covers index funds, compound interest, asset allocation and tax strategy, each with an interactive quiz. Zero backend localStorage only, no server, no account required.
         </div>
         <div class="project-tags">
-          <span class="project-tag">Next.js</span>
+          <span class="project-tag">Next.js 14</span>
           <span class="project-tag">TypeScript</span>
-          <span class="project-tag">Monte Carlo</span>
-          <span class="project-tag">ARIMA</span>
-          <span class="project-tag">Web Crypto</span>
-          <span class="project-tag">Recharts</span>
+          <span class="project-tag">Monte Carlo / GBM</span>
+          <span class="project-tag">Framer Motion</span>
+          <span class="project-tag">Tailwind CSS</span>
+          <span class="project-tag">localStorage</span>
         </div>
         <div class="project-links">
           <a href="https://github.com/ojasvi24-coder/finsight" target="_blank" rel="noopener noreferrer" class="project-link">
@@ -2421,6 +2547,67 @@
       ctx3.arc(x, y, 2.5, 0, Math.PI * 2);
       ctx3.fill();
     }
+
+    // ===== GISTICE MAP GRID =====
+    (function () {
+      const grid = document.getElementById('gistice-map-grid');
+      if (!grid) return;
+
+      // Palette mimicking a cyan→green accessibility heatmap
+      // low access = red-orange, mid = yellow, high = cyan-green
+      const palette = [
+        'rgba(248,113,113,0.75)',  // low access
+        'rgba(251,146,60,0.70)',
+        'rgba(250,204,21,0.65)',
+        'rgba(163,230,53,0.70)',
+        'rgba(34,211,238,0.75)',   // high access
+        'rgba(6,182,212,0.80)',
+        'rgba(14,165,233,0.70)',
+        'rgba(99,102,241,0.60)',   // underserved overlay
+      ];
+
+      // Seeded pseudo-random so the grid is stable on every render
+      let seed = 17;
+      function rand() {
+        seed = (seed * 1664525 + 1013904223) & 0xffffffff;
+        return (seed >>> 0) / 4294967296;
+      }
+
+      // 14 × 7 = 98 tracts — mirror the CSS grid dimensions
+      const COLS = 14, ROWS = 7;
+      for (let i = 0; i < COLS * ROWS; i++) {
+        const div = document.createElement('div');
+        div.className = 'tract';
+
+        // A few tracts are "empty" (water / parks) — keep them dark
+        if (rand() < 0.08) {
+          div.style.background = 'rgba(255,255,255,0.04)';
+          div.style.opacity = '0.4';
+        } else {
+          const colorIdx = Math.floor(rand() * palette.length);
+          div.style.background = palette[colorIdx];
+          div.style.opacity = String((0.55 + rand() * 0.45).toFixed(2));
+        }
+        grid.appendChild(div);
+      }
+
+      // Subtle pulse: every 2.5s randomly re-shade a handful of tracts
+      // so the preview feels alive without being distracting
+      const tracts = Array.from(grid.querySelectorAll('.tract'));
+      setInterval(() => {
+        const n = Math.floor(3 + rand() * 4);
+        for (let k = 0; k < n; k++) {
+          const idx = Math.floor(rand() * tracts.length);
+          const t = tracts[idx];
+          if (t && t.style.background !== 'rgba(255,255,255,0.04)') {
+            const c = palette[Math.floor(rand() * palette.length)];
+            t.style.transition = 'background 0.8s ease, opacity 0.8s ease';
+            t.style.background = c;
+            t.style.opacity = String((0.55 + rand() * 0.45).toFixed(2));
+          }
+        }
+      }, 2500);
+    })();
   </script>
 </body>
 </html>
