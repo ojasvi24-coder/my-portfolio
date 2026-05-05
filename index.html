@@ -1084,24 +1084,24 @@
     }
     .gistice-card .live-badge {
       display: inline-flex; align-items: center; gap: 0.5rem;
-      background: rgba(6, 182, 212, 0.12);
-      border: 1px solid rgba(6, 182, 212, 0.35);
+      background: rgba(240, 45, 125, 0.12);
+      border: 1px solid rgba(240, 45, 125, 0.35);
       border-radius: 999px;
       padding: 0.35rem 0.9rem;
       font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
-      color: #67e8f9; font-weight: 700;
+      color: var(--pink-light); font-weight: 700;
       align-self: flex-start;
       margin-bottom: 1rem;
     }
     .gistice-card .live-badge::before {
       content: ''; width: 6px; height: 6px;
-      background: var(--cyan); border-radius: 50%;
-      box-shadow: 0 0 8px var(--cyan);
+      background: var(--pink); border-radius: 50%;
+      box-shadow: 0 0 8px var(--pink);
       animation: pulse 1.6s ease-in-out infinite;
     }
     .gistice-preview {
-      background: linear-gradient(135deg, rgba(6, 182, 212, 0.07), rgba(124, 58, 237, 0.05));
-      border: 1px solid rgba(6, 182, 212, 0.18);
+      background: linear-gradient(135deg, rgba(240, 45, 125, 0.07), rgba(124, 58, 237, 0.05));
+      border: 1px solid rgba(240, 45, 125, 0.18);
       border-radius: 16px;
       padding: 1.5rem;
       flex: 1;
@@ -1117,7 +1117,7 @@
       content: '';
       position: absolute; top: -40%; right: -30%;
       width: 220px; height: 220px;
-      background: radial-gradient(circle, rgba(6, 182, 212, 0.15) 0%, transparent 65%);
+      background: radial-gradient(circle, rgba(240, 45, 125, 0.15) 0%, transparent 65%);
       pointer-events: none;
       filter: blur(10px);
     }
@@ -1149,7 +1149,7 @@
     .gistice-stat-value {
       font-family: 'Outfit', sans-serif;
       font-size: 1.5rem; font-weight: 800;
-      background: linear-gradient(135deg, var(--cyan), #67e8f9);
+      background: linear-gradient(135deg, var(--pink), var(--pink-light));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -1158,7 +1158,7 @@
       display: flex; justify-content: space-between; align-items: center;
       margin-top: 1rem;
       padding-top: 1rem;
-      border-top: 1px solid rgba(6, 182, 212, 0.15);
+      border-top: 1px solid rgba(240, 45, 125, 0.15);
       position: relative; z-index: 1;
     }
     .gistice-footer-label {
@@ -1166,7 +1166,7 @@
       font-size: 0.72rem; color: #888;
     }
     .gistice-open {
-      color: #67e8f9; font-weight: 600; font-size: 0.85rem;
+      color: var(--pink-light); font-weight: 600; font-size: 0.85rem;
       display: inline-flex; align-items: center; gap: 0.3rem;
       transition: gap 0.3s;
     }
@@ -1715,53 +1715,9 @@
         </div>
       </div>
 
-      <!-- Neural Network Visualizer -->
-      <div class="demo-card">
-        <span class="demo-tag">Training · 2-8-1</span>
-        <div class="demo-title">Neural Network Learning</div>
-        <div class="demo-meta">MLP · ReLU · MSE Loss · η = 0.05</div>
-        <div class="demo-desc">
-          Watch a neural network learn in real-time. Network trains to predict a sine wave pattern.
-        </div>
-        <div class="demo-box" id="demo2">
-          <canvas id="canvas2" width="280" height="180"></canvas>
-        </div>
-        <div class="demo-controls">
-          <div style="display: flex; gap: 0.8rem; align-items: center; justify-content: center;">
-            <button class="demo-button" onclick="startNNTraining()" id="nn-btn">Start Training</button>
-          </div>
-          <div class="nn-telemetry">
-            <div class="telemetry-cell">
-              <div class="telemetry-label">Epoch</div>
-              <div class="telemetry-value" id="nn-epoch">0 / 25</div>
-            </div>
-            <div class="telemetry-cell">
-              <div class="telemetry-label">Loss</div>
-              <div class="telemetry-value" id="nn-loss">0.000</div>
-            </div>
-            <div class="telemetry-cell">
-              <div class="telemetry-label">Status</div>
-              <div class="telemetry-value" id="nn-status">Idle</div>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <!-- K-Means Clustering -->
-      <div class="demo-card">
-        <span class="demo-tag">Unsupervised · k=4</span>
-        <div class="demo-title">K-Means Clustering</div>
-        <div class="demo-meta">Lloyd's Algorithm · Euclidean Distance</div>
-        <div class="demo-desc">
-          Visual clustering algorithm. Points automatically group into k clusters. Watch it converge!
-        </div>
-        <div class="demo-box" id="demo3">
-          <canvas id="canvas3" width="280" height="180"></canvas>
-        </div>
-        <div class="demo-controls">
-          <button class="demo-button" onclick="startClustering()" id="km-btn">Run Clustering</button>
-        </div>
-      </div>
+
+
 
       <!-- GIStice Live App -->
       <a href="https://gistice-league.onrender.com/" target="_blank" rel="noopener noreferrer" class="demo-card gistice-card">
@@ -2257,297 +2213,6 @@
     schoolInput.addEventListener('input', drawRegression);
     drawRegression();
 
-    // ===== DEMO 2: NEURAL NETWORK =====
-    const canvas2 = document.getElementById('canvas2');
-    const ctx2 = canvas2.getContext('2d');
-    const nnBtn = document.getElementById('nn-btn');
-    const nnLoss = document.getElementById('nn-loss');
-    const nnEpoch = document.getElementById('nn-epoch');
-    const nnStatus = document.getElementById('nn-status');
-    let nnTraining = false;
-    let globalLoss = 100;
-
-    class NeuralNetwork {
-      constructor() {
-        this.w1 = this.randomMatrix(2, 8);
-        this.b1 = this.randomVector(8);
-        this.w2 = this.randomMatrix(8, 1);
-        this.b2 = [0];
-        this.lr = 0.05;
-        this.loss = 100;
-      }
-
-      randomMatrix(rows, cols) {
-        return Array(rows).fill(0).map(() => 
-          Array(cols).fill(0).map(() => Math.random() * 2 - 1)
-        );
-      }
-
-      randomVector(size) {
-        return Array(size).fill(0).map(() => Math.random() * 0.1 - 0.05);
-      }
-
-      relu(x) { return Math.max(0, x); }
-      reluDeriv(x) { return x > 0 ? 1 : 0; }
-      sigmoid(x) { return 1 / (1 + Math.exp(-x)); }
-
-      forward(x, y) {
-        // Input to hidden
-        const hidden = [];
-        for (let j = 0; j < 8; j++) {
-          let z = this.b1[j];
-          for (let i = 0; i < 2; i++) {
-            z += x[i] * this.w1[i][j];
-          }
-          hidden[j] = this.relu(z);
-        }
-
-        // Hidden to output
-        let output = this.b2[0];
-        for (let j = 0; j < 8; j++) {
-          output += hidden[j] * this.w2[j][0];
-        }
-        output = this.sigmoid(output);
-
-        const error = (output - y) ** 2;
-        this.loss = this.loss * 0.95 + error * 0.05;
-        return output;
-      }
-
-      train() {
-        for (let iter = 0; iter < 5; iter++) {
-          const x = [Math.sin(Math.random() * Math.PI), Math.cos(Math.random() * Math.PI)];
-          const y = (Math.sin(x[0] * 2) + 0.5) * 0.5 > 0.5 ? 1 : 0;
-          this.forward(x, y);
-
-          // Simple weight update (simplified backprop)
-          for (let i = 0; i < 2; i++) {
-            for (let j = 0; j < 8; j++) {
-              this.w1[i][j] -= this.lr * Math.random() * 0.01;
-            }
-          }
-          for (let j = 0; j < 8; j++) {
-            this.w2[j][0] -= this.lr * Math.random() * 0.02;
-          }
-        }
-      }
-    }
-
-    const nn = new NeuralNetwork();
-
-    function drawNN() {
-      ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
-
-      const layerX = [canvas2.width * 0.15, canvas2.width * 0.5, canvas2.width * 0.85];
-      const nodeRadius = 4;
-
-      // Input layer (2 nodes)
-      ctx2.fillStyle = 'rgba(240, 45, 125, 0.7)';
-      for (let i = 0; i < 2; i++) {
-        const y = (canvas2.height / 3) + (i * canvas2.height / 3);
-        ctx2.beginPath();
-        ctx2.arc(layerX[0], y, nodeRadius, 0, Math.PI * 2);
-        ctx2.fill();
-      }
-
-      // Hidden layer (8 nodes)
-      ctx2.fillStyle = 'rgba(124, 58, 237, 0.6)';
-      for (let j = 0; j < 8; j++) {
-        const y = (canvas2.height / 10) + (j * canvas2.height / 9);
-        const alpha = Math.min(1, nn.w1[0][j] * nn.w1[1][j] + 0.3);
-        ctx2.fillStyle = `rgba(124, 58, 237, ${Math.abs(alpha) * 0.8})`;
-        ctx2.beginPath();
-        ctx2.arc(layerX[1], y, nodeRadius * 0.8, 0, Math.PI * 2);
-        ctx2.fill();
-      }
-
-      // Output layer (1 node)
-      ctx2.fillStyle = 'rgba(6, 182, 212, 0.8)';
-      ctx2.beginPath();
-      ctx2.arc(layerX[2], canvas2.height / 2, nodeRadius + 1, 0, Math.PI * 2);
-      ctx2.fill();
-
-      // Draw connections with weight visualization
-      for (let i = 0; i < 2; i++) {
-        const y1 = (canvas2.height / 3) + (i * canvas2.height / 3);
-        for (let j = 0; j < 8; j++) {
-          const y2 = (canvas2.height / 10) + (j * canvas2.height / 9);
-          const weight = Math.abs(nn.w1[i][j]);
-          ctx2.strokeStyle = `rgba(240, 45, 125, ${Math.min(weight * 0.5, 0.3)})`;
-          ctx2.lineWidth = weight * 1.5;
-          ctx2.beginPath();
-          ctx2.moveTo(layerX[0], y1);
-          ctx2.lineTo(layerX[1], y2);
-          ctx2.stroke();
-        }
-      }
-
-      for (let j = 0; j < 8; j++) {
-        const y2 = (canvas2.height / 10) + (j * canvas2.height / 9);
-        const weight = Math.abs(nn.w2[j][0]);
-        ctx2.strokeStyle = `rgba(124, 58, 237, ${Math.min(weight * 0.5, 0.3)})`;
-        ctx2.lineWidth = weight * 1.5;
-        ctx2.beginPath();
-        ctx2.moveTo(layerX[1], y2);
-        ctx2.lineTo(layerX[2], canvas2.height / 2);
-        ctx2.stroke();
-      }
-    }
-
-    function startNNTraining() {
-      if (nnTraining) return;
-      nnTraining = true;
-      nnBtn.disabled = true;
-      nnBtn.textContent = 'Training...';
-      nnStatus.textContent = 'Training';
-      nnStatus.classList.remove('converged');
-
-      const TOTAL_EPOCHS = 25;
-      let frame = 0;
-      const trainInterval = setInterval(() => {
-        nn.train();
-        drawNN();
-        globalLoss = nn.loss;
-        frame++;
-
-        // Update telemetry
-        nnLoss.textContent = nn.loss.toFixed(4);
-        nnEpoch.textContent = `${frame} / ${TOTAL_EPOCHS}`;
-
-        if (frame > TOTAL_EPOCHS) {
-          clearInterval(trainInterval);
-          nnTraining = false;
-          nnBtn.disabled = false;
-          nnBtn.textContent = 'Restart Training';
-          nnStatus.textContent = 'Converged';
-          nnStatus.classList.add('converged');
-        }
-      }, 80);
-    }
-
-    drawNN();
-
-    // ===== DEMO 3: K-MEANS CLUSTERING =====
-    const canvas3 = document.getElementById('canvas3');
-    const ctx3 = canvas3.getContext('2d');
-    let clusterData = null;
-
-    class KMeans {
-      constructor(k, points) {
-        this.k = k;
-        this.points = points;
-        this.centroids = [];
-        this.clusters = [];
-        this.initCentroids();
-      }
-
-      initCentroids() {
-        this.centroids = [];
-        for (let i = 0; i < this.k; i++) {
-          this.centroids.push({
-            x: Math.random() * canvas3.width,
-            y: Math.random() * canvas3.height
-          });
-        }
-      }
-
-      distance(p1, p2) {
-        return Math.sqrt((p1.x - p2.x) ** 2 + (p1.y - p2.y) ** 2);
-      }
-
-      assign() {
-        this.clusters = Array(this.k).fill(null).map(() => []);
-        this.points.forEach(p => {
-          let minDist = Infinity;
-          let cluster = 0;
-          this.centroids.forEach((c, i) => {
-            const d = this.distance(p, c);
-            if (d < minDist) {
-              minDist = d;
-              cluster = i;
-            }
-          });
-          this.clusters[cluster].push(p);
-        });
-      }
-
-      updateCentroids() {
-        this.centroids = this.clusters.map(cluster => {
-          if (cluster.length === 0) return { x: Math.random() * canvas3.width, y: Math.random() * canvas3.height };
-          const avgX = cluster.reduce((sum, p) => sum + p.x, 0) / cluster.length;
-          const avgY = cluster.reduce((sum, p) => sum + p.y, 0) / cluster.length;
-          return { x: avgX, y: avgY };
-        });
-      }
-
-      step() {
-        this.assign();
-        this.updateCentroids();
-      }
-    }
-
-    function startClustering() {
-      const kmBtn = document.getElementById('km-btn');
-      if (kmBtn.disabled) return;
-      kmBtn.disabled = true;
-      kmBtn.textContent = 'Clustering...';
-
-      const points = Array(45).fill(null).map(() => ({
-        x: Math.random() * canvas3.width,
-        y: Math.random() * canvas3.height
-      }));
-
-      clusterData = new KMeans(3, points);
-      const colors = ['rgba(240, 45, 125, 0.7)', 'rgba(124, 58, 237, 0.7)', 'rgba(6, 182, 212, 0.7)'];
-
-      let step = 0;
-      const clusterInterval = setInterval(() => {
-        clusterData.step();
-
-        ctx3.clearRect(0, 0, canvas3.width, canvas3.height);
-
-        // Draw points
-        clusterData.clusters.forEach((cluster, i) => {
-          ctx3.fillStyle = colors[i];
-          cluster.forEach(p => {
-            ctx3.beginPath();
-            ctx3.arc(p.x, p.y, 2.5, 0, Math.PI * 2);
-            ctx3.fill();
-          });
-        });
-
-        // Draw centroids
-        ctx3.fillStyle = '#fff';
-        clusterData.centroids.forEach(c => {
-          ctx3.beginPath();
-          ctx3.arc(c.x, c.y, 4.5, 0, Math.PI * 2);
-          ctx3.fill();
-          ctx3.strokeStyle = '#f5f0f2';
-          ctx3.lineWidth = 2;
-          ctx3.beginPath();
-          ctx3.arc(c.x, c.y, 7, 0, Math.PI * 2);
-          ctx3.stroke();
-        });
-
-        step++;
-        if (step > 18) {
-          clearInterval(clusterInterval);
-          kmBtn.disabled = false;
-          kmBtn.textContent = 'Run Clustering';
-        }
-      }, 150);
-    }
-
-    // Initial clustering visualization
-    ctx3.fillStyle = 'rgba(240, 45, 125, 0.3)';
-    for (let i = 0; i < 45; i++) {
-      const x = Math.random() * canvas3.width;
-      const y = Math.random() * canvas3.height;
-      ctx3.beginPath();
-      ctx3.arc(x, y, 2.5, 0, Math.PI * 2);
-      ctx3.fill();
-    }
-
     // ===== GISTICE MAP GRID =====
     (function () {
       const grid = document.getElementById('gistice-map-grid');
@@ -2611,3 +2276,4 @@
   </script>
 </body>
 </html>
+
