@@ -1032,14 +1032,14 @@ let chatHistory=[];
 
 async function callClaude(userMsg){
   chatHistory.push({role:'user',content:userMsg});
-  const res=await fetch('https://api.anthropic.com/v1/messages',{
+  const res=await fetch('/api/chat',{
     method:'POST',
     headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:1000,system:SYS,messages:chatHistory})
+    body:JSON.stringify({messages:chatHistory})
   });
   if(!res.ok) throw new Error('API error '+res.status);
   const d=await res.json();
-  const reply=d.content?.[0]?.text||'Sorry, I could not generate a response.';
+  const reply=d.reply||'Sorry, I could not generate a response.';
   chatHistory.push({role:'assistant',content:reply});
   return reply;
 }
