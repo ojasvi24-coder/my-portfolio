@@ -74,7 +74,16 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: "Server is not configured correctly" });
   }
 
-  const { messages } = req.body || {};
+  let body = req.body;
+  if (typeof body === "string") {
+    try {
+      body = JSON.parse(body);
+    } catch {
+      return res.status(400).json({ error: "Invalid JSON body" });
+    }
+  }
+
+  const { messages } = body || {};
   if (!Array.isArray(messages) || messages.length === 0) {
     return res.status(400).json({ error: "messages array is required" });
   }
