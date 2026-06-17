@@ -106,7 +106,7 @@ export default function AskAI() {
   }
 
   return (
-    <div className="bg-white shadow-xl rounded-2xl p-8 border">
+    <div className="bg-white shadow-xl rounded-2xl p-8 border flex flex-col h-full max-h-[600px]">
       <h3 className="text-xl font-semibold mb-2">Ask AI about Ojasvi</h3>
       <p className="text-gray-600 mb-6">
         Ask anything about Ojasvi's background, skills, or projects, and get
@@ -115,7 +115,7 @@ export default function AskAI() {
 
       <div
         ref={scrollRef}
-        className="h-80 overflow-y-auto rounded-xl border bg-gray-50 p-4 mb-4 flex flex-col gap-3"
+        className="flex-1 overflow-y-auto rounded-xl border bg-gray-50 p-4 mb-4 flex flex-col gap-3"
       >
         {messages.length === 0 && (
           <p className="text-gray-400 text-sm">
@@ -145,38 +145,40 @@ export default function AskAI() {
 
       {error && <p className="text-red-500 text-sm mb-3">{error}</p>}
 
-      {messages.length === 0 && (
-        <div className="flex flex-wrap gap-2 mb-4">
-          {SUGGESTED_PROMPTS.map((p) => (
-            <button
-              key={p}
-              type="button"
-              onClick={() => sendMessage(p)}
-              className="text-xs px-3 py-1.5 border rounded-full text-gray-600 hover:bg-gray-100 transition"
-            >
-              {p}
-            </button>
-          ))}
-        </div>
-      )}
+      <div className="flex-shrink-0">
+        {messages.length === 0 && (
+          <div className="flex flex-wrap gap-2 mb-4">
+            {SUGGESTED_PROMPTS.map((p) => (
+              <button
+                key={p}
+                type="button"
+                onClick={() => sendMessage(p)}
+                className="text-xs px-3 py-1.5 border rounded-full text-gray-600 hover:bg-gray-100 transition"
+              >
+                {p}
+              </button>
+            ))}
+          </div>
+        )}
 
-      <form onSubmit={handleSubmit} className="flex gap-2">
-        <input
-          type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Ask about Ojasvi's experience…"
-          className="flex-1 border rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-black/10"
-          disabled={isLoading}
-        />
-        <button
-          type="submit"
-          disabled={isLoading || !input.trim()}
-          className="px-5 py-2 bg-black text-white rounded-xl text-sm font-medium disabled:opacity-40 hover:opacity-90 transition"
-        >
-          Send
-        </button>
-      </form>
+        <form onSubmit={handleSubmit} className="flex gap-2">
+          <input
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Ask about Ojasvi's experience…"
+            className="flex-1 border rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-black/10"
+            disabled={isLoading}
+          />
+          <button
+            type="submit"
+            disabled={isLoading || !input.trim()}
+            className="px-5 py-2 bg-black text-white rounded-xl text-sm font-medium disabled:opacity-40 hover:opacity-90 transition"
+          >
+            Send
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
