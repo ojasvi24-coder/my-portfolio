@@ -3,8 +3,8 @@
 // required convention for serverless functions, so it must stay here.
 //
 // Responsibility: hold the Anthropic API key server-side and proxy chat
-// requests from the AskAI React component to Claude. The key never reaches
-// the browser.
+// requests from the "Ask My AI" widget in index.html to Claude.
+// The key never reaches the browser.
 
 const SYSTEM_PROMPT = `You are an AI assistant embedded in Ojasvi Shrivastava's portfolio. Your ONLY job is to answer questions about Ojasvi accurately and helpfully. Be concise (3-5 sentences), direct, and technically credible. Always ground answers in the facts below. Never fabricate or embellish.
 
@@ -63,8 +63,18 @@ const MAX_HISTORY_MESSAGES = 20; // cap how much history we forward to the model
 const MAX_MESSAGE_CHARS = 4000; // cap per-message size to limit cost/abuse
 
 export default async function handler(req, res) {
+  // Visit this endpoint directly in a browser (GET request) any time to
+  // confirm the function is deployed and whether it can see the API key,
+  // without needing curl/PowerShell. Never reveals the key itself.
+  if (req.method === "GET") {
+    return res.status(200).json({
+      status: "ok",
+      hasApiKey: Boolean(process.env.ANTHROPIC_API_KEY),
+    });
+  }
+
   if (req.method !== "POST") {
-    res.setHeader("Allow", ["POST"]);
+    res.setHeader("Allow", ["GET", "POST"]);
     return res.status(405).json({ error: "Method not allowed" });
   }
 
