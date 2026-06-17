@@ -130,15 +130,26 @@ export default async function handler(req, res) {
     if (!anthropicRes.ok) {
       const errText = await anthropicRes.text();
       console.error("Anthropic API error:", anthropicRes.status, errText);
-      return res.status(502).json({ error: "Upstream AI provider error" });
+      return res.status(502).json({ 
+        error: "Upstream AI provider error",
+        details: `Anthropic API returned ${anthropicRes.status}` 
+      });
     }
 
     const data = await anthropicRes.json();
-    const reply = data?.content?.[0]?.text || "Sorry, I couldn't generate a response.";
+    if (!data.content || !Array.isArray(data.content) || data.content.length === 0) {
+      console.error("Unexpected Anthropic response format:", data);
+      return res.status(502).json({ error: "Invalid response from AI provider" });
+    }
+
+    const reply = data.content[0].text || "Sorry, I couldn't generate a response.";
 
     return res.status(200).json({ reply });
   } catch (err) {
-    console.error("chat handler error:", err);
-    return res.status(500).json({ error: "Internal server error" });
+    console.error("Chat handler error:", err.message || err);
+    return res.status(500).json({ 
+      error: "Internal server error",
+      message: err.message || "Unknown error" 
+    });
   }
 }

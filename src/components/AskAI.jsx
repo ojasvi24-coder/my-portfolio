@@ -37,17 +37,25 @@ export default function AskAI() {
       });
 
       if (!res.ok) {
-        throw new Error(`API error ${res.status}`);
+        const errorText = await res.text();
+        console.error("Status:", res.status, "Response:", errorText);
+        throw new Error(`API error ${res.status}: ${errorText}`);
       }
 
       const data = await res.json();
+      if (!data.reply) {
+        console.error("Invalid response format. Expected 'reply' field.", data);
+        throw new Error("Invalid response format from server");
+      }
       setMessages((prev) => [
         ...prev,
         { role: "assistant", content: data.reply },
       ]);
     } catch (err) {
-      console.error("AskAI error:", err);
+      console.error("Chat request failed:", err.message || err);
       setError("Something went wrong. Please try again in a moment.");
+      // Remove the failed user message if API call failed
+      setMessages((prev) => prev.slice(0, -1));
     } finally {
       setIsLoading(false);
     }
