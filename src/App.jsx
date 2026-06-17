@@ -8,6 +8,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import AskAI from "./components/AskAI";
 
 export default function App() {
   const [sqft, setSqft] = useState(1000);
@@ -137,6 +138,12 @@ export default function App() {
             </p>
           </div>
         </div>
+      </section>
+
+      {/* ASK AI */}
+      <section id="ask-ai" className="max-w-5xl mx-auto mb-24 px-6">
+        <h2 className="text-3xl font-semibold mb-6">Ask AI</h2>
+        <AskAI />
       </section>
 
       {/* FOOTER */}
