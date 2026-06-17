@@ -125,6 +125,14 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: "No valid message content provided" });
   }
 
+  // Groq uses OpenAI-compatible format: system must be first message with role "system"
+  const messagesWithSystem = [
+    { role: "system", content: SYSTEM_PROMPT },
+    ...safeMessages,
+  ];
+
+  console.log("[BACKEND] Final messages payload (with system):", messagesWithSystem.length, "messages total");
+
   try {
     console.log("[BACKEND] Calling Groq API endpoint: https://api.groq.com/openai/v1/chat/completions");
     console.log("[BACKEND] Model:", MODEL, "| Max tokens:", MAX_TOKENS);
@@ -138,8 +146,7 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         model: MODEL,
         max_tokens: MAX_TOKENS,
-        system: SYSTEM_PROMPT,
-        messages: safeMessages,
+        messages: messagesWithSystem,
       }),
     });
 
