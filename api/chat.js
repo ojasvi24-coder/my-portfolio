@@ -63,10 +63,14 @@ const MAX_HISTORY_MESSAGES = 20; // cap how much history we forward to the model
 const MAX_MESSAGE_CHARS = 4000; // cap per-message size to limit cost/abuse
 
 export default async function handler(req, res) {
+  console.log("[BACKEND] /api/chat handler called");
+  console.log("[BACKEND] Request method:", req.method);
+  
   // Visit this endpoint directly in a browser (GET request) any time to
   // confirm the function is deployed and whether it can see the API key,
   // without needing curl/PowerShell. Never reveals the key itself.
   if (req.method === "GET") {
+    console.log("[BACKEND] GET request - returning status check");
     return res.status(200).json({
       status: "ok",
       hasApiKey: Boolean(process.env.ANTHROPIC_API_KEY),
@@ -74,27 +78,36 @@ export default async function handler(req, res) {
   }
 
   if (req.method !== "POST") {
+    console.warn("[BACKEND] Invalid method:", req.method);
     res.setHeader("Allow", ["GET", "POST"]);
     return res.status(405).json({ error: "Method not allowed" });
   }
 
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) {
-    console.error("Missing ANTHROPIC_API_KEY environment variable");
+    console.error("[BACKEND ERROR] Missing ANTHROPIC_API_KEY environment variable");
     return res.status(500).json({ error: "Server is not configured correctly" });
   }
+  console.log("[BACKEND] API key is set (first 10 chars):", apiKey.substring(0, 10) + "...");
 
   let body = req.body;
+  console.log("[BACKEND] Received body type:", typeof body);
+  
   if (typeof body === "string") {
     try {
       body = JSON.parse(body);
-    } catch {
+      console.log("[BACKEND] Parsed string body");
+    } catch (parseErr) {
+      console.error("[BACKEND ERROR] Failed to parse JSON body:", parseErr);
       return res.status(400).json({ error: "Invalid JSON body" });
     }
   }
 
   const { messages } = body || {};
+  console.log("[BACKEND] Messages array length:", messages?.length);
+  
   if (!Array.isArray(messages) || messages.length === 0) {
+    console.error("[BACKEND ERROR] Invalid messages array");
     return res.status(400).json({ error: "messages array is required" });
   }
 
@@ -107,11 +120,18 @@ export default async function handler(req, res) {
     }))
     .filter((m) => m.content.trim().length > 0);
 
+  console.log("[BACKEND] Safe messages (sanitized) count:", safeMessages.length);
+  console.log("[BACKEND] Last message content:", safeMessages[safeMessages.length - 1]?.content.substring(0, 50) + "...");
+
   if (safeMessages.length === 0) {
+    console.error("[BACKEND ERROR] No valid message content after sanitization");
     return res.status(400).json({ error: "No valid message content provided" });
   }
 
   try {
+    console.log("[BACKEND] Calling Anthropic API endpoint: https://api.anthropic.com/v1/messages");
+    console.log("[BACKEND] Model:", MODEL, "| Max tokens:", MAX_TOKENS);
+    
     const anthropicRes = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
       headers: {
@@ -127,26 +147,42 @@ export default async function handler(req, res) {
       }),
     });
 
+    console.log("[BACKEND] Anthropic response received. Status:", anthropicRes.status, "OK:", anthropicRes.ok);
+
     if (!anthropicRes.ok) {
       const errText = await anthropicRes.text();
-      console.error("Anthropic API error:", anthropicRes.status, errText);
+      console.error(`[BACKEND ERROR] Anthropic API failed | Status: ${anthropicRes.status} | Response:`, errText);
       return res.status(502).json({ 
         error: "Upstream AI provider error",
         details: `Anthropic API returned ${anthropicRes.status}` 
       });
     }
 
-    const data = await anthropicRes.json();
+    let data;
+    try {
+      data = await anthropicRes.json();
+      console.log("[BACKEND] Parsed Anthropic response");
+    } catch (parseErr) {
+      console.error("[BACKEND ERROR] Failed to parse Anthropic JSON response:", parseErr);
+      return res.status(502).json({ error: "Failed to parse AI provider response" });
+    }
+
+    console.log("[BACKEND] Response structure - has content array:", Array.isArray(data.content));
+    console.log("[BACKEND] Content array length:", data.content?.length);
+    
     if (!data.content || !Array.isArray(data.content) || data.content.length === 0) {
-      console.error("Unexpected Anthropic response format:", data);
+      console.error("[BACKEND ERROR] Unexpected Anthropic response format:", JSON.stringify(data, null, 2));
       return res.status(502).json({ error: "Invalid response from AI provider" });
     }
 
     const reply = data.content[0].text || "Sorry, I couldn't generate a response.";
+    console.log("[BACKEND] Extracted reply (first 50 chars):", reply.substring(0, 50) + "...");
+    console.log("[BACKEND] Sending success response to frontend");
 
     return res.status(200).json({ reply });
   } catch (err) {
-    console.error("Chat handler error:", err.message || err);
+    console.error("[BACKEND ERROR] Chat handler exception:", err.message || err);
+    console.error("[BACKEND ERROR] Full error:", err);
     return res.status(500).json({ 
       error: "Internal server error",
       message: err.message || "Unknown error" 

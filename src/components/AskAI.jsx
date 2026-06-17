@@ -23,46 +23,79 @@ export default function AskAI() {
     const trimmed = text.trim();
     if (!trimmed || isLoading) return;
 
+    console.log("[CHAT] sendMessage called with text:", trimmed);
+
     const nextMessages = [...messages, { role: "user", content: trimmed }];
+    console.log("[CHAT] Messages array before state update:", nextMessages);
+    
     setMessages(nextMessages);
     setInput("");
     setError(null);
     setIsLoading(true);
 
+    console.log("[CHAT] State updated - isLoading set to true");
+
     try {
-      const res = await fetch("/api/chat", {
+      const targetUrl = "/api/chat";
+      const payload = { messages: nextMessages };
+      
+      console.log("[FRONTEND] Sending to API URL:", targetUrl);
+      console.log("[FRONTEND] Request payload:", JSON.stringify(payload, null, 2));
+      
+      const res = await fetch(targetUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: nextMessages }),
+        body: JSON.stringify(payload),
       });
+
+      console.log("[FRONTEND] Response received. Status:", res.status, "OK:", res.ok);
 
       if (!res.ok) {
         const errorText = await res.text();
-        console.error("Status:", res.status, "Response:", errorText);
-        throw new Error(`API error ${res.status}: ${errorText}`);
+        console.error(`[FRONTEND ERROR] Status: ${res.status} | Response:`, errorText);
+        throw new Error(`API failed with status ${res.status}`);
       }
 
-      const data = await res.json();
+      let data;
+      try {
+        data = await res.json();
+        console.log("[FRONTEND] Parsed JSON response:", data);
+      } catch (parseErr) {
+        console.error("[FRONTEND ERROR] Failed to parse JSON:", parseErr);
+        throw new Error("Invalid JSON response from server");
+      }
+
       if (!data.reply) {
-        console.error("Invalid response format. Expected 'reply' field.", data);
+        console.error("[FRONTEND ERROR] Invalid response format. Expected 'reply' field.", data);
         throw new Error("Invalid response format from server");
       }
-      setMessages((prev) => [
-        ...prev,
-        { role: "assistant", content: data.reply },
-      ]);
+
+      console.log("[FRONTEND] Assistant reply received:", data.reply);
+      
+      setMessages((prev) => {
+        const updated = [...prev, { role: "assistant", content: data.reply }];
+        console.log("[CHAT] Messages state updated with assistant response. New length:", updated.length);
+        return updated;
+      });
     } catch (err) {
-      console.error("Chat request failed:", err.message || err);
+      console.error("[FRONTEND ERROR] Chat request failed:", err.message || err);
+      console.error("[FRONTEND ERROR] Full error object:", err);
       setError("Something went wrong. Please try again in a moment.");
       // Remove the failed user message if API call failed
-      setMessages((prev) => prev.slice(0, -1));
+      setMessages((prev) => {
+        const rolled = prev.slice(0, -1);
+        console.log("[CHAT] Rolled back user message due to error. Messages length:", rolled.length);
+        return rolled;
+      });
     } finally {
       setIsLoading(false);
+      console.log("[CHAT] sendMessage complete. isLoading set to false");
     }
   }
 
   function handleSubmit(e) {
     e.preventDefault();
+    console.log("[CHAT] Form submitted. Input value:", input);
     sendMessage(input);
   }
 
