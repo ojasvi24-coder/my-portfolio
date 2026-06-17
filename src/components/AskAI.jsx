@@ -52,7 +52,13 @@ export default function AskAI() {
 
       if (!res.ok) {
         const errorText = await res.text();
-        console.error(`[FRONTEND ERROR] Status: ${res.status} | Response:`, errorText);
+        console.error(`[FRONTEND ERROR] Status: ${res.status} | Raw Response:`, errorText);
+        try {
+          const errorJson = JSON.parse(errorText);
+          console.error(`[FRONTEND ERROR] Parsed error JSON:`, errorJson);
+        } catch (e) {
+          console.error(`[FRONTEND ERROR] Could not parse error as JSON`);
+        }
         throw new Error(`API failed with status ${res.status}`);
       }
 

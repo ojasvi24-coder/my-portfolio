@@ -137,27 +137,39 @@ export default async function handler(req, res) {
     console.log("[BACKEND] Calling Groq API endpoint: https://api.groq.com/openai/v1/chat/completions");
     console.log("[BACKEND] Model:", MODEL, "| Max tokens:", MAX_TOKENS);
     
+    const requestBody = {
+      model: MODEL,
+      max_tokens: MAX_TOKENS,
+      messages: messagesWithSystem,
+    };
+    
+    console.log("[BACKEND] Request body being sent to Groq:", JSON.stringify(requestBody, null, 2));
+    
     const groqRes = await fetch("https://api.groq.com/openai/v1/chat/completions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${apiKey}`,
       },
-      body: JSON.stringify({
-        model: MODEL,
-        max_tokens: MAX_TOKENS,
-        messages: messagesWithSystem,
-      }),
+      body: JSON.stringify(requestBody),
     });
 
     console.log("[BACKEND] Groq response received. Status:", groqRes.status, "OK:", groqRes.ok);
 
     if (!groqRes.ok) {
       const errText = await groqRes.text();
-      console.error(`[BACKEND ERROR] Groq API failed | Status: ${groqRes.status} | Response:`, errText);
+      console.error(`[BACKEND ERROR] Groq API failed | Status: ${groqRes.status}`);
+      console.error(`[BACKEND ERROR] Full Groq error response:`, errText);
+      try {
+        const errJson = JSON.parse(errText);
+        console.error(`[BACKEND ERROR] Parsed error JSON:`, JSON.stringify(errJson, null, 2));
+      } catch (e) {
+        console.error(`[BACKEND ERROR] Could not parse error as JSON`);
+      }
       return res.status(502).json({ 
         error: "Upstream AI provider error",
-        details: `Groq API returned ${groqRes.status}` 
+        details: `Groq API returned ${groqRes.status}`,
+        groqError: errText.substring(0, 200) // First 200 chars of error
       });
     }
 
