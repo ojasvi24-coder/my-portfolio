@@ -58,7 +58,7 @@ EXPERIENCE:
 
 AVAILABILITY: Open to Fall 2026 / Winter 2027 internships`;
 
-const MODEL = "mixtral-8x7b-32768";
+const MODEL = "llama-3.1-70b-versatile";
 const MAX_TOKENS = 1024;
 const MAX_HISTORY_MESSAGES = 20;
 const MAX_MESSAGE_CHARS = 4000;
