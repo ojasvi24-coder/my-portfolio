@@ -51,6 +51,11 @@ PROJECTS:
    - Live: https://gistice-league.onrender.com/
 
 EXPERIENCE:
+- Machine Learning Engineer (Feb 2026–May 2026) | Open Project, Berkeley, CA
+  - Engineered spatial ML pipelines and regression models using PyTorch and scikit-learn
+  - Feature engineering, high-dimensional data ingestion, cross-validation strategies
+  - Multi-source geospatial datasets
+
 - Private Mathematics Tutor (Jan 2024–Sep 2025)
   - 60% average exam score improvement across tutees
   - First-principles frameworks for Calculus, Linear Algebra, Statistics
