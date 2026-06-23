@@ -215,6 +215,8 @@ h1.hero-name{font-size:clamp(2.8rem,5vw,4.2rem);font-weight:900;
 .exp-title{font-size:16px;font-weight:800;color:var(--text)}
 .exp-date{font-size:12px;color:var(--text3)}
 .exp-company{font-size:13px;color:var(--pink);font-weight:600;margin-bottom:.85rem}
+.exp-desc{display:flex;flex-direction:column;gap:1rem}
+.exp-desc p{font-size:13.5px;color:var(--text2);line-height:1.75;margin:0}
 .exp-buls{list-style:none;display:flex;flex-direction:column;gap:.65rem}
 .exp-buls li{font-size:13.5px;color:var(--text2);line-height:1.75;padding-left:1.1rem;position:relative}
 .exp-buls li::before{content:'';position:absolute;left:0;top:.73em;width:5px;height:5px;
@@ -576,9 +578,10 @@ footer a{color:var(--pink);text-decoration:none}
       <div class="exp-date">Feb 2026 – May 2026</div>
     </div>
     <div class="exp-company">Open Project · Berkeley, CA</div>
-    <ul class="exp-buls">
-      Engineered spatial machine learning pipelines and regression models using PyTorch and scikit-learn, implementing feature engineering, high dimensional data ingestion, and cross-validation strategies across multi-source geospatial datasets.
-    </ul>
+    <div class="exp-desc">
+      <p>Built production grade spatial ML systems from first principles, architecting pipelines that ingested multi-source geospatial datasets and engineered high dimensional feature sets across census tracts. Implemented PyTorch neural networks and scikit-learn ensemble models optimized through rigorous cross-validation and hyperparameter tuning, solving real data challenges like handling missing values, normalizing disparate sources, and preventing data leakage in temporal splits.</p>
+      <p style="margin-top:0.8rem;color:var(--text2)">Rather than just applying models, I contributed in the entire ML lifecycle: data ingestion and cleaning, exploratory analysis to guide feature engineering, model selection and validation strategies, and deployment considerations. This deep ownership approach deriving insights from raw data rather than treating ML as a black box is what differentiates engineers who build systems that actually work in production from those who just fit models.</p>
+    </div>
   </div>
   <div class="exp-card">
     <div class="exp-h">
@@ -586,9 +589,10 @@ footer a{color:var(--pink);text-decoration:none}
       <div class="exp-date">Jan 2024 – Sep 2025</div>
     </div>
     <div class="exp-company">Los Angeles, CA</div>
-    <ul class="exp-buls">
-    Designed first principles problem-solving frameworks for Calculus, Linear Algebra, and Statistics, enabling students to derive results from definitions rather than memorized formulas achieving an average <strong class="h">60% exam score improvement</strong> across tutees.
-    </ul
+    <div class="exp-desc">
+      <p>Pioneered a first principles teaching methodology that rewired how students approach mathematics by deriving every concept from foundational axioms rather than memorizing procedures. Instead of "here's the formula," I built custom problem sequences that forced students to discover why the formula works, turning passive learners into mathematicians who understand the <em>why</em> behind the mechanics. This pedagogical approach generated a <strong class="h">60% average exam score improvement</strong> not through harder studying, but through better understanding.</p>
+      <p style="margin-top:0.8rem;color:var(--text2)">Beyond raw test score gains, I diagnosed individual learning blockers (algebra gaps, proof technique deficiencies, conceptual misalignments) and custom-sequenced each student's curriculum accordingly. Over 20+ sessions per student, I built a reusable library of targeted problem sets and explanations refined through continuous feedback. This systematic, data driven approach to education identifying, iterating on solutions, measuring outcomes mirrors the same rigor I apply to ML engineering and product development.</p>
+    </div>
   </div>
 </section>
 
