@@ -51,6 +51,11 @@ PROJECTS:
    - Live: https://gistice-league.onrender.com/
 
 EXPERIENCE:
+- Developer | LG NOVA
+  - Worked as a technical team member in collaboration with LG NOVA to develop Atlas, an AI-powered internal operations dashboard designed to centralize and structure fragmented team data.
+  - Contributed to the engineering of data integration pipelines to streamline cross-team coordination, while assisting in the implementation of an LLM-powered natural language interface for seamless, conversational data querying.
+  - Developed clean code and collaborated closely with peer developers to meet technical specifications and project milestones provided by the corporate partner.
+
 - Machine Learning Engineer (Feb 2026–May 2026) | Open Project, Berkeley, CA
   - Engineered spatial ML pipelines and regression models using PyTorch and scikit-learn
   - Feature engineering, high-dimensional data ingestion, cross-validation strategies
