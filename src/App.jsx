@@ -140,6 +140,48 @@ export default function App() {
         </div>
       </section>
 
+      {/* EXPERIENCE */}
+      <section id="work" className="max-w-5xl mx-auto mb-24 px-6">
+        <h2 className="text-3xl font-semibold mb-6">Experience</h2>
+        <div className="space-y-6">
+          <div className="bg-white shadow-xl rounded-2xl p-8 border">
+            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3 mb-4">
+              <div>
+                <h3 className="text-xl font-semibold">Developer · LG NOVA</h3>
+                <p className="text-gray-600">July 2026 – August 2026</p>
+              </div>
+            </div>
+            <p className="text-gray-700 leading-relaxed">
+              Worked as a technical team member in collaboration with LG NOVA to develop Atlas, an AI-powered internal operations dashboard designed to centralize and structure fragmented team data. Contributed to the engineering of data integration pipelines to streamline cross-team coordination, while assisting in the implementation of an LLM-powered natural language interface for seamless, conversational data querying. Developed clean code and collaborated closely with peer developers to meet technical specifications and project milestones provided by the corporate partner.
+            </p>
+          </div>
+
+          <div className="bg-white shadow-xl rounded-2xl p-8 border">
+            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3 mb-4">
+              <div>
+                <h3 className="text-xl font-semibold">Machine Learning Engineer · Open Project</h3>
+                <p className="text-gray-600">Feb 2026 – May 2026</p>
+              </div>
+            </div>
+            <p className="text-gray-700 leading-relaxed">
+              Engineered spatial ML pipelines and regression models using PyTorch and scikit-learn, with a focus on feature engineering, high-dimensional geospatial data ingestion, and robust cross-validation strategies for multi-source datasets.
+            </p>
+          </div>
+
+          <div className="bg-white shadow-xl rounded-2xl p-8 border">
+            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3 mb-4">
+              <div>
+                <h3 className="text-xl font-semibold">Private Mathematics Tutor</h3>
+                <p className="text-gray-600">Jan 2024 – Sep 2025</p>
+              </div>
+            </div>
+            <p className="text-gray-700 leading-relaxed">
+              Delivered first-principles tutoring for calculus, linear algebra, and statistics while helping students improve exam performance through structured problem libraries and consistent, high-impact sessions.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* ASK AI */}
       <section id="ask-ai" className="max-w-5xl mx-auto mb-24 px-6">
         <h2 className="text-3xl font-semibold mb-6">Ask AI</h2>
