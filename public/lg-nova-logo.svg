@@ -1,0 +1,14 @@
+<svg width="240" height="72" viewBox="0 0 240 72" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="LG NOVA logo">
+  <rect x="2" y="2" width="236" height="68" rx="18" fill="#0b1220" stroke="rgba(255,255,255,0.12)"/>
+  <rect x="16" y="16" width="40" height="40" rx="10" fill="url(#g)"/>
+  <path d="M29 24h12v6H35v4h6v6H29v-16z" fill="#fff"/>
+  <path d="M50 24h12v6H56v4h6v6H50v-16z" fill="#fff" opacity="0.95"/>
+  <text x="76" y="34" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800" fill="#f5f7ff">LG</text>
+  <text x="76" y="54" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800" fill="#f472b6">NOVA</text>
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f472b6"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+  </defs>
+</svg>

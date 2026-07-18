@@ -1,0 +1,14 @@
+<svg width="260" height="72" viewBox="0 0 260 72" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Open Project logo">
+  <rect x="2" y="2" width="256" height="68" rx="18" fill="#0b1220" stroke="rgba(255,255,255,0.12)"/>
+  <rect x="16" y="16" width="40" height="40" rx="10" fill="url(#g)"/>
+  <path d="M24 24h10v8H24zM24 38h10v8H24z" fill="#fff"/>
+  <path d="M40 24h10v8H40zM40 38h10v8H40z" fill="#fff" opacity="0.9"/>
+  <text x="74" y="34" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="800" fill="#f5f7ff">Open</text>
+  <text x="74" y="54" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="800" fill="#a78bfa">Project</text>
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22d3ee"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+  </defs>
+</svg>
