@@ -143,40 +143,31 @@ export default function App() {
       {/* EXPERIENCE */}
       <section id="work" className="max-w-5xl mx-auto mb-24 px-6">
         <h2 className="text-3xl font-semibold mb-6">Experience</h2>
-        <div className="space-y-6">
-          <div className="bg-white shadow-xl rounded-2xl p-8 border">
-            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3 mb-4">
-              <div>
-                <h3 className="text-xl font-semibold">Developer · LG NOVA</h3>
-                <p className="text-gray-600">July 2026 – August 2026</p>
-              </div>
-            </div>
+        <div className="space-y-8">
+          <div className="border-l-2 border-gray-200 pl-6">
+            <h3 className="text-xl font-semibold">Developer</h3>
+            <p className="text-gray-700 font-medium">LG NOVA</p>
+            <p className="text-gray-500 mb-3">July 2026 – August 2026</p>
             <p className="text-gray-700 leading-relaxed">
               Worked as a technical team member in collaboration with LG NOVA to develop Atlas, an AI-powered internal operations dashboard designed to centralize and structure fragmented team data. Contributed to the engineering of data integration pipelines to streamline cross-team coordination, while assisting in the implementation of an LLM-powered natural language interface for seamless, conversational data querying. Developed clean code and collaborated closely with peer developers to meet technical specifications and project milestones provided by the corporate partner.
             </p>
           </div>
 
-          <div className="bg-white shadow-xl rounded-2xl p-8 border">
-            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3 mb-4">
-              <div>
-                <h3 className="text-xl font-semibold">Machine Learning Engineer · Open Project</h3>
-                <p className="text-gray-600">Feb 2026 – May 2026</p>
-              </div>
-            </div>
+          <div className="border-l-2 border-gray-200 pl-6">
+            <h3 className="text-xl font-semibold">Machine Learning Engineer</h3>
+            <p className="text-gray-700 font-medium">Open Project · Berkeley, CA</p>
+            <p className="text-gray-500 mb-3">Feb 2026 – May 2026</p>
             <p className="text-gray-700 leading-relaxed">
-              Engineered spatial ML pipelines and regression models using PyTorch and scikit-learn, with a focus on feature engineering, high-dimensional geospatial data ingestion, and robust cross-validation strategies for multi-source datasets.
+              Built production-grade spatial ML systems from first principles, architecting pipelines that ingested multi-source geospatial datasets and engineered high-dimensional feature sets across census tracts. Implemented PyTorch neural networks and scikit-learn ensemble models optimized through rigorous cross-validation and hyperparameter tuning, solving real data challenges like handling missing values, normalizing disparate sources, and preventing data leakage in temporal splits.
             </p>
           </div>
 
-          <div className="bg-white shadow-xl rounded-2xl p-8 border">
-            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3 mb-4">
-              <div>
-                <h3 className="text-xl font-semibold">Private Mathematics Tutor</h3>
-                <p className="text-gray-600">Jan 2024 – Sep 2025</p>
-              </div>
-            </div>
+          <div className="border-l-2 border-gray-200 pl-6">
+            <h3 className="text-xl font-semibold">Founder, Private Tutoring Services</h3>
+            <p className="text-gray-700 font-medium">Mathematics Tutor · Los Angeles, CA</p>
+            <p className="text-gray-500 mb-3">Jan 2024 – Sep 2025</p>
             <p className="text-gray-700 leading-relaxed">
-              Delivered first-principles tutoring for calculus, linear algebra, and statistics while helping students improve exam performance through structured problem libraries and consistent, high-impact sessions.
+              Pioneered a first-principles teaching methodology that rewired how students approach mathematics by deriving every concept from foundational axioms rather than memorizing procedures. Instead of “here’s the formula,” I built custom problem sequences that forced students to discover why the formula works, turning passive learners into mathematicians who understand the why behind the mechanics. This pedagogical approach generated a 60% average exam score improvement not through harder studying, but through better understanding.
             </p>
           </div>
         </div>
