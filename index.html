@@ -125,6 +125,14 @@ h1.hero-name{font-size:clamp(2.8rem,5vw,4.2rem);font-weight:900;
 .btn-p:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(190,24,93,.45)}
 .btn-o{background:rgba(255,255,255,.05);color:var(--text);border:.5px solid var(--border2)}
 .btn-o:hover{border-color:var(--border3);background:rgba(255,255,255,.09)}
+.hero-affils{display:flex;flex-wrap:wrap;gap:10px;margin:1rem 0 1.2rem}
+.affil-badge{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;
+  background:rgba(255,255,255,.04);border:.5px solid var(--border2);color:var(--text2);
+  font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.affil-badge .dot{width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--purple));box-shadow:0 0 10px rgba(244,114,182,.35)}
+.affil-badge.lg{border-color:rgba(244,114,182,.25);background:rgba(244,114,182,.08);color:var(--pink)}
+.affil-badge.op{border-color:rgba(167,139,250,.25);background:rgba(167,139,250,.08);color:var(--purple)}
+@media(max-width:900px){.hero-affils{justify-content:center}}
 
 /* SECTION */
 .sw{max-width:960px;margin:0 auto;padding:5.5rem 2rem;position:relative;z-index:1}
@@ -407,6 +415,10 @@ footer a{color:var(--pink);text-decoration:none}
     <div class="hero-avail"><span class="pulse"></span>Open to Internships · Fall 2026 / Winter 2027</div>
     <h1 class="hero-name">Ojasvi<br/>Shrivastava</h1>
     <p class="hero-headline">Data Science @UC Berkeley &nbsp;·&nbsp; Machine Learning · Generative AI · Data Science</p>
+    <div class="hero-affils">
+      <div class="affil-badge lg"><span class="dot"></span>LG NOVA</div>
+      <div class="affil-badge op"><span class="dot"></span>Open Project</div>
+    </div>
     <p class="hero-sub">Building AI Powered Solutions intelligent systems that combine machine learning, LLMs, and full-stack engineering to solve real-world problems.</p>
     <div class="hero-ctas">
       <a class="btn btn-p" href="https://my-portfolio-ten-weld-94.vercel.app/Resume.pdf" target="_blank">↓ Resume</a>
