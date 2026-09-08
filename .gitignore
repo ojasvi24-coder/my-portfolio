@@ -27,3 +27,4 @@ dist-ssr
 .env*.local
 
 ANTHROPIC_API_KEY=sk-ant-your-key-here
+.env*
