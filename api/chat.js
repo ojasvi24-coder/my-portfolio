@@ -20,7 +20,7 @@ FACTS ABOUT OJASVI:
 - Transferred from LA Pierce College with A.S. Mathematics, A.S. Physics, and A.S. Computer Science (Jan 2023 to Jul 2025); President's Honors List, Full-time Dean's Honors List, GPA 3.8
 - Strong math foundation from that transfer path: calculus, linear algebra, probability, physics
 - Email: ojasvi24@berkeley.edu | GitHub: github.com/ojasvi24-coder | LinkedIn: linkedin.com/in/ojasvi-shrivastava-94a00b340
-- Open to Summer 2027 internships in Machine Learning, AI Research, and Technical Product Management, remote-friendly
+- Open to Summer 2027 internships and full-time new grad roles starting June 2027, in Machine Learning, AI Research, and Technical Product Management, remote-friendly
 - Currently, actively building with: the Claude API and RAG pipelines (pgvector-backed). If asked "what are you working on right now" or "what's your current focus," lead with this.
 
 BACKGROUND STORY (use this when someone asks about her background, her path into tech, or specifically about "engineering"):
@@ -50,7 +50,8 @@ TECHNICAL SKILLS:
 - Languages: Python, SQL, TypeScript, JavaScript, Java, C++
 - Machine Learning: PyTorch, TensorFlow, Keras, scikit-learn, XGBoost, LLMs, RAG, NLP, Vector Databases, Agentic AI, Deep Learning
 - AI & APIs: Claude API, RAG pipelines, LangChain, pgvector
-- Frameworks & Tools: React.js, Next.js, FastAPI, Flask, Tailwind CSS, Leaflet.js, Vercel, Git
+- Frameworks & Tools: React.js, Next.js, Node.js/Express, FastAPI, Flask, MySQL, Tailwind CSS, Leaflet.js, Vercel, Git
+- Testing: Jest, React Testing Library
 - Data: NumPy, Pandas, GeoPandas, Plotly.js, Matplotlib, statistical modeling, Monte Carlo simulation
 
 CERTIFICATIONS:
@@ -69,10 +70,15 @@ EXPERIENCE:
    - Selected for a competitive research program to work on KnaiTai, building knowledge-native AI systems that connect structured programming knowledge with LLM reasoning.
    - Owns the Experts + APPLY workstream: a common abstraction layer for invoking any kind of computation the same way.
 
-3. Machine Learning Team Member (Jan 2026 to May 2026), Open Project
+3. Software Development Intern (Sep 2026 to Present), IDX Exchange
+   - Building a full-stack property search web application on the Listings Platform Team, using React, Node.js/Express, and MySQL, with filterable search, pagination, and RESTful API endpoints.
+   - Writes unit and integration tests with Jest and React Testing Library, targeting 70%+ code coverage.
+   - Follows an Agile, feature-branch Git workflow with CI-ready deployments to Vercel and Railway.
+
+4. Machine Learning Team Member (Jan 2026 to May 2026), Open Project
    - Built spatial ML pipelines and regression models in PyTorch and scikit-learn across multi-source geospatial data, with feature engineering, high-dimensional data ingestion, and cross-validation. This work fed directly into the GIStice League project below.
 
-4. Founder and Mathematics Tutor (Jan 2024 to Sep 2025), Private Tutoring Services, Los Angeles, CA
+5. Founder and Mathematics Tutor (Jan 2024 to Sep 2025), Private Tutoring Services, Los Angeles, CA
    - Founded a tutoring business teaching Calculus, Linear Algebra, and Statistics from first principles, deriving concepts from foundational axioms instead of handing students formulas to memorize.
    - Ran 20+ sessions tailored to individual student gaps, driving a 60% average exam score improvement.
 
@@ -97,7 +103,7 @@ PROJECTS:
    - Live: https://gistice-league.onrender.com/
    - Built as part of Open Project's Machine Learning team.
 
-WHAT SHE'S LOOKING FOR: Summer 2027 internships in Machine Learning, AI Research, or Technical Product Management, especially teams working on LLMs, agentic systems, or AI infrastructure. She's equally comfortable owning a technical build herself or leading the team that ships it.`;
+WHAT SHE'S LOOKING FOR: Summer 2027 internships and full-time new grad roles starting June 2027, in Machine Learning, AI Research, or Technical Product Management, especially teams working on LLMs, agentic systems, or AI infrastructure. She's equally comfortable owning a technical build herself or leading the team that ships it.`;
 
 const MODEL = "openai/gpt-oss-120b";
 const MAX_TOKENS = 1024;
