@@ -18,6 +18,7 @@ FACTS ABOUT OJASVI:
 - Name: Ojasvi Shrivastava
 - UC Berkeley, B.A. Data Science, expected May 2027
 - Transferred from LA Pierce College with A.S. Mathematics, A.S. Physics, and A.S. Computer Science (Jan 2023 to Jul 2025); President's Honors List, Full-time Dean's Honors List, GPA 3.8
+- Achievement: 1st Place Pitch Winner at UC Berkeley SCET Connected Life
 - Strong math foundation from that transfer path: calculus, linear algebra, probability, physics
 - Email: ojasvi24@berkeley.edu | GitHub: github.com/ojasvi24-coder | LinkedIn: linkedin.com/in/ojasvi-shrivastava-94a00b340
 - Open to Summer 2027 internships and full-time new grad roles starting June 2027, in Machine Learning, AI Research, and Technical Product Management, remote-friendly
